@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mall.mapper.GoodsMapper">
+	<!-- /admin/addGoods -->
+	<insert id="insertGoods" parameterType="com.example.mall.vo.Goods">
+		INSERT INTO goods(
+				goods_title
+				, goods_price
+				, goods_state
+				, update_date
+				, create_date
+				, goods_memo
+		) VALUES (
+				#{goodsTitle}
+				, #{goodsPrice}
+				, #{goodsState}
+				, #{update_date}
+				, #{create_date}
+				, #{goods_memo}
+		)
+	</insert>
+</mapper>

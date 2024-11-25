@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mall.mapper.GoodsFileMapper">
+	<insert id="insertActorFile" parameterType="com.example.mall.vo.GoodsFile">
+		INSERT INTO goods_file(
+			goods_no
+			,goods_file_name
+			,goods_file_origin
+			,goods_file_ext
+			,goods_file_type
+			,goods_fle_size
+		) VALUES(
+			#{goodsNo},#{goodsFileName},#{goodsFileOrigin},#{goodsFileExt},#{goodsFileType},#{goodsFileSize}
+		)
+	</insert>
+
+</mapper>
