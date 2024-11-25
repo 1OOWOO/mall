@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Orders {
-	private Integer ordersNo; // pk
+	private Integer ordersNo;
 	private Integer goodsNo;
 	private Integer ordersAmount;
 	private Integer paymentNo;
