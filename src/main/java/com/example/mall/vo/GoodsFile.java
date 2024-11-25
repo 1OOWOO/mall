@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class GoodsFile {
-	private Integer goodsFileNo;
+	private Integer goodsFileNo; // pk
 	private Integer goodsNo;
 	private String goodsFileName;
 	private String goodsFileOrigin;
