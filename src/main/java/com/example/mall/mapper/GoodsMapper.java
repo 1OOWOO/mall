@@ -1,6 +1,6 @@
 package com.example.mall.mapper;
 
-import org.mapstruct.Mapper;
+import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mall.vo.Goods;
 
