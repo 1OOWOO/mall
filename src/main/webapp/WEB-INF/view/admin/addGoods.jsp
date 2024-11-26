@@ -14,10 +14,11 @@
 <link rel='stylesheet' href='style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-<title></title>
+<title>Add Goods</title>
 </head>
 <body>
-	<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/admin/addAddGoods" enctype="multipart/form-data">
+	<h1>상품 등록</h1>
+	<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/admin/addGoods" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
 				<td>카테고리</td>
@@ -87,10 +88,10 @@
 
 	// 파일 추가 버튼
 	$('#btnAddFile').click(function(){
-		if($('.actorFile').last().val() == ''){ // 마지막 input_file값이 공백이라면
+		if($('.goodsFile').last().val() == ''){ // 마지막 input_file값이 공백이라면
 			alert('파일을 첨부하세요');
 		} else{
-			let html = '<input type="file" name="actorFile" class="form-control" style="width:40%;">';
+			let html = '<input type="file" name="goodsFile" class="form-control" style="width:40%;">';
 			$('#fileDiv').append(html);
 		}
 	});

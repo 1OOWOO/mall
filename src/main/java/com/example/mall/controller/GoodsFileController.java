@@ -14,22 +14,26 @@ import com.example.mall.service.GoodsFileService;
 import com.example.mall.vo.GoodsForm;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class GoodsFileController {
 	@Autowired GoodsFileService goodsFileService;
 	
 	@GetMapping("/on/addGoodsFile")
-	public String addActorFile(Model model,@RequestParam Integer goodsNo) {
+	public String addGoodsFile(Model model,@RequestParam Integer goodsNo) {
 		model.addAttribute("goodsNo",goodsNo);
 		return "on/addGoodsFile";
 	}	
 	
 	@PostMapping("/on/addGoodsFile")
-	public String addActorFile(HttpSession session,Model model,GoodsForm goodsForm) {
+	public String addGoodsFile(HttpSession session,Model model,GoodsForm goodsForm,@RequestParam Integer goodsNo) {
+		log.debug("goodsForm: "+goodsForm);
+		goodsForm.setGoodsNo(goodsNo); // goodsNo를 GoodsForm에 설정
 		// 이미지 파일 검사 - 여러 파일 중 하나라도 이미지 파일이 아니면 return
 		List<MultipartFile> list = goodsForm.getGoodsFile();
-		for(MultipartFile f : list) { // *.jpeg, *.png만 가능
+		for(MultipartFile f : list) { // jpeg, png만 가능
 			if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
 				model.addAttribute("msg","이미지 파일만 첨부 가능합니다");
 				return "on/addGoodsFile";

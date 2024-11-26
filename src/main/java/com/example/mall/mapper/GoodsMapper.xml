@@ -7,16 +7,33 @@
 				goods_title
 				, goods_price
 				, goods_state
-				, update_date
-				, create_date
 				, goods_memo
 		) VALUES (
 				#{goodsTitle}
 				, #{goodsPrice}
 				, #{goodsState}
-				, #{update_date}
-				, #{create_date}
-				, #{goods_memo}
+				, #{goodsMemo}
 		)
 	</insert>
+	
+	<!-- /admin/goodsList -->
+	<select id="selectGoodsList" parameterType="Map" resultType="Map">
+		SELECT 
+			goods_no goodsNo
+			,goods_title goodsTitle
+			,goods_price goodsPrice
+		FROM goods
+		<where> <!-- 검색어 있을때만 실행 -->
+			<if test="searchWord != null">
+				goods_title LIKE CONCAT('%',#{searchWord}.'%')
+			</if>
+		</where>
+		ORDER BY goods_no ASC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	
+	<!-- goodsList 페이징 -->
+	<select id="selectGoodsCount" resultType="Integer">
+		SELECT COUNT(*) FROM goods
+	</select>
 </mapper>
