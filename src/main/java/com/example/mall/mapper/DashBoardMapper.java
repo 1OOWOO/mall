@@ -2,7 +2,9 @@ package com.example.mall.mapper;
 
 import java.util.Map;
 
-@org.apache.ibatis.annotations.Mapper
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
 public interface DashBoardMapper {
      // 신규 주문 수
     int selectNewOrders();
