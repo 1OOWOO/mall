@@ -13,7 +13,7 @@
 <link rel='stylesheet' href='style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-<!-- css -->
+
 <meta charset="UTF-8">
   <h1>Dashboard</h1>
     <div class="dashboard-stats">
