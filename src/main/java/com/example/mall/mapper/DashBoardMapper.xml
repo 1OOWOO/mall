@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mall.mapper.DashBoardMapper">
+
+  <!-- 신규 주문 수 -->
+    <select id="selectNewOrders" resultType="int">
+        SELECT COUNT(*) 
+        FROM orders
+        WHERE create_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)
+    </select>
+
+    <!-- 취소된 주문 수 / amount가 0으로 간주-->
+    <select id="selectCanceledOrders" resultType="int">
+        SELECT COUNT(*) 
+        FROM orders
+        WHERE orders_amount = 0
+          AND update_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)
+    </select>
+
+    <!-- 신규 후기 수 -->
+    <select id="selectNewReviews" resultType="int">
+        SELECT COUNT(*) 
+        FROM board
+        WHERE create_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)
+    </select>
+
+    <!-- 신규 회원 수 -->
+    <select id="selectNewUsers" resultType="int">
+        SELECT COUNT(*) 
+        FROM customer
+        WHERE create_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)
+    </select>
+    
+    
+    <!-- 대시보드 요약 (모든 데이터를 한 번에) -->
+    <select id="selectDashboardSummary" resultType="map">
+        SELECT 
+            (SELECT COUNT(*) 
+             FROM orders 
+             WHERE create_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)) AS newOrders,
+            (SELECT COUNT(*) 
+             FROM orders 
+             WHERE orders_amount = 0 
+               AND update_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)) AS canceledOrders,
+            (SELECT COUNT(*) 
+             FROM board 
+             WHERE create_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)) AS newReviews,
+            (SELECT COUNT(*) 
+             FROM customer 
+             WHERE create_date >= DATE_SUB(NOW(), INTERVAL 1 DAY)) AS newUsers
+    </select>
+    
+</mapper>
