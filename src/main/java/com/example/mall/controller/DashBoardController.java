@@ -24,7 +24,7 @@ public class DashBoardController {
         // 데이터를 모델에 추가
         model.addAttribute("summary", summary);
 
-        // 뷰 이름 반환 (예: dashboard.jsp 또는 dashboard.html)
+        // 뷰 이름 반환 
         return "admin/dashBoard";
     }
 }
