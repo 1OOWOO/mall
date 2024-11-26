@@ -37,8 +37,20 @@ public class CustomerService {
         }
 
         // 전체 고객 수를 가져오는 메서드
-        public int getTotalCount() {
+        public int getTotalCount(String email) {
             return customerMapper.getTotalCount(); // 전체 고객 수 반환
         }
+        
+        // 이메일로 고객 목록 검색 (페이징 처리) 
+        public List<Customer> searchCustomerByEmail(String email, int page, int size) {
+            return customerMapper.searchCustomerByEmail(email, page, size); // Mapper 호출
+        }
+
+        // 이메일 검색 시 전체 고객 수 가져오기
+        public int getTotalCountByEmail(String email) {
+            return customerMapper.getTotalCountByEmail(email); // Mapper 호출
+        }
+
+		
     }
 

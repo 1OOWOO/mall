@@ -11,4 +11,21 @@
         SELECT COUNT(*) FROM customer
     </select>
     
+    <!-- 이메일로 고객 목록 검색 -->
+    <select id="searchCustomersByEmail" resultType="com.example.mall.vo.Customer">
+        SELECT customer_mail customerMail,
+               customer_birth customerBirth,
+               create_date createDate 
+        FROM customer
+        WHERE customer_mail LIKE CONCAT('%', #{email}, '%')
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <!-- 이메일 검색 시 전체 고객 수 -->
+    <select id="getTotalCountByEmail" resultType="int">
+        SELECT COUNT(*) 
+        FROM customer
+        WHERE customer_mail LIKE CONCAT('%', #{email}, '%')
+    </select>
+    
 </mapper>

@@ -15,12 +15,22 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
     <meta charset="UTF-8">
-    <title>회원 관리</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+       <title>회원 관리</title>
 </head>
 <body>
     <div class="container">
         <h1>회원 관리</h1>
+        
+        <!-- 이메일 검색 폼 -->
+        <form action="/admin/customerList" method="get">
+            <div class="input-group">
+                <input type="text" id="searchEmail" name="searchEmail" class="form-control" placeholder="이메일 검색" value="${searchEmail}">
+                <button type="submit" class="btn btn-primary">검색</button>
+            </div>
+        </form>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -37,20 +47,28 @@
                         <td>${customer.createDate}</td>
                     </tr>
                 </c:forEach>
+                <c:if test="${empty customers}">
+                    <tr>
+                        <td colspan="3" class="text-center">검색된 결과가 없습니다.</td>
+                    </tr>
+                </c:if>
             </tbody>
         </table>
         
-        <!-- 페이징 작업. -->
-          <nav>
-            <ul class="page">
-           		 	<!-- 페이지 번호를 생성하는 반복문 --><!--  -->
+        <!-- 페이징 UI -->
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item <c:if test="${currentPage == 0}">disabled</c:if>">
+                    <a class="page-link" href="?page=${currentPage - 1}&size=${size}&searchEmail=${searchEmail}">이전</a>
+                </li>
                 <c:forEach var="i" begin="0" end="${totalPages - 1}">
-                	<!-- 현재 페이지와 반복되는 페이지 번호가 같으면, 'active'클래스 추가. -->
-                    <li class="page-item ${currentPage == i ? 'active' : ''}">
-                    <!-- 페이지 링크 : 클릭 시 해당 페이지로 이동. -->
-                        <a class="page-link" href="?page=${i}&size=${size}">${i + 1}</a>
+                    <li class="page-item <c:if test="${i == currentPage}">active</c:if>">
+                        <a class="page-link" href="?page=${i}&size=${size}&searchEmail=${searchEmail}">${i + 1}</a>
                     </li>
                 </c:forEach>
+                <li class="page-item <c:if test="${currentPage == totalPages - 1}">disabled</c:if>">
+                    <a class="page-link" href="?page=${currentPage + 1}&size=${size}&searchEmail=${searchEmail}">다음</a>
+                </li>
             </ul>
         </nav>
     </div>
