@@ -43,7 +43,7 @@
         <!-- 페이징 작업. -->
           <nav>
             <ul class="page">
-           		 	<!-- 페이지 번호를 생성하는 반복문 -->
+           		 	<!-- 페이지 번호를 생성하는 반복문 --><!--  -->
                 <c:forEach var="i" begin="0" end="${totalPages - 1}">
                 	<!-- 현재 페이지와 반복되는 페이지 번호가 같으면, 'active'클래스 추가. -->
                     <li class="page-item ${currentPage == i ? 'active' : ''}">
