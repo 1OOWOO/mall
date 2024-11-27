@@ -24,13 +24,11 @@
 			<tr>
 				<td>카테고리</td>
 				<td>
-					<select id="category" name="category">
+					<select name="goodsCategoryNo" id="goodsCategoryTitle">
 						<option value="">카테고리</option>
-						<option value="계절별의류">계절별의류</option>
-						<option value="액세서리">액세서리</option>
-						<option value="장난감">장난감</option>
-						<option value="산책용품">산책용품</option>
-						<option value="간식&영양제">간식&영양제</option>
+						<c:forEach var="c" items="${categoryList}">
+							<option value="${c.categoryNo}">${c.categoryTitle}</option>
+						</c:forEach>
 					</select>
 				</td>
 			</tr>

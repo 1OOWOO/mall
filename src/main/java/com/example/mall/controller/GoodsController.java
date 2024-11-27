@@ -1,5 +1,6 @@
 package com.example.mall.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,10 @@ public class GoodsController {
 	
 	// /admin/addGoods
 	@GetMapping("/admin/addGoods")
-	public String addGoods() {
+	public String addGoods(Model model) {
+		List<Category> categoryList = goodsCategoryService.getAllCategory();
+		model.addAttribute("categoryList",categoryList);
+		
 		return "admin/addGoods";
 	}
 	@PostMapping("/admin/addGoods")
@@ -44,7 +48,7 @@ public class GoodsController {
 			for(MultipartFile f : list) { 
 				if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
 					model.addAttribute("msg","이미지 파일만 첨부 가능합니다");
-					return "on/addGoods";
+					return "admin/addGoods";
 				}
 			}
 		}
@@ -91,6 +95,31 @@ public class GoodsController {
 		model.addAttribute("categoryList",categoryList);
 		
 		return "admin/goodsOne";
+	}
+	
+	// /admin/goodsOne - 상품 수정
+	@PostMapping("/admin/modifyGoods")
+	public String modifyGoods(@RequestParam Integer goodsNo
+								,@RequestParam String goodsTitle
+					            ,@RequestParam Integer goodsPrice
+					            ,@RequestParam String goodsMemo
+					            ,@RequestParam String goodsState
+					            ,@RequestParam Integer goodsCategoryNo) {
+		Map<String, Object> goodsMap = new HashMap<>();
+		goodsMap.put("goodsNo", goodsNo);
+		goodsMap.put("goodsTitle", goodsTitle);
+		goodsMap.put("goodsPrice", goodsPrice);
+		goodsMap.put("goodsMemo", goodsMemo);
+		goodsMap.put("goodsState", goodsState);
+		goodsService.modifyGoods(goodsMap);
+		log.debug("goodsMap: "+goodsMap);
+		
+		Map<String, Object> categoryMap = new HashMap<>();
+        categoryMap.put("categoryNo", goodsCategoryNo);
+        goodsCategoryService.modifyGoodsCategory(categoryMap);
+        log.debug("categoryMap: "+categoryMap);
+        
+		return "redirect:/admin/goodsList"; 
 	}
 	
 }

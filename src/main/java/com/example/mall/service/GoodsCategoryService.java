@@ -1,6 +1,8 @@
 package com.example.mall.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,14 @@ import com.example.mall.vo.Category;
 @Transactional
 public class GoodsCategoryService {
 	@Autowired private GoodsCategoryMapper goodsCategoryMapper;
-	
+
 	// 모든 카테고리 조회
 	public List<Category> getAllCategory(){
 		return goodsCategoryMapper.selectAllCategory();
+	}
+	
+	// /admin/goodsOne - 상품 수정
+	public Integer modifyGoodsCategory(Map<String,Object> map) {
+		return goodsCategoryMapper.updateGoodsCategory(map);
 	}
 }
