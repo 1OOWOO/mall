@@ -9,6 +9,10 @@ import com.example.mall.vo.Customer;
 
 @Mapper
 public interface CustomerMapper {
+	
+	// 고객 삭제 메서드
+	int deleteCustomer(String customerId);
+
 	// 전체 고객 리스트 반환
 	List<Customer> getCustomerList();
 	
@@ -20,5 +24,6 @@ public interface CustomerMapper {
     
     // 이메일 검색 시 전체 고객 수 반환
     int getTotalCountByEmail(@Param("email") String email);
+
 
 }

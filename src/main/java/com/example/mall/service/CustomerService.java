@@ -17,6 +17,10 @@ public class CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
     
+    // 고객 삭제 메서드.
+    public boolean deleteCustomer(String customerId) {
+    	return customerMapper.deleteCustomer(customerId) > 0; // 삭제된 행 수가 1이상이면 성공
+    }
     
     // 전체 고객 가져오는 메서드.
     public List<Customer> getCustomerList() {
