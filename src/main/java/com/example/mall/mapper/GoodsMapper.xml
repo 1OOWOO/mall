@@ -36,4 +36,22 @@
 	<select id="selectGoodsCount" resultType="Integer">
 		SELECT COUNT(*) FROM goods
 	</select>
+	
+	<!-- /admin/goodsOne -->
+	<select id="selectGoodsOne" parameterType="Integer" resultType="Map">
+		SELECT
+			g.goods_no goodsNo
+			,c.category_title categoryTitle
+			, g.goods_title goodsTitle
+			, g.goods_price goodsPrice
+			, g.goods_memo goodsMemo
+			, g.goods_state goodsState
+			, g.update_date updateDate
+		FROM goods g
+			INNER JOIN goods_category gc
+			ON g.goods_no = gc.goods_no
+				INNER JOIN category c
+				ON gc.category_no = c.category_no
+		WHERE g.goods_no = #{goodsNo};	
+	</select>
 </mapper>

@@ -11,19 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.mall.service.GoodsCategoryService;
 import com.example.mall.service.GoodsFileService;
 import com.example.mall.service.GoodsService;
+import com.example.mall.vo.Category;
 import com.example.mall.vo.GoodsFile;
 import com.example.mall.vo.GoodsForm;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-
+//Author : 오아림
 @Slf4j
 @Controller
 public class GoodsController {
 	@Autowired GoodsService goodsService;
 	@Autowired GoodsFileService goodsFileService;
+	@Autowired GoodsCategoryService goodsCategoryService;
 	
 	// /admin/addGoods
 	@GetMapping("/admin/addGoods")
@@ -51,6 +54,7 @@ public class GoodsController {
 		return "redirect:/admin/goodsList";
 	}
 	
+	// /admin/goodsList
 	@GetMapping("/admin/goodsList")
 	public String goodsList(Model model
 							,@RequestParam(defaultValue="1") Integer currentPage
@@ -72,6 +76,21 @@ public class GoodsController {
 		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
 		
 		return "admin/goodsList";
+	}
+	
+	// /admin/goodsOne
+	@GetMapping("/admin/goodsOne")
+	public String goodsOne(Model model, @RequestParam Integer goodsNo) {
+		Map<String,Object> map = goodsService.getGoodsOne(goodsNo);
+		model.addAttribute("go",map); 
+		
+		List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileList();
+		model.addAttribute("goodsFileList",goodsFileList);
+		
+		List<Category> categoryList = goodsCategoryService.getAllCategory();
+		model.addAttribute("categoryList",categoryList);
+		
+		return "admin/goodsOne";
 	}
 	
 }

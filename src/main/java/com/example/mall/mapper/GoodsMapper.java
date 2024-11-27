@@ -18,4 +18,7 @@ public interface GoodsMapper {
 	
 	// goodsList 페이징
 	Integer selectGoodsCount();
+	
+	// /admin/goodsOne
+	Map<String,Object> selectGoodsOne(Integer goodsNo);
 }

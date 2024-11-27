@@ -1,0 +1,21 @@
+package com.example.mall.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.mall.mapper.GoodsCategoryMapper;
+import com.example.mall.vo.Category;
+//Author : 오아림
+@Service
+@Transactional
+public class GoodsCategoryService {
+	@Autowired private GoodsCategoryMapper goodsCategoryMapper;
+	
+	// 모든 카테고리 조회
+	public List<Category> getAllCategory(){
+		return goodsCategoryMapper.selectAllCategory();
+	}
+}

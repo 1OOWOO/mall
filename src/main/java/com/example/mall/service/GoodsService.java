@@ -106,4 +106,9 @@ public class GoodsService {
 			}
 		}
 	}
+	
+	// /admin/goodsOne
+	public Map<String,Object> getGoodsOne(Integer goodsNo) {
+		return goodsMapper.selectGoodsOne(goodsNo);
+	}
 }

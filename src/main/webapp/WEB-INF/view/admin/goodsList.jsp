@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Goods List</title>
 </head>
+<!-- Author : 오아림 -->
 <body>
 	<h1>상품 목록</h1>
 	<table>
