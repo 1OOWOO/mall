@@ -27,8 +27,8 @@ public class CustomerService {
 
     
     // 고객 삭제 메서드.
-    public boolean deleteCustomer(String customerId) {
-    	return customerMapper.deleteCustomer(customerId) > 0; // 삭제된 행 수가 1이상이면 성공
+    public int deleteCustomer(String customerMail) {
+    	return customerMapper.deleteCustomer(customerMail); // 삭제된 행 수가 1이상이면 성공
     }
     
     // 전체 고객 가져오는 메서드.

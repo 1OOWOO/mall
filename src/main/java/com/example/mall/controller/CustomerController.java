@@ -35,15 +35,16 @@ public class CustomerController {
     // 회원삭제
     @PostMapping("/admin/deleteCustomer")
     public String deleteCustomer(String customerMail, Model model  ) {
-    	boolean success = customerService.deleteCustomer(customerMail);
+    	int success = customerService.deleteCustomer(customerMail);
     	
-    	if (success) {
-            model.addAttribute("message", "회원이 성공적으로 강퇴되었습니다.");
+    	if (success == 0) {
+    		model.addAttribute("error", "회원 강퇴에 실패했습니다.");
+    		return "redirect:/admin/customerList";
         } else {
-            model.addAttribute("error", "회원 강퇴에 실패했습니다.");
+        	model.addAttribute("message", "회원이 성공적으로 강퇴되었습니다.");
+        	return "redirect:/admin/customerOne?customerMail="+customerMail;
         }
 
-        return "redirect:/admin/customerList"; // 강퇴 후 고객 목록으로 돌아가기
     }
     
     @GetMapping("/admin/customerList")

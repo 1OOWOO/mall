@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.CustomerMapper">
-
+	
 	<select id="selectCustomerOne" parameterType="String" resultType="map">
 	  SELECT customer_mail customerMail,
 	  	customer_pw customerPw,
@@ -14,7 +14,7 @@
 	</select>
 	
 	<!-- 고객 삭제 쿼리 -->
-	<delete id="deleteCustomer">
+	<delete id="deleteCustomer" parameterType="String">
 		DELETE FROM customer
 		WEHRE customer_mail = #{customerMail}
 	</delete>

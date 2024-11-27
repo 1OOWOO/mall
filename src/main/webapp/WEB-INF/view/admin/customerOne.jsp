@@ -33,7 +33,7 @@
             <p><strong>Last Update:</strong> ${customer.updateDate}</p>
         </div>
 
-        <form action="/admin/deleteCustomer" method="post">
+        <form action="${pageContextPath.request.contextPath}/admin/deleteCustomer" method="post">
             <input type="hidden" name="customerMail" value="${customer.customerMail}"/>
             <button type="submit" class="btn btn-danger">회원탈퇴</button>
         </form>
@@ -45,7 +45,7 @@
             <div class="alert alert-danger">${error}</div>
         </c:if>
 
-        <a href="/admin/customerList" class="btn btn-secondary">목록으로 돌아가기</a>
+        <a href="${pageContextPath.request.contextPath}/admin/customerList" class="btn btn-secondary">목록으로 돌아가기</a>
     </div>
 </body>
 </html>
