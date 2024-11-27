@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <title>Mall - 회원가입</title>
     <link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-    <link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='style.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-    <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <!-- Bootstrap CSS for modal -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<!-- Bootstrap CSS for modal -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-5">
@@ -59,7 +59,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addressModalLabel">주소 검색</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -86,31 +86,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // 검색 버튼 클릭 시 모달 창이 닫히지 않도록 처리
-        document.getElementById('searchButton').addEventListener('click', function (event) {
-            event.preventDefault();  // 기본 form 제출을 막기 위한 코드
-            const searchAddress = document.getElementById('searchAddress').value;
-            
-            if (searchAddress.trim() === '') {
+        $('#searchButton').on('click', function (e) {
+            e.preventDefault(); // 기본 form 제출 방지
+            const searchAddress = $('#searchAddress').val().trim();
+
+            if (searchAddress === '') {
                 alert('주소를 입력해주세요.');
                 return;
             }
 
-            // 서버로 데이터를 보내기 전에 form이 submit되지 않도록 처리
-            const form = document.getElementById('addressSearchForm');
-            form.submit(); // 검색 실행, 모달 창은 닫히지 않음
+            $('#addressSearchForm').submit(); // 폼 제출 실행
         });
 
         // 주소 선택 버튼 클릭 시 선택된 주소를 인풋 필드에 넣기
-        document.getElementById('btnAddrSel').addEventListener('click', function () {
-            const resultAddress = document.getElementById('resultAddress');
-            const selectedOption = resultAddress.options[resultAddress.selectedIndex];
+        $('#btnAddrSel').on('click', function () {
+            const selectedOption = $('#resultAddress option:selected');
 
-            if (selectedOption) {
-                const selectedAddress = selectedOption.value; // 선택된 주소 값 가져오기
-                document.getElementById('selectedAddress').value = selectedAddress;
-
-                // 모달을 닫기
-                $('#addressModal').modal('hide');
+            if (selectedOption.length) {
+                const selectedAddress = selectedOption.val(); // 선택된 주소 값 가져오기
+                $('#selectedAddress').val(selectedAddress); // 주소 필드에 값 채우기
+                $('#addressModal').modal('hide'); // 모달 닫기
             } else {
                 alert('주소를 선택하세요.');
             }
