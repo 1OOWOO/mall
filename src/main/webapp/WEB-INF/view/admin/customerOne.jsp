@@ -15,6 +15,8 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
     <meta charset="UTF-8">
+   <!-- Author : 오자윤 -->
+    
 <title>회원관리 상세정보</title>
 </head>
 <body>
