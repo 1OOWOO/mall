@@ -16,6 +16,7 @@
 <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 <title>Add Goods</title>
 </head>
+<!-- Author : 오아림 -->
 <body>
 	<h1>상품 등록</h1>
 	<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/admin/addGoods" enctype="multipart/form-data">
