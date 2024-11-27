@@ -1,12 +1,13 @@
 package com.example.mall.mapper;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.example.mall.vo.Address;
 
+import java.util.List;
+
 @Mapper
 public interface AddressMapper {
-   List<Address> selectAddressList(String searchAddress);
+    List<Address> searchAddresses(@Param("keyword") String keyword);
 }

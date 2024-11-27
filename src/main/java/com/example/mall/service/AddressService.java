@@ -1,23 +1,21 @@
 package com.example.mall.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.mall.mapper.AddressMapper;
 import com.example.mall.vo.Address;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-@Transactional
-@Slf4j
 public class AddressService {
-   @Autowired AddressMapper addressMapper;
-   
-   public List<Address> getAddressList(String searchAddress){
-      return addressMapper.selectAddressList(searchAddress);
-   }
+
+    @Autowired
+    private AddressMapper addressMapper;
+
+    // 주소 검색 로직
+    public List<Address> searchAddresses(String keyword) {
+        return addressMapper.searchAddresses(keyword);
+    }
 }
