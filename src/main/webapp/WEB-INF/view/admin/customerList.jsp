@@ -44,7 +44,7 @@
                 <c:forEach var="customer" items="${customers}">
                     <tr>
 	                    <td>
-	                        <a href="/admin/customerOne/${customer.customerMail}">${customer.customerMail}</a>
+	                        <a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${customer.customerMail}">${customer.customerMail}</a>
 	                    </td>
                         <td>${customer.customerBirth}</td>
                         <td>${customer.createDate}</td>
