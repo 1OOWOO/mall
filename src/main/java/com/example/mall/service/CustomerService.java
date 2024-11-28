@@ -1,6 +1,8 @@
 package com.example.mall.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.mall.mapper.CustomerMapper;
+import com.example.mall.mapper.mapper;
 import com.example.mall.vo.Customer;
 
 import ch.qos.logback.core.model.Model;
@@ -17,6 +20,16 @@ public class CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
     
+	// 고객 상세정보 조회
+	public Map<String, Object> selectCustomerOne(String customerMail) {
+		return customerMapper.selectCustomerOne(customerMail);
+	}
+
+    
+    // 고객 삭제 메서드.
+    public int deleteCustomer(String customerMail) {
+    	return customerMapper.deleteCustomer(customerMail); // 삭제된 행 수가 1이상이면 성공
+    }
     
     // 전체 고객 가져오는 메서드.
     public List<Customer> getCustomerList() {
@@ -43,14 +56,22 @@ public class CustomerService {
         
         // 이메일로 고객 목록 검색 (페이징 처리) 
         public List<Customer> searchCustomerByEmail(String email, int page, int size) {
-            return customerMapper.searchCustomerByEmail(email, page, size); // Mapper 호출
+        	Map<String, Object> result= new HashMap<>();
+        	result.put("email", email);
+        	result.put("page", page);
+        	result.put("size", size);
+            return customerMapper.searchCustomerByEmail(result); // Mapper 호출
         }
 
         // 이메일 검색 시 전체 고객 수 가져오기
         public int getTotalCountByEmail(String email) {
             return customerMapper.getTotalCountByEmail(email); // Mapper 호출
         }
+        
+       // 이메일로 고객 정보 조회 (단일 고객)
+            public Customer getCustomerByEmail(String email) {
+                return customerMapper.getCustomerByEmail(email); // Mapper 호출하여 고객 반환
+        }
 
 		
     }
-

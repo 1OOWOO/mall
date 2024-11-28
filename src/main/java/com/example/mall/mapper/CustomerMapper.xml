@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.CustomerMapper">
+	
+	<select id="selectCustomerOne" parameterType="String" resultType="map">
+	  SELECT customer_mail customerMail,
+	  	customer_pw customerPw,
+        customer_birth customerBirth,
+        customer_gender customerGender,
+        create_date createDate,
+        update_date updateDate
+        FROM customer
+        WHERE customer_mail=#{customerMail}
+	</select>
+	
+	<!-- 고객 삭제 쿼리 -->
+	<delete id="deleteCustomer" parameterType="String">
+		DELETE FROM customer
+		WEHRE customer_mail = #{customerMail}
+	</delete>
+
     <select id="getCustomerList" resultType="com.example.mall.vo.Customer">
         SELECT customer_mail customerMail,
         customer_birth customerBirth,
@@ -12,13 +30,15 @@
     </select>
     
     <!-- 이메일로 고객 목록 검색 -->
-    <select id="searchCustomersByEmail" resultType="com.example.mall.vo.Customer">
+    <select id="searchCustomersByEmail" 
+    parameterType="Map"
+    resultType="com.example.mall.vo.Customer">
         SELECT customer_mail customerMail,
                customer_birth customerBirth,
                create_date createDate 
         FROM customer
         WHERE customer_mail LIKE CONCAT('%', #{email}, '%')
-        LIMIT #{offset}, #{limit}
+        LIMIT #{page}, #{size}
     </select>
 
     <!-- 이메일 검색 시 전체 고객 수 -->

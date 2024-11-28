@@ -19,25 +19,31 @@
 <body>
     <div class="container mt-5">
         <h2>회원가입</h2>
-        <form action="${pageContext.request.contextPath}/register" method="post">
+         <script type="text/javascript">
+            <c:if test="${not empty message}">
+                alert("${message}"); // 모델에서 전달된 메시지를 alert 창으로 띄우기
+                window.location.href = "/hello"; // 회원가입 완료 후 메인 페이지로 리다이렉트
+            </c:if>
+        </script>
+        <form action="${pageContext.request.contextPath}/signUp" method="post">
             <div class="form-group">
-                <label for="username">아이디 (이메일)</label>
-                <input type="text" class="form-control" name="username" placeholder="아이디 (이메일)" required>
+                <label for="customerMail">아이디 (이메일)</label>
+                <input type="email" class="form-control" name="customerMail" placeholder="아이디 (이메일)" required>
             </div>
             <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" class="form-control" name="password" placeholder="비밀번호" required>
+                <label for="customerPw">비밀번호</label>
+                <input type="password" class="form-control" name="customerPw" placeholder="비밀번호" required>
             </div>
             <div class="form-group">
-                <label for="birthdate">생년월일</label>
-                <input type="text" class="form-control" name="birthdate" placeholder="생년월일" required>
+                <label for="customerBirth">생년월일</label>
+                <input type="date" class="form-control" name="customerBirth" placeholder="생년월일" required>
             </div>
             <div class="form-group">
-                <label for="gender">성별</label>
-                <select class="form-control" name="gender" required>
+                <label for="customerGender">성별</label>
+                <select class="form-control" name="customerGender" required>
                     <option value="">성별 선택</option>
-                    <option value="남">남</option>
-                    <option value="여">여</option>
+                    <option value="남자">남</option>
+                    <option value="여자">여</option>
                 </select>
             </div>
             <div class="form-group">

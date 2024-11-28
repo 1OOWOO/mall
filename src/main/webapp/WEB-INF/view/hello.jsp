@@ -22,7 +22,7 @@
       <header id="masthead" class="site-header">
       <!-- 로그인  -->
       <div style="float: right;">
-         <span> <a href=""> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
+         <span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
       </div>
       <div class="site-branding">
          <!-- <h1 class="site-title"><a href="index.html" rel="home">OOWOO</a></h1> -->
