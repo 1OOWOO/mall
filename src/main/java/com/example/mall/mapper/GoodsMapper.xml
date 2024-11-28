@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.GoodsMapper">
+<!-- Author : 오아림 -->
 	<!-- /admin/addGoods -->
 	<insert id="insertGoods" parameterType="com.example.mall.vo.Goods">
 		INSERT INTO goods(
@@ -36,4 +37,34 @@
 	<select id="selectGoodsCount" resultType="Integer">
 		SELECT COUNT(*) FROM goods
 	</select>
+	
+	<!-- /admin/goodsOne -->
+	<select id="selectGoodsOne" parameterType="Integer" resultType="Map">
+		SELECT
+			g.goods_no goodsNo
+			, c.category_title categoryTitle
+			, g.goods_title goodsTitle
+			, g.goods_price goodsPrice
+			, g.goods_memo goodsMemo
+			, g.goods_state goodsState
+			, g.update_date updateDate
+		FROM goods g
+			INNER JOIN goods_category gc
+			ON g.goods_no = gc.goods_no
+				INNER JOIN category c
+				ON gc.category_no = c.category_no
+		WHERE g.goods_no = #{goodsNo};	
+	</select>
+	
+	<!-- /admin/goodsOne - 상품 수정 -->
+	<update id="updateGoods" parameterType="Map">
+	    UPDATE goods
+	    SET 
+	        goods_title = #{goodsTitle},
+	        goods_price = #{goodsPrice},
+	        goods_memo = #{goodsMemo},
+	        goods_state = #{goodsState},
+	        update_date = NOW()
+	    WHERE goods_no = #{goodsNo}
+	</update>
 </mapper>

@@ -17,6 +17,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<!-- Author : 오자윤 -->
        <title>회원 관리</title>
 </head>
 <body>
@@ -31,7 +32,7 @@
             </div>
         </form>
         
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>이메일</th>
@@ -42,7 +43,9 @@
             <tbody>
                 <c:forEach var="customer" items="${customers}">
                     <tr>
-                        <td>${customer.customerMail}</td>
+	                    <td>
+	                        <a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${customer.customerMail}">${customer.customerMail}</a>
+	                    </td>
                         <td>${customer.customerBirth}</td>
                         <td>${customer.createDate}</td>
                     </tr>
@@ -56,7 +59,7 @@
         </table>
         
         <!-- 페이징 UI -->
-        <nav>
+	     <nav>
             <ul class="pagination justify-content-center">
                 <li class="page-item <c:if test="${currentPage == 0}">disabled</c:if>">
                     <a class="page-link" href="?page=${currentPage - 1}&size=${size}&searchEmail=${searchEmail}">이전</a>
@@ -69,8 +72,9 @@
                 <li class="page-item <c:if test="${currentPage == totalPages - 1}">disabled</c:if>">
                     <a class="page-link" href="?page=${currentPage + 1}&size=${size}&searchEmail=${searchEmail}">다음</a>
                 </li>
-            </ul>
-        </nav>
+
+		    </ul>
+	</nav>
     </div>
 </body>
 </html>

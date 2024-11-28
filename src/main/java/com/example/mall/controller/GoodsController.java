@@ -1,5 +1,6 @@
 package com.example.mall.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,23 +12,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.mall.service.GoodsCategoryService;
 import com.example.mall.service.GoodsFileService;
 import com.example.mall.service.GoodsService;
+import com.example.mall.vo.Category;
 import com.example.mall.vo.GoodsFile;
 import com.example.mall.vo.GoodsForm;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
-
+//Author : 오아림
 @Slf4j
 @Controller
 public class GoodsController {
 	@Autowired GoodsService goodsService;
 	@Autowired GoodsFileService goodsFileService;
+	@Autowired GoodsCategoryService goodsCategoryService;
 	
 	// /admin/addGoods
 	@GetMapping("/admin/addGoods")
-	public String addGoods() {
+	public String addGoods(Model model) {
+		List<Category> categoryList = goodsCategoryService.getAllCategory();
+		model.addAttribute("categoryList",categoryList);
+		
 		return "admin/addGoods";
 	}
 	@PostMapping("/admin/addGoods")
@@ -41,7 +48,7 @@ public class GoodsController {
 			for(MultipartFile f : list) { 
 				if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
 					model.addAttribute("msg","이미지 파일만 첨부 가능합니다");
-					return "on/addGoods";
+					return "admin/addGoods";
 				}
 			}
 		}
@@ -51,6 +58,7 @@ public class GoodsController {
 		return "redirect:/admin/goodsList";
 	}
 	
+	// /admin/goodsList
 	@GetMapping("/admin/goodsList")
 	public String goodsList(Model model
 							,@RequestParam(defaultValue="1") Integer currentPage
@@ -72,6 +80,46 @@ public class GoodsController {
 		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
 		
 		return "admin/goodsList";
+	}
+	
+	// /admin/goodsOne
+	@GetMapping("/admin/goodsOne")
+	public String goodsOne(Model model, @RequestParam Integer goodsNo) {
+		Map<String,Object> map = goodsService.getGoodsOne(goodsNo);
+		model.addAttribute("go",map); 
+		
+		List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileList();
+		model.addAttribute("goodsFileList",goodsFileList);
+		
+		List<Category> categoryList = goodsCategoryService.getAllCategory();
+		model.addAttribute("categoryList",categoryList);
+		
+		return "admin/goodsOne";
+	}
+	
+	// /admin/goodsOne - 상품 수정
+	@PostMapping("/admin/modifyGoods")
+	public String modifyGoods(@RequestParam Integer goodsNo
+								,@RequestParam String goodsTitle
+					            ,@RequestParam Integer goodsPrice
+					            ,@RequestParam String goodsMemo
+					            ,@RequestParam String goodsState
+					            ,@RequestParam Integer goodsCategoryNo) {
+		Map<String, Object> goodsMap = new HashMap<>();
+		goodsMap.put("goodsNo", goodsNo);
+		goodsMap.put("goodsTitle", goodsTitle);
+		goodsMap.put("goodsPrice", goodsPrice);
+		goodsMap.put("goodsMemo", goodsMemo);
+		goodsMap.put("goodsState", goodsState);
+		goodsService.modifyGoods(goodsMap);
+		log.debug("goodsMap: "+goodsMap);
+		
+		Map<String, Object> categoryMap = new HashMap<>();
+        categoryMap.put("categoryNo", goodsCategoryNo);
+        goodsCategoryService.modifyGoodsCategory(categoryMap);
+        log.debug("categoryMap: "+categoryMap);
+        
+		return "redirect:/admin/goodsList"; 
 	}
 	
 }

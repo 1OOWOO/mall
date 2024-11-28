@@ -16,4 +16,5 @@ public class GoodsForm {
 	private Integer goodsPrice;
 	private String goodsState;
 	private List<MultipartFile> goodsFile; 
+	private Integer goodsCategoryNo; 
 }

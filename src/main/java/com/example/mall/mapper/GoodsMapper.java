@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mall.vo.Goods;
 import com.example.mall.vo.GoodsFile;
-
+// Author : 오아림
 @Mapper
 public interface GoodsMapper {
 	// /admin/addGoods
@@ -18,4 +18,10 @@ public interface GoodsMapper {
 	
 	// goodsList 페이징
 	Integer selectGoodsCount();
+	
+	// /admin/goodsOne
+	Map<String,Object> selectGoodsOne(Integer goodsNo);
+	
+	// /admin/goodsOne - 상품 수정
+	Integer updateGoods(Map<String,Object> map);
 }

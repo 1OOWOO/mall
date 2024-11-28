@@ -12,17 +12,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.mall.mapper.GoodsCategoryMapper;
 import com.example.mall.mapper.GoodsFileMapper;
 import com.example.mall.mapper.GoodsMapper;
 import com.example.mall.vo.Goods;
 import com.example.mall.vo.GoodsFile;
 import com.example.mall.vo.GoodsForm;
-
+//Author : 오아림
 @Service
 @Transactional
 public class GoodsService {
 	@Autowired private GoodsMapper goodsMapper;
 	@Autowired private GoodsFileMapper goodsFileMapper;
+	@Autowired private GoodsCategoryMapper goodsCategoryMapper;
 	
 	// /admin/goodsList
 	public List<Map<String,Object>> getGoodsList(Integer currentPage, Integer rowPerPage, String searchGoods){
@@ -74,6 +76,10 @@ public class GoodsService {
 		Integer row = goodsMapper.insertGoods(goods);  // Goods를 데이터베이스에 삽입
 		Integer goodsNo = goods.getGoodsNo();
 		
+		if (goodsForm.getGoodsCategoryNo() != null) {
+           goodsCategoryMapper.insertGoodsCategory(goodsNo, goodsForm.getGoodsCategoryNo());
+        }
+		
 		if(row == 1 && goodsForm.getGoodsFile() != null) {
 			List<MultipartFile> list = goodsForm.getGoodsFile();
 			for (MultipartFile mf : list) {
@@ -105,5 +111,15 @@ public class GoodsService {
                 }
 			}
 		}
+	}
+	
+	// /admin/goodsOne
+	public Map<String,Object> getGoodsOne(Integer goodsNo) {
+		return goodsMapper.selectGoodsOne(goodsNo);
+	}
+	
+	// /admin/goodsOne - 상품 수정
+	public Integer modifyGoods(Map<String,Object> map){
+		return goodsMapper.updateGoods(map);
 	}
 }
