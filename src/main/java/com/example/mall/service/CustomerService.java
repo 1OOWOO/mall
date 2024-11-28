@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.mall.mapper.CustomerMapper;
-import com.example.mall.mapper.mapper;
 import com.example.mall.vo.Customer;
 
 import ch.qos.logback.core.model.Model;

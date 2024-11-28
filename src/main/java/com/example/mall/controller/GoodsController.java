@@ -115,6 +115,7 @@ public class GoodsController {
 		log.debug("goodsMap: "+goodsMap);
 		
 		Map<String, Object> categoryMap = new HashMap<>();
+		categoryMap.put("goodsNo", goodsNo);
         categoryMap.put("categoryNo", goodsCategoryNo);
         goodsCategoryService.modifyGoodsCategory(categoryMap);
         log.debug("categoryMap: "+categoryMap);

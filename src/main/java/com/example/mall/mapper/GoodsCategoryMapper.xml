@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mall.mapper.GoodsCategoryMapper">
 <!-- Author : 오아림 -->
 	<!-- /admin/addGoods -->
-	<insert id="insertGoodsCategory" parameterType="Integer">
+	<insert id="insertGoodsCategory" parameterType="Map">
 	    INSERT INTO goods_category (goods_no, category_no)
 	    VALUES (#{goodsNo}, #{categoryNo})
 	</insert>

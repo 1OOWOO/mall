@@ -36,6 +36,7 @@
 							<option value="${c.categoryNo}">${c.categoryTitle}</option>
 						</c:forEach>
 					</select>
+					<input type="hidden" name="goodsNo" value="${go.goodsNo}">
 				</td>
 			</tr>
 			<tr>
@@ -56,10 +57,6 @@
 					<input type="radio" name="goodsState" id="goodsState" value="재고있음">재고있음
 					<input type="radio" name="goodsState" id="goodsState" value="재고없음">재고없음
 				</td>
-			</tr>
-			<tr>
-				<td>업데이트</td>
-				<td><input type="datetime-local" name="goodsUpdateDate" id="goodsUpdateDate"></td>
 			</tr>
 			<tr>
 				<td>파일</td>

@@ -77,7 +77,10 @@ public class GoodsService {
 		Integer goodsNo = goods.getGoodsNo();
 		
 		if (goodsForm.getGoodsCategoryNo() != null) {
-           goodsCategoryMapper.insertGoodsCategory(goodsNo, goodsForm.getGoodsCategoryNo());
+			Map<String, Object> categoryMap = new HashMap<>();
+			categoryMap.put("goodsNo", goodsNo);
+	        categoryMap.put("categoryNo", goodsForm.getGoodsCategoryNo());
+           goodsCategoryMapper.insertGoodsCategory(categoryMap);
         }
 		
 		if(row == 1 && goodsForm.getGoodsFile() != null) {
@@ -122,4 +125,5 @@ public class GoodsService {
 	public Integer modifyGoods(Map<String,Object> map){
 		return goodsMapper.updateGoods(map);
 	}
+	
 }
