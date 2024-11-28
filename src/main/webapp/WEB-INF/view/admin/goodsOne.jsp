@@ -37,10 +37,11 @@
 			<tr>
 				<td>카테고리</td>
 				<td>
-					<select name="goodsCategoryNo" id="goodsCategoryTitle">
-						<option value="${go.categoryNo}">:${go.categoryTitle}:</option>
+					<select name="goodsCategoryNo" id="goodsCategoryNo">
+						<option value="">:${go.categoryTitle}:</option>
 						<c:forEach var="c" items="${categoryList}">
-							<option value="${c.categoryNo}">${c.categoryTitle}</option>
+							<option value="${c.categoryNo}" <c:if test="${c.categoryNo == go.categoryNo}">selected</c:if>>
+								${c.categoryTitle}</option>
 						</c:forEach>
 					</select>
 				</td>

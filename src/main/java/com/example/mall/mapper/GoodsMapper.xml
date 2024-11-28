@@ -3,7 +3,7 @@
 <mapper namespace="com.example.mall.mapper.GoodsMapper">
 <!-- Author : 오아림 -->
 	<!-- /admin/addGoods -->
-	<insert id="insertGoods" parameterType="com.example.mall.vo.Goods">
+	<insert id="insertGoods" parameterType="com.example.mall.vo.Goods" useGeneratedKeys="true" keyProperty="goodsNo">
 		INSERT INTO goods(
 				goods_title
 				, goods_price
@@ -67,4 +67,5 @@
 	        update_date = NOW()
 	    WHERE goods_no = #{goodsNo}
 	</update>
+	
 </mapper>

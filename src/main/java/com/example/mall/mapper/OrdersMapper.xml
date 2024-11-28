@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mall.mapper.OrdersMapper">
+	<!-- Author : 오아림 -->
+	<!-- /admin/ordersList -->
+	<select id="selectOrdersList" resultType="Map">
+		SELECT 
+			go.orders_no ordersNo
+			,go.goods_title goodsTitle
+			,go.orders_amount ordersAmount
+			,go.goods_price goodsPrice
+			,p.payment_state paymentState
+			,p.payment_method paymentMethod
+		FROM payment p
+		INNER JOIN (SELECT 
+							g.goods_no goods_no
+							,g.goods_title goods_title
+							,g.goods_price goods_price
+							,o.orders_no orders_no
+							,o.orders_amount orders_amount
+							,o.payment_no payment_no
+						FROM goods g
+						INNER JOIN orders o
+						ON g.goods_no = o.goods_no) go
+		ON go.payment_no = p.payment_no
+	</select>
+	
+	<!-- /admin/ordersList - 주문 수정 -->
+	<update id="updateOrders" parameterType="Map">
+		UPDATE payment p
+		INNER JOIN orders o 
+		ON p.payment_no = o.payment_no
+		SET 
+			p.payment_state = #{paymentState}
+		WHERE o.orders_no = #{ordersNo};
+	</update>
+</mapper>

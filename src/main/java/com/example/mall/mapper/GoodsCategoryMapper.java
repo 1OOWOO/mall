@@ -11,7 +11,7 @@ import com.example.mall.vo.GoodsCategory;
 @Mapper
 public interface GoodsCategoryMapper {
 	// /admin/addGoods
-	Integer insertGoodsCategory(Integer goodsNo, Integer categoryNo);
+	Integer insertGoodsCategory(Map<String, Object> map);
 	
 	// 모든 카테고리 조회 - /admin/goodsOne
 	List<Category> selectAllCategory(); 
