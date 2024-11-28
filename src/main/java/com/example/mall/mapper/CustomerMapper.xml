@@ -2,6 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.CustomerMapper">
 	
+	
+	<!--  우정 : 회원가입  -->
+	<insert id="insertCustomer" parameterType="com.example.mall.vo.Customer">
+	    INSERT INTO customer (customer_mail, customer_pw, customer_birth, customer_gender, create_date, update_date)
+	    VALUES (#{customerMail}, #{customerPw}, #{customerBirth}, #{customerGender}, NOW(), NOW());
+	</insert>
+	
+	<!-- 우정 : 로그인 -->
+	<select id = "login" parameterType="com.example.mall.vo.Customer"
+         resultType="com.example.mall.vo.Customer">
+      SELECT 
+         customer_mail customerMail
+         , customer_pw customerPw
+      FROM customer
+      WHERE customer_mail = #{customerMail} AND customer_pw = #{customerPw}
+   </select>
+   
+   
 	<select id="selectCustomerOne" parameterType="String" resultType="map">
 	  SELECT customer_mail customerMail,
 	  	customer_pw customerPw,

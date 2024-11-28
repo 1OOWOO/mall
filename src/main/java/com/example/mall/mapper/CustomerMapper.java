@@ -11,6 +11,12 @@ import com.example.mall.vo.Customer;
 @Mapper
 public interface CustomerMapper {
 	
+	// 우정 : 회원가입
+    void insertCustomer(Customer customer);
+    
+    // 우정 : 로그인
+    Customer login(Customer customer);
+	
 	// 고객 상세정보 조회
 	Map<String, Object> selectCustomerOne(String customerMail);
 	
