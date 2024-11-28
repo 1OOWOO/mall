@@ -16,8 +16,14 @@
 <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
     <meta charset="UTF-8">
 </head>
-<body>
-<!-- Author : 오자윤 -->
+<body class="container-flud">
+   <div class="row">
+      <div class="col-sm-2 bg-light">
+         <!-- leftMenu.jsp 삽입 -->
+         <c:import url="/WEB-INF/view/admin/leftMenu.jsp"></c:import>
+      </div>
+     <div class="col-sm-10">
+     
        <title>회원 관리</title>
 </head>
 <body>

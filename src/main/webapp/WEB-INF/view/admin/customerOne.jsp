@@ -19,19 +19,58 @@
     
 <title>회원관리 상세정보</title>
 </head>
+<body class="container-flud">
+   <div class="row">
+      <div class="col-sm-2 bg-light">
+         <!-- leftMenu.jsp 삽입 -->
+         <c:import url="/WEB-INF/view/admin/leftMenu.jsp"></c:import>
+      </div>
+     <div class="col-sm-10">
+     
+       <title>회원관리 상세정보</title>
+</head>
 <body>
     <div class="container">
         <h1>회원 관리</h1>
         
         <div class="customer-info">
-            <h2>회원 상세 정보</h2>
-            <p><strong>이메일:</strong> ${customer.customerMail}</p>
-            <p><strong>비밀번호:</strong> ${customer.customerPw}</p>
-            <p><strong>생년월일:</strong> ${customer.customerBirth}</p>
-            <p><strong>성별:</strong> ${customer.customerGender}</p>
-            <p><strong>가입날짜:</strong> ${customer.createDate}</p>
-            <p><strong>Last Update:</strong> ${customer.updateDate}</p>
+            <h2 class="mt-4">회원 상세 정보</h2>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>항목</th>
+                        <th>정보</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>이메일:</strong></td>
+                        <td>${customer.customerMail}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>비밀번호:</strong></td>
+                        <td>${customer.customerPw}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>생년월일:</strong></td>
+                        <td>${customer.customerBirth}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>성별:</strong></td>
+                        <td>${customer.customerGender}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>가입날짜:</strong></td>
+                        <td>${customer.createDate}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>최근 수정일:</strong></td>
+                        <td>${customer.updateDate}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
 
         <form action="${pageContextPath.request.contextPath}/admin/deleteCustomer" method="post">
             <input type="hidden" name="customerMail" value="${customer.customerMail}"/>

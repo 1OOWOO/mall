@@ -7,18 +7,24 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='style.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    Bootstrap Styles
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    FontAwesome Styles
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    Morris Chart Styles
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    Custom Styles
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    Google Fonts
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel='stylesheet' href='css/style.css' type='text/css' media='all'/>
+    <link rel='stylesheet' href='css/style.css' type='text/css' media='all'/> -->
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -59,8 +65,14 @@
         }
     </style>
 </head>
-<body>
-    <div class="dashboard">
+<body class="container-flud">
+   <div class="row">
+      <div class="col-sm-2 bg-light">
+         <!-- leftMenu.jsp 추가 -->
+         <c:import url="/WEB-INF/view/admin/leftMenu.jsp"></c:import>
+      </div>
+    <div class="col-sm-10">
+    	<div class="dashboard">
         <h1>대시보드</h1>
         <div class="dashboard-stats">
             <div class="stat-card">

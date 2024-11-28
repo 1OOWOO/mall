@@ -18,6 +18,12 @@
 </head>
 <!-- Author : 오아림 -->
 <body>
+	<div class="row">
+      <div class="col-sm-2 bg-light">
+         <!-- leftMenu.jsp 삽입 -->
+         <c:import url="/WEB-INF/view/admin/leftMenu.jsp"></c:import>
+      </div>
+     <div class="col-sm-10">
 	<h1>상품 등록</h1>
 	<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/admin/addGoods" enctype="multipart/form-data">
 		<table class="table">
