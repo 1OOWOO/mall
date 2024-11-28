@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="com.example.mall.vo.Customer"%>
 <html lang="en-US">
 <head>
 <%@ page pageEncoding="UTF-8" %>
@@ -16,13 +17,29 @@
 </head>
 
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
+
 <!--  확인용 주석  -->
 <div id="page">
    <div class="container">
-      <header id="masthead" class="site-header">
       <!-- 로그인  -->
       <div style="float: right;">
-         <span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
+      <%
+      	Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
+      		if ( loggedInCustomer == null) {
+      	%>
+      			<span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
+      	<%
+      		} else {
+      			
+      	%>
+      	<span> ${loggedInCustomer.customerMail} 님 |<a href="logout"> 로그아웃 </a></span>
+      	
+      	<%
+      		}
+      	%>
+      	
+<%--        <span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
+         <span> ${customerMail} 님 </span>  --%>
       </div>
       <div class="site-branding">
          <!-- <h1 class="site-title"><a href="index.html" rel="home">OOWOO</a></h1> -->

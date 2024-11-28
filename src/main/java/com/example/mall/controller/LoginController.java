@@ -11,7 +11,9 @@ import com.example.mall.service.CustomerService;
 import com.example.mall.vo.Customer;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class LoginController {
 
@@ -21,11 +23,7 @@ public class LoginController {
     // 로그인 폼 이동
     @GetMapping("/login")
     public String login(HttpSession session) {
-        // 이미 로그인된 상태라면 홈으로 리다이렉트
-        if (session.getAttribute("loggedInCustomer") != null) {
-            return "redirect:/hello";
-        }
-        return "/login"; // JSP 경로: customer/login.jsp
+        return "/login"; 
     }
 
     // 로그인 처리
@@ -55,6 +53,6 @@ public class LoginController {
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // 세션 무효화
-        return "redirect:/login"; // 로그아웃 후 로그인 페이지로 이동
+        return "redirect:/hello"; // 로그아웃 후 메인 페이지로 이동
     }
 }
