@@ -12,8 +12,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/styles.css'/>">
 </head>
 <body>
-
-<h2>결제 정보 입력</h2>
+	<h2>결제 정보 입력</h2>
 
 <form action="<c:url value='/processPayment'/>" method="post">
     <div>
@@ -21,18 +20,19 @@
         <input type="email" id="customerMail" name="customerMail" required>
     </div>
     
-    <div>
-        <label for="paymentMethod">결제 수단:</label>
-        <select id="paymentMethod" name="paymentMethod" required>
-            <option value="신용카드">신용카드</option>
-            <option value="체크카드">체크카드</option>
-            <option value="계좌이체">계좌이체</option>
-        </select>
-    </div>
+	<div>
+	    <label>결제 수단:</label>
+	    <label>
+	        <input type="radio" value="신용카드" name="paymentMethod" required> 신용카드
+	    </label>
+	    <label>
+	        <input type="radio" value="체크카드" name="paymentMethod" required> 체크카드
+	    </label>
+	</div>
     
     <div>
         <label for="amount">결제 금액:</label>
-        <input type="number" id="amount" name="amount" required>
+        <input type="number" id="amount" name="amount">
     </div>
 
     <div>
