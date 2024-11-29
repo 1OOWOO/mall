@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%@page import="com.example.mall.vo.Customer"%>
 <html lang="en-US">
@@ -6,7 +7,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Moschino | Minimalist Free HTML Portfolio by WowThemes.net</title>
+<title>OOWOO | Minimalist Free HTML Portfolio by WowThemes.net</title>
 <link rel='stylesheet' href='customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
 <link rel='stylesheet' href='customer/customercss/woocommerce.css' type='text/css' media='all'/>
@@ -99,7 +100,7 @@
          <div id="primary" class="content-area column full">
             <main id="main" class="site-main" role="main">
             <p class="woocommerce-result-count">
-                Showing 1–8 of 12 results
+                Showing ${goodsCount} results
             </p>
             <form class="woocommerce-ordering" method="get">
                <select name="orderby" class="orderby">
@@ -112,82 +113,27 @@
                </select>
             </form>
             <ul class="products">
-            
-               <li class="first product">
-               <a href="shop-single.html">
-               <span class="onsale">Sale!</span>
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
-               <h3>Cool Fedora</h3>
-               <span class="price"><span class="amount">$34.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-
-               <li class="product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j10-520x780-520x600.jpg" alt="">
-               <h3>Beige Blouse</h3>
-               <span class="price"><span class="amount">$66.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
-               <li class="product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j1-520x780-520x600.jpg" alt="">
-               <h3>Black Jacket</h3>
-               <span class="price"><span class="amount">$125.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
-               <li class="last product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j9-520x780-520x600.jpg" alt="">
-               <h3>Brown Jacket</h3>
-               <span class="price"><span class="amount">$28.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
-               <li class="first product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j12-520x668-520x600.jpg" alt="">
-               <h3>Gray Blouse</h3>
-               <span class="price"><span class="amount">$15.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
-               <li class="product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/f11-520x755-520x600.jpg" alt="">
-               <h3>Male Bag</h3>
-               <span class="price"><span class="amount">$16.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
-               <li class="product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j6-520x779-520x600.jpg" alt="">
-               <h3>Hugo Jeans</h3>
-               <span class="price"><span class="amount">$36.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
-               <li class="last product">
-               <a href="shop-single.html">
-               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j2-520x780-520x600.jpg" alt="">
-               <h3>Male T-Shirt</h3>
-               <span class="price"><span class="amount">$49.00</span></span>
-               </a><a href="#" class="button">Add to cart</a>
-               </li>
-               
+            	<c:forEach var="goods" items="${goodsList}">
+	               <li class="product">
+		               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${goods.goodsNo}"">
+			               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
+			               <h3>${goods.goodsTitle}</h3>
+			               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
+		               </a>
+	               </li>
+				</c:forEach>
+			
+				<!-- 세일 표시 <span class="onsale">Sale!</span> -->
             </ul>
-            <nav class="woocommerce-pagination">
-            <ul class="page-numbers">
-               <li><span class="page-numbers current">1</span></li>
-               <li><a class="page-numbers" href="#">2</a></li>
-               <li><a class="next page-numbers" href="#">→</a></li>
-            </ul>
-            </nav>
+	            <!-- 페이징
+		            <nav class="woocommerce-pagination">
+			            <ul class="page-numbers">
+			               <li><span class="page-numbers current">1</span></li>
+			               <li><a class="page-numbers" href="#">2</a></li>
+			               <li><a class="next page-numbers" href="#">→</a></li>
+			            </ul>
+		            </nav> -->
             </main>
-            <!-- #main -->
          </div>
          <!-- #primary -->
       </div>
@@ -210,5 +156,8 @@
 <script src='customer/customerjs/plugins.js'></script>
 <script src='customer/customerjs/scripts.js'></script>
 <script src='customer/customerjs/masonry.pkgd.min.js'></script>
+<script>
+	
+</script>ㄴ
 </body>
 </html>

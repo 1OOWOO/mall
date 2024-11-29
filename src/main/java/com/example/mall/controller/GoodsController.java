@@ -16,6 +16,7 @@ import com.example.mall.service.GoodsCategoryService;
 import com.example.mall.service.GoodsFileService;
 import com.example.mall.service.GoodsService;
 import com.example.mall.vo.Category;
+import com.example.mall.vo.Goods;
 import com.example.mall.vo.GoodsFile;
 import com.example.mall.vo.GoodsForm;
 
@@ -123,4 +124,22 @@ public class GoodsController {
 		return "redirect:/admin/goodsList"; 
 	}
 	
+	// /customer/customerGoodsOne
+	@GetMapping("/customer/customerGoodsOne")
+	public String getCustomerGoodsOne(Model model, @RequestParam Integer goodsNo) {
+		Goods goods = goodsService.getCustomerGoodsOne(goodsNo);
+		log.debug("goodsNo: "+goodsNo);
+		
+		if(goods != null) {
+			model.addAttribute("goods",goods);
+			log.debug("goods: "+goods.toString());
+		}
+		
+		// 상품의 카테고리 조회
+        Category category = goodsCategoryService.getCategoryByGoodsNo(goodsNo);
+        model.addAttribute("category", category);
+        log.debug("category: " + category);
+		
+		return "customer/customerGoodsOne";
+	}
 }

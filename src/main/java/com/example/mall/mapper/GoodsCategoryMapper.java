@@ -7,9 +7,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mall.vo.Category;
 import com.example.mall.vo.GoodsCategory;
-//Author : 오아림
+
 @Mapper
 public interface GoodsCategoryMapper {
+	//Author : 오아림
 	// /admin/addGoods
 	Integer insertGoodsCategory(Map<String, Object> map);
 	
@@ -18,4 +19,7 @@ public interface GoodsCategoryMapper {
 	
 	// /admin/goodsOne - 상품 수정
 	Integer updateGoodsCategory(Map<String,Object> map);
+	
+	// /customer/customerGoodsOne 특정 상품의 카테고리 조회
+	Category selectCategoryByGoodsNo(Integer goodsNo);
 }

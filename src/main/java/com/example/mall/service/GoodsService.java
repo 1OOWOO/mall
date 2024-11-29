@@ -126,4 +126,19 @@ public class GoodsService {
 		return goodsMapper.updateGoods(map);
 	}
 	
+	// /customer/customerGoodsOne
+	public Goods getCustomerGoodsOne(Integer goodsNo) {
+		return goodsMapper.selectCustomerGoodsOne(goodsNo);
+	}
+	
+	// /hello
+	public List<Goods> getAllGoods() {
+        return goodsMapper.selectAllGoods();
+    }
+	
+	// /hello - 전체 상품 개수
+	public Integer getGoodsCount() {
+	    return goodsMapper.selectGoodsCount();
+	}
+	
 }

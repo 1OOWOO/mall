@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-<title>Order List</title>
+<title>Orders List</title>
 <style>
 	th {
 	    width: 275px;
@@ -32,25 +32,25 @@
 	    </div>
 	    <div class="col-sm-10">
 			<h1>주문 관리</h1>
-			<table class="table table-striped table-bordered table-hover dataTable no-footer">
-				<tr role="row">
-					<th>주문 번호</th>
-					<th>상품</th>
-					<th>수량</th>
-					<th>금액</th>
-					<th>주문 상태</th>
-					<th>결제 방법</th>
-					<th></th>
-				</tr>
-				<c:forEach var="o" items="${ordersList}">
-					<tr>
-						<form id="formModifyOrders${o.ordersNo}" action="${pageContext.request.contextPath}/admin/ordersList" method="post">
+			<form id="formModifyOrders${o.ordersNo}" action="${pageContext.request.contextPath}/admin/ordersList" method="post">
+				<table class="table table-striped table-bordered table-hover dataTable no-footer">
+					<tr role="row">
+						<th>주문 번호</th>
+						<th>상품</th>
+						<th>수량</th>
+						<th>금액</th>
+						<th>주문 상태</th>
+						<th>결제 방법</th>
+						<th></th>
+					</tr>
+					<c:forEach var="o" items="${ordersList}">
+					<input type="hidden" name="ordersNo" value="${o.ordersNo}">
+						<tr>
 							<td style=" text-align: center;">${o.ordersNo}</td>
 							<td>${o.goodsTitle}</td>
-							<td style=" text-align: center;">${o.ordersAmount}</td>
+							<td style="text-align: center;">${o.ordersAmount}</td>
 							<td>${o.goodsPrice}</td>
-							<td style=" text-align: center;">
-				                <input type="hidden" name="ordersNo" value="${o.ordersNo}">
+							<td style="text-align: center;">
 				                <select name="paymentState" id="paymentState${o.ordersNo}">
 			                		<option value="${o.paymentState}">:${o.paymentState}:</option>
 			                		<option value="결제완료">결제완료</option>
@@ -60,10 +60,10 @@
 			                </td>
 			                <td>${o.paymentMethod}</td>
 			                <td><button id="btnModifyOrders${o.ordersNo}" type="submit">수정</button></td>
-						</form>
-					</tr>
-				</c:forEach>
-			</table>
+						</tr>
+					</c:forEach>
+				</table>
+			</form>
 		</div>
 	</div>
 </body>

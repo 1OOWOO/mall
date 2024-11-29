@@ -24,4 +24,15 @@
 	        update_date = NOW()
 	    WHERE goods_no = #{goodsNo}
 	</update>
+	
+	<!-- /customer/customerGoodsOne 특정 상품의 카테고리 조회 -->
+	<select id="selectCategoryByGoodsNo" parameterType="Integer" resultType="com.example.mall.vo.Category">
+        SELECT 
+        	c.category_no categoryNo
+        	, c.category_title categoryTitle
+        FROM goods_category gc
+        INNER JOIN category c 
+        ON gc.category_no = c.category_no
+        WHERE gc.goods_no = #{goodsNo}
+    </select>
 </mapper>

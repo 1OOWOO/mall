@@ -68,4 +68,25 @@
 	    WHERE goods_no = #{goodsNo}
 	</update>
 	
+	<!-- /customer/customerGoodsOne -->
+	<select id="selectCustomerGoodsOne" parameterType="Integer" resultType="com.example.mall.vo.Goods">
+		SELECT 
+			goods_no goodsNo
+			, goods_title goodsTitle
+			, goods_price goodsPrice
+			, goods_state goodsState
+			, goods_memo goodsMemo
+		FROM goods
+		WHERE goods_no = #{goodsNo};
+	</select>
+	
+	<!-- /hello -->
+	<select id="selectAllGoods">
+		SELECT 
+			goods_no goodsNo
+			, goods_title goodsTitle
+			, goods_price goodPrice
+			, goods_state goodsState
+		FROM goods
+	</select>
 </mapper>
