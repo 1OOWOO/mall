@@ -31,4 +31,7 @@ public interface GoodsMapper {
 	
 	// /hello
 	List<Goods> selectAllGoods();
+	
+	// /customer/searchGoods
+	List<Map<String, Object>> selectGoodsByCategory(Integer categoryNo);
 }

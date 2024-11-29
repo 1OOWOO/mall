@@ -142,4 +142,19 @@ public class GoodsController {
 		
 		return "customer/customerGoodsOne";
 	}
+	
+	// /customer/searchGoods
+	@GetMapping("/customer/searchGoods")
+    public String searchGoods(Model model, @RequestParam Integer categoryNo) {
+        List<Map<String, Object>> goodsList = goodsService.getGoodsByCategory(categoryNo);
+        
+        String categoryTitle = (String)goodsList.get(0).get("categoryTitle"); // 첫 번째 상품에서 카테고리 제목 추출
+        log.debug("categoryTitle: " + categoryTitle);
+        
+        model.addAttribute("goodsList", goodsList);
+        model.addAttribute("categoryNo", categoryNo);
+        model.addAttribute("categoryTitle", categoryTitle);
+        
+        return "customer/searchGoods";
+    }
 }

@@ -89,4 +89,20 @@
 			, goods_state goodsState
 		FROM goods
 	</select>
+	
+	<!-- /customer/searchGoods -->
+	<select id="selectGoodsByCategory" parameterType="Integer" resultType="Map">
+        SELECT 
+            g.goods_no,
+            g.goods_title,
+            g.goods_price,
+            gc.category_no,
+            c.category_title
+        FROM goods g
+	        JOIN goods_category gc 
+	        ON g.goods_no = gc.goods_no
+	        JOIN category c 
+	        ON gc.category_no = c.category_no
+        WHERE gc.category_no = #{categoryNo}
+    </select>
 </mapper>

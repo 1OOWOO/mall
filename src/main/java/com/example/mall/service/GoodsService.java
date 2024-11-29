@@ -141,4 +141,9 @@ public class GoodsService {
 	    return goodsMapper.selectGoodsCount();
 	}
 	
+	// /customer/searchGoods
+	public List<Map<String, Object>> getGoodsByCategory(Integer categoryNo) {
+        return goodsMapper.selectGoodsByCategory(categoryNo);
+    }
+	
 }
