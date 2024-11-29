@@ -39,7 +39,7 @@
 	<!-- 오자윤 : 고객 삭제 쿼리 -->
 	<delete id="deleteCustomer" parameterType="String">
 		DELETE FROM customer
-		WEHRE customer_mail = #{customerMail}
+		WHERE customer_mail = #{customerMail}
 	</delete>
 
     <select id="getCustomerList" resultType="com.example.mall.vo.Customer">

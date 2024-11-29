@@ -72,8 +72,7 @@
         </div>
 
 
-        <form action="${pageContextPath.request.contextPath}/admin/deleteCustomer" method="post">
-            <input type="hidden" name="customerMail" value="${customer.customerMail}"/>
+        <form action="${pageContext.request.contextPath}/admin/deleteCustomer?customerMail=${customer.customerMail}&currentPage=${currentPage}">
             <button type="submit" class="btn btn-danger">회원탈퇴</button>
         </form>
 

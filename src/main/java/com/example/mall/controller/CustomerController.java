@@ -25,9 +25,9 @@ public class CustomerController {
     @GetMapping("/admin/customerList")
     public String customerList(
             // 페이징 작업
-            @RequestParam(defaultValue = "1") int page,   // 페이지 초기값
-            @RequestParam(defaultValue = "10") int size,  // 10페이지 씩
-            @RequestParam(required = false) String searchEmail, // 이메일 검색
+            @RequestParam(defaultValue = "0") Integer page,   // 페이지 초기값
+            @RequestParam(defaultValue = "10") Integer size,  // 10페이지 씩
+            @RequestParam(required = false , defaultValue = "") String searchEmail, // 이메일 검색
             Model model) {
         
         log.debug("customerList 메서드 호출. page: {}, size: {}, email: {}", page, size, searchEmail);
@@ -50,10 +50,10 @@ public class CustomerController {
         }
 
         // 전체 고객 수
-        int totalCount = customerService.getTotalCount(searchEmail); // 이메일 검색 시 전체 수 조정
+        Integer totalCount = customerService.getTotalCount(searchEmail); // 이메일 검색 시 전체 수 조정
         log.debug("전체 고객 수 : {}", totalCount);
         // 전체 페이지 수
-        int totalPages = (int) Math.ceil((double) totalCount / size);
+        Integer totalPages = (int) Math.ceil((double) totalCount / size);
         log.debug("전체 페이지 수 : {}", totalPages);
 
         model.addAttribute("customers", customerList);
@@ -92,16 +92,10 @@ public class CustomerController {
     }
 
     // 회원삭제
-    @PostMapping("/admin/deleteCustomer")
-    public String deleteCustomer(@RequestParam String customerMail, Model model) {
-        int success = customerService.deleteCustomer(customerMail);
-
-        if (success == 0) {
-            model.addAttribute("error", "회원 강퇴에 실패했습니다.");
-            return "redirect:/admin/customerList";
-        } else {
-            model.addAttribute("message", "회원이 성공적으로 강퇴되었습니다.");
-            return "redirect:/admin/customerOne?customerMail=" + customerMail;
+    @GetMapping("/admin/deleteCustomer")
+    public String deleteCustomer(String customerMail, Integer currentPage) {
+        customerService.deleteCustomer(customerMail);
+        log.debug(currentPage +"<---- 현재페이지");
+            return "redirect:/admin/customerList?page=" + currentPage;
         }
-    }
 }
