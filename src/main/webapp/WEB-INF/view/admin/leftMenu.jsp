@@ -37,7 +37,10 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right"> 
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>John Doe</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1">
+				  		<i class="fa fa-user fa-fw"></i> 
+				  		<b>${loggedInStaff.staffId}님</b> 
+				  		<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -46,7 +49,7 @@
 		</li>
 		<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 		</li> 
-		<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+		<li><a href="${pageContext.request.contextPath}/admin/staffLogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 		</li>
 		</ul>
   

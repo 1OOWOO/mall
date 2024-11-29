@@ -7,13 +7,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moschino | Minimalist Free HTML Portfolio by WowThemes.net</title>
-<link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='customer/customercss/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 </head>
 
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
@@ -206,9 +206,9 @@
    <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </div>
 <!-- #page -->
-<script src='js/jquery.js'></script>
-<script src='js/plugins.js'></script>
-<script src='js/scripts.js'></script>
-<script src='js/masonry.pkgd.min.js'></script>
+<script src='customer/customerjs/jquery.js'></script>
+<script src='customer/customerjs/plugins.js'></script>
+<script src='customer/customerjs/scripts.js'></script>
+<script src='customer/customerjs/masonry.pkgd.min.js'></script>
 </body>
 </html>

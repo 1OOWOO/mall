@@ -8,13 +8,13 @@
         WHERE customer_mail=#{customerMail}
 	</select>
 	
-	<!--  우정 : 회원가입  -->
+	<!--  우정 : 고객 회원가입  -->
 	<insert id="insertCustomer" parameterType="com.example.mall.vo.Customer">
 	    INSERT INTO customer (customer_mail, customer_pw, customer_birth, customer_gender, create_date, update_date)
 	    VALUES (#{customerMail}, #{customerPw}, #{customerBirth}, #{customerGender}, NOW(), NOW());
 	</insert>
 	
-	<!-- 우정 : 로그인 -->
+	<!-- 우정 : 고객 로그인 -->
 	<select id = "login" parameterType="com.example.mall.vo.Customer"
          resultType="com.example.mall.vo.Customer">
       SELECT 
