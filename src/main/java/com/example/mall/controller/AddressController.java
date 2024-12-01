@@ -2,7 +2,6 @@ package com.example.mall.controller;
 
 import com.example.mall.service.AddressService;
 import com.example.mall.vo.Address;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,15 +16,11 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
-    // 회원가입 페이지 표시 및 주소 검색 처리
-    @PostMapping("/signUp")
-    public String searchAddress(
-            @RequestParam(value = "searchAddress", required = false) String searchKeyword,
-            Model model) {
-        if (searchKeyword != null && !searchKeyword.isEmpty()) {
-            List<Address> addressList = addressService.searchAddresses(searchKeyword);
-            model.addAttribute("addressList", addressList);
-        }
-        return "signUp"; // JSP 파일명
+    // 주소 검색 처리
+    @PostMapping("/searchAddress")
+    public String searchAddress(@RequestParam("searchAddress") String keyword, Model model) {
+        List<Address> addressList = addressService.searchAddresses(keyword);
+        model.addAttribute("addressList", addressList); // 검색 결과 전달
+        return "signUp"; // 회원가입 페이지로 결과 포함하여 반환
     }
 }
