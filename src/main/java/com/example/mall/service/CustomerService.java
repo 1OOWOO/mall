@@ -49,39 +49,26 @@ public class CustomerService {
     
     // 오자윤 : 고객 삭제 메서드.
     public Integer deleteCustomer(String customerMail) {
-    	return customerMapper.deleteCustomer(customerMail); // 삭제된 행 수가 1이상이면 성공
+    	return customerMapper.deleteCustomer(customerMail); 
     }
     
-    // 오자윤 : 전체 고객 가져오는 메서드.
-    public List<Customer> getCustomerList() {
-        return customerMapper.getCustomerList(); // 전체 고객 리스트 반환.
-    } 
-    
-     // 오자윤 : 특정 페이지의 고객 목록을 반환 (페이징 처리)
-        public List<Customer> getCustomerListByPage(int page, int size) {
-            List<Customer> allCustomers = getCustomerList(); // 전체 고객 목록을 가져옴
-            int start = page * size; // 시작 인덱스
-            int end = Math.min(start + size, allCustomers.size()); // 끝 인덱스
-
-            if (start >= allCustomers.size()) {
-                return List.of(); // 요청한 페이지가 존재하지 않는 경우 빈 리스트 반환
-            }
-
-            return allCustomers.subList(start, end); // 요청한 페이지의 고객 목록 반환
+     // 오자윤 : 고객 리스트 가져오기.
+        public List<Map<String, Object>> getCustomerList(Integer currentPage, Integer rowPerPage, Integer beginRow) {
+        	// 고객 리스트 페이징 처리
+        	Map<String, Object> param = new HashMap<>();
+        	param.put("beginRow", beginRow);
+        	param.put("rowPerPage", rowPerPage);
+        	return customerMapper.selectCustomerList(param);
         }
 
-        // 오자윤 : 전체 고객 수를 가져오는 메서드
+        // 오자윤 : 전체 고객 수 가져오는 메서드
         public Integer getTotalCount(String email) {
             return customerMapper.getTotalCount(); // 전체 고객 수 반환
         }
         
         // 오자윤 : 이메일로 고객 목록 검색 (페이징 처리) 
-        public List<Customer> searchCustomerByEmail(String email, int page, int size) {
-        	Map<String, Object> result= new HashMap<>();
-        	result.put("email", email);
-        	result.put("page", page);
-        	result.put("size", size);
-            return customerMapper.searchCustomerByEmail(result); // Mapper 호출
+        public Integer countCustomerList() {
+        	return customerMapper.countCustomerList(); // Mapper 호출
         }
 
         // 오자윤 : 이메일 검색 시 전체 고객 수 가져오기

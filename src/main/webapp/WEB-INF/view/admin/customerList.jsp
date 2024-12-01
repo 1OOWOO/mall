@@ -33,43 +33,36 @@
                     <th>가입날짜</th>
                 </tr>
             </thead>
-            <tbody>
-                <c:forEach var="customer" items="${customers}">
+                <c:forEach var="c" items="${customerList}">
                     <tr>
 	                    <td>
-	                        <a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${customer.customerMail}">${customer.customerMail}</a>
+	                        <a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${c.customerMail}">${c.customerMail}</a>
 	                    </td>
-                        <td>${customer.customerBirth}</td>
-                        <td>${customer.createDate}</td>
+                        <td>${c.customerBirth}</td>
+                        <td>${c.createDate}</td>
                     </tr>
                 </c:forEach>
-                <c:if test="${empty customers}">
-                    <tr>
-                        <td colspan="3" class="text-center">검색된 결과가 없습니다.</td>
-                    </tr>
-                </c:if>
-            </tbody>
         </table>
         
-        <!-- 페이징 UI -->
-	     <nav>
-            <ul class="pagination justify-content-center">
-                <li class="page-item <c:if test="${currentPage == 0}">disabled</c:if>">
-                    <a class="page-link" href="?page=${currentPage - 1}&size=${size}&searchEmail=${searchEmail}">이전</a>
-                </li>
-                <c:forEach var="i" begin="0" end="${totalPages - 1}">
-                    <li class="page-item <c:if test="${i == currentPage}">active</c:if>">
-                        <a class="page-link" href="?page=${i}&size=${size}&searchEmail=${searchEmail}">${i + 1}</a>
-                    </li>
-                </c:forEach>
-                <li class="page-item <c:if test="${currentPage == totalPages - 1}">disabled</c:if>">
-                    <a class="page-link" href="?page=${currentPage + 1}&size=${size}&searchEmail=${searchEmail}">다음</a>
-                </li>
-
-		    </ul>
-		</nav>
-		</div>
-		</div>
+        <!-- 페이징 -->
+		<div>
+			<c:if test="${currentPage > numPerPage}">
+				<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${beginPagingNum - numPerPage}">이전</a>
+			</c:if>
+			<c:forEach var="num" begin="${beginPageNum}" end="${endPageNum}">
+				<c:if test="${num==currentPage}">
+					${num}&nbsp;
+				</c:if>
+				<c:if test="${num!=currentPage}">
+				<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${num}">${num}</a>
+				&nbsp;
+				</c:if>
+			</c:forEach>
+					<c:if test="${currentPage < lastPage - numPerPage }">
+						<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${beginPageNum + numPerPage}">다음</a>
+					</c:if>
+			</div>
+		</div> 
     </div>
 </body>
 </html>

@@ -29,13 +29,13 @@ public interface CustomerMapper {
     Integer deleteCustomer(String customerMail);
 
 	// 오자윤 : 전체 고객 리스트 반환
-	List<Customer> getCustomerList();
+	List<Map<String, Object>> selectCustomerList(Map<String, Object> param);
 	
 	// 오자윤 : 전체 고객 수 번환
 	Integer getTotalCount(); 
 	
-    // 오자윤 : 이메일로 고객 목록 검색 (페이징 처리)
-    List<Customer> searchCustomerByEmail(Map<String, Object> result);
+    // 오자윤 : 고객리스트 카운트
+	Integer countCustomerList();
     
     // 오자윤 : 이메일 검색 시 전체 고객 수 반환
     Integer getTotalCountByEmail(@Param("email") String customerMail);

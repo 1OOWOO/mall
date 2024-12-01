@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mall.service.CustomerService;
+import com.example.mall.util.Page;
 import com.example.mall.vo.Customer;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -23,46 +25,24 @@ public class CustomerController {
 
     // 오자윤 : 회원이메일 검색 버튼요청시 
     @GetMapping("/admin/customerList")
-    public String customerList(
-            // 페이징 작업
-            @RequestParam(defaultValue = "0") Integer page,   // 페이지 초기값
-            @RequestParam(defaultValue = "10") Integer size,  // 10페이지 씩
-            @RequestParam(required = false , defaultValue = "") String searchEmail, // 이메일 검색
-            Model model) {
+    public String customerList(HttpSession session, Model model, @RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "10") Integer rowPerPage) {
         
-        log.debug("customerList 메서드 호출. page: {}, size: {}, email: {}", page, size, searchEmail);
+    	Page page = new Page();
+    	page.setCurrentPage(currentPage);
+    	page.setRowPerPage(rowPerPage);
+    	page.setNumPerPage(10);
+    	page.setCountTotalRow(customerService.countCustomerList());
+    	
+        model.addAttribute("currentPage", page.getCurrentPage());
+        model.addAttribute("lastPage", page.countLastPage());
+        model.addAttribute("beginPageNum", page.countBeginPageNum());
+        model.addAttribute("endPageNum", page.countEndPageNum()); // 검색한 이메일 유지
+        model.addAttribute("numPerPage", page.getNumPerPage()); // 페이지 크기 추가
         
-        // 검색을 위해, 0으로 페이지 리셋.
-        if (searchEmail != null && !searchEmail.isEmpty()) {
-            page = 0; // 검색 시 페이지를 처음으로 리셋
-        }
-
-        List<Customer> customerList;
-
-        if (searchEmail != null && !searchEmail.isEmpty()) {
-            // 이메일 검색 시
-            customerList = customerService.searchCustomerByEmail(searchEmail, page, size);
-            log.debug("이메일로 검색된 고객 수 : {}", customerList.size());
-        } else {
-            // 요청한 페이지의 고객 목록
-            customerList = customerService.getCustomerListByPage(page, size);
-            log.debug("전체 고객 수 : {}", customerList.size());
-        }
-
-        // 전체 고객 수
-        Integer totalCount = customerService.getTotalCount(searchEmail); // 이메일 검색 시 전체 수 조정
-        log.debug("전체 고객 수 : {}", totalCount);
-        // 전체 페이지 수
-        Integer totalPages = (int) Math.ceil((double) totalCount / size);
-        log.debug("전체 페이지 수 : {}", totalPages);
-
-        model.addAttribute("customers", customerList);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("searchEmail", searchEmail); // 검색한 이메일 유지
-        model.addAttribute("size", size); // 페이지 크기 추가
-
-        return "admin/customerList"; // JSP 파일 이름
+        // 고객 리스트 출력
+        List<Map<String, Object>> customerList = customerService.getCustomerList(currentPage, rowPerPage, page.countBeginRow());
+        model.addAttribute("customerList", customerList);
+        return "admin/customerList"; 
     }
 
     // 우정 : 회원가입 처리 (signup 페이지에서 직접 처리)
@@ -93,9 +73,12 @@ public class CustomerController {
 
     // 회원삭제
     @GetMapping("/admin/deleteCustomer")
-    public String deleteCustomer(String customerMail, Integer currentPage) {
+    // 현재 페이지 초기화
+    public String deleteCustomer(String customerMail, @RequestParam(required = false, defaultValue = "1") Integer currentPage) {
         customerService.deleteCustomer(customerMail);
+        
         log.debug(currentPage +"<---- 현재페이지");
-            return "redirect:/admin/customerList?page=" + currentPage;
+        
+         return "redirect:/admin/customerList?page=" + currentPage;
         }
 }
