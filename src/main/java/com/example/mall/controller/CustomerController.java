@@ -42,30 +42,32 @@ public class CustomerController {
         // 고객 리스트 출력
         List<Map<String, Object>> customerList = customerService.getCustomerList(currentPage, rowPerPage, page.countBeginRow());
         model.addAttribute("customerList", customerList);
+        model.addAttribute("currentPage", currentPage);
         return "admin/customerList"; 
     }
 
     // 우정 : 회원가입 처리 (signup 페이지에서 직접 처리)
-    //@PostMapping("/signup")
-    //public String register(Customer customer, Model model) {
-    //    try {
-    //        // 고객 등록
-    //        customerService.registerCustomer(customer);
+    @PostMapping("/signup")
+    public String register(Customer customer, Model model) {
+        try {
+            // 고객 등록
+            customerService.registerCustomer(customer);
 
             // 성공 시 알림과 함께 hello 페이지로 리다이렉트
-    //        model.addAttribute("message", "회원가입이 완료되었습니다.");
-    //        return "redirect:/hello"; // 회원가입 성공 후 hello 페이지로 이동
+            model.addAttribute("message", "회원가입이 완료되었습니다.");
+            return "redirect:/hello"; // 회원가입 성공 후 hello 페이지로 이동
 
-    //    } catch (Exception e) {
-    //        log.error("회원가입 중 오류 발생", e);
-    //        model.addAttribute("message", "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
-    //        return "signup"; // 오류 시 회원가입 페이지로 돌아가기
-    //    }
-    //}
+        } catch (Exception e) {
+            log.error("회원가입 중 오류 발생", e);
+            model.addAttribute("message", "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+            return "signup"; // 오류 시 회원가입 페이지로 돌아가기
+        }
+    }
 
     // 개별 회원
     @GetMapping("/admin/customerOne")
     public String customerOne(Model model, @RequestParam String customerMail) {
+    	 log.debug(customerMail + "-----> customerMail"); 
         Map<String, Object> customer = customerService.selectCustomerOne(customerMail);
         model.addAttribute("customer", customer);
         return "admin/customerOne";
@@ -74,9 +76,11 @@ public class CustomerController {
     // 회원삭제
     @GetMapping("/admin/deleteCustomer")
     // 현재 페이지 초기화
-    public String deleteCustomer(String customerMail, @RequestParam(required = false, defaultValue = "1") Integer currentPage) {
-        customerService.deleteCustomer(customerMail);
-        
+    public String deleteCustomer(@RequestParam String customerMail,
+    							@RequestParam(required = false, defaultValue = "1") Integer currentPage,
+    							Model model) {
+    	log.debug(customerMail + "<---- customer 이메일");
+    	customerService.deleteCustomer(customerMail);
         log.debug(currentPage +"<---- 현재페이지");
         
          return "redirect:/admin/customerList?page=" + currentPage;
