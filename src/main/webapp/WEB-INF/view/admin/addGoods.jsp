@@ -112,7 +112,7 @@
 								<tr>
 									<td>메모</td>
 									<td><textarea rows="3" cols="50" id="goodsMemo"
-											name="goodsMemo"></textarea></td>
+											name="goodsMemo" style="height: 100px;"></textarea></td>
 								</tr>
 								<tr>
 									<td>재고</td>
