@@ -5,12 +5,14 @@
 	<!-- /admin/addGoods -->
 	<insert id="insertGoods" parameterType="com.example.mall.vo.Goods" useGeneratedKeys="true" keyProperty="goodsNo">
 		INSERT INTO goods(
-				goods_title
+				goods_no
+				,goods_title
 				, goods_price
 				, goods_state
 				, goods_memo
 		) VALUES (
-				#{goodsTitle}
+				#{goodsNo}
+				, #{goodsTitle}
 				, #{goodsPrice}
 				, #{goodsState}
 				, #{goodsMemo}
@@ -93,11 +95,11 @@
 	<!-- /customer/searchGoods -->
 	<select id="selectGoodsByCategory" parameterType="Integer" resultType="Map">
         SELECT 
-            g.goods_no,
-            g.goods_title,
-            g.goods_price,
-            gc.category_no,
-            c.category_title
+            g.goods_no goodsNo
+            ,g.goods_title goodsTitle
+            ,g.goods_price goodsPrice
+            ,gc.category_no categoryNo
+            ,c.category_title categoryTitle
         FROM goods g
 	        JOIN goods_category gc 
 	        ON g.goods_no = gc.goods_no
@@ -105,4 +107,13 @@
 	        ON gc.category_no = c.category_no
         WHERE gc.category_no = #{categoryNo}
     </select>
+    
+    <!-- /customer/searchGoods - 카테고리 검색 결과 개수 -->
+    <select id="countGoodsByCategory" parameterType="Integer" resultType="Integer">
+	    SELECT COUNT(*) 
+	    FROM goods g
+		    JOIN goods_category gc 
+		    ON g.goods_no = gc.goods_no
+	    WHERE gc.category_no = #{categoryNo}
+	</select>
 </mapper>

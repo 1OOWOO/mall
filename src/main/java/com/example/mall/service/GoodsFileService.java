@@ -46,6 +46,7 @@ public class GoodsFileService {
                 
                 // GoodsFile을 데이터베이스에 삽입
                 int row2 = goodsFileMapper.insertGoodsFile(goodsFile);
+                log.debug("파일 업로드 row2:"+Integer.toString(row2));
                 if (row2 == 1) { // 물리적 파일 저장 request.getRealPath("/upload")
                     try {
                         mf.transferTo(new File(path + filename + "." + ext));

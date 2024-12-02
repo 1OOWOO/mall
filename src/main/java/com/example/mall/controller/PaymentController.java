@@ -15,9 +15,9 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
     // 결제 정보 입력 페이지
-    @GetMapping("/admin/payment")
+    @GetMapping("/customer/payment")
     public String paymentPage(Model model) {
-        return "admin/payment"; // 결제 페이지 JSP 파일 이름
+        return "customer/payment"; // 결제 페이지 JSP 파일 이름
     }
     // 결제 처리
     @PostMapping("/processPayment")

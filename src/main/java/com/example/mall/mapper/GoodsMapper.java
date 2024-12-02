@@ -37,4 +37,6 @@ public interface GoodsMapper {
 
 	// /customer/searchGoods
 	List<Map<String, Object>> selectGoodsByCategory(Integer categoryNo);
+	// /customer/searchGoods - 카테고리 검색 결과 개수
+	Integer countGoodsByCategory(Integer categoryNo);
 }

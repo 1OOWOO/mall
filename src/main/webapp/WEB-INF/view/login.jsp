@@ -48,6 +48,7 @@
             </form>
             <div>
                 <a href="${pageContext.request.contextPath}/signUp">회원가입</a>
+                <a href="${pageContext.request.contextPath}/findPw">비밀번호 찾기</a>
             </div>
         </c:if>
 

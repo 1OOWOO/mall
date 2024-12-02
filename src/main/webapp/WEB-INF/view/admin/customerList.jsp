@@ -128,7 +128,8 @@
 									class="page-item <c:if test="${currentPage == 0}">disabled</c:if>">
 									<a class="page-link"
 									href="?page=${currentPage - 1}&size=${size}&searchEmail=${searchEmail}">이전</a>
-								</li>
+								</li> <!-- totalPages '-'값 방지 -->
+								<c:if test="${totalPages > 0}">
 								<c:forEach var="i" begin="0" end="${totalPages - 1}">
 									<li
 										class="page-item <c:if test="${i == currentPage}">active</c:if>">
@@ -136,6 +137,7 @@
 										href="?page=${i}&size=${size}&searchEmail=${searchEmail}">${i + 1}</a>
 									</li>
 								</c:forEach>
+								</c:if>
 								<li
 									class="page-item <c:if test="${currentPage == totalPages - 1}">disabled</c:if>">
 									<a class="page-link"

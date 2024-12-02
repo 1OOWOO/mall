@@ -22,7 +22,7 @@
 	<div class="container">
 		<header id="masthead" class="site-header">
 			<div class="site-branding">
-				<h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="images/logo.png"></a></h1>
+				<h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
 				<h2 class="site-description">모방은 창조의 어머니이다</h2>
 			</div>
 			<nav id="site-navigation" class="main-navigation">
@@ -88,6 +88,7 @@
 								</form>
 								
 								<!-- 재고 없으면 Buy버튼 비활성화 -->
+								${goods.goodsState}<br>
 								<c:if test="${goods.goodsState == '재고없음'}"> 
 								    <button type="submit" class="single_add_to_cart_button button alt" disabled>Buy</button>
 								</c:if>
@@ -138,11 +139,11 @@
 															<label for="rating">Your Rating</label>
 															<select name="rating" id="rating">
 																<option value="">Rate&hellip;</option>
-																<option value="5">Perfect</option>
-																<option value="4">Good</option>
-																<option value="3">Average</option>
-																<option value="2">Not that bad</option>
-																<option value="1">Very Poor</option>
+																<option value="5">⭐⭐⭐⭐⭐</option>
+																<option value="4">⭐⭐⭐⭐</option>
+																<option value="3">⭐⭐⭐</option>
+																<option value="2">⭐⭐</option>
+																<option value="1">⭐</option>
 															</select>
 														</p>
 														<p class="comment-form-comment">

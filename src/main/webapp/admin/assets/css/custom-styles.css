@@ -568,6 +568,9 @@ line-height: 1.428571429;
 	position : static;
 	opacity: 1;
 }
+select {
+	display: block;
+}
 
 /*----------------------------------------------
     MEDIA QUERIES     
