@@ -9,11 +9,12 @@
     </insert>
 
     <!-- 오자윤 : 장바구니 항목 조회 -->
-    <select id="getCartItem" parameterType="int" resultType="com.example.mall.vo.Cart">
-        SELECT c.cart_id cartId,
-        g.goods_name goodsName,
+    <select id="getCartItem" parameterType="String" resultType="map">
+        SELECT c.cart_no cartNo,
+        g.goods_title goodsTitle,
         c.cart_amount cartAmount,
-        g.price price
+        g.goods_price goodsPrice,
+        g.goods_no goodsNo
         FROM cart c
         JOIN goods g ON c.goods_no = g.goods_no
         WHERE c.customer_mail = #{customerMail}

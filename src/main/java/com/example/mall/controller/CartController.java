@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mall.service.CartService;
 import com.example.mall.vo.Cart;
+import com.example.mall.vo.Goods;
+
 import org.springframework.ui.Model;
 
 import jakarta.servlet.http.HttpSession;
@@ -19,27 +21,6 @@ import jakarta.servlet.http.HttpSession;
 public class CartController {
 	@Autowired private CartService cartService;
 	
-	@GetMapping("/cart")
-	public String getCartItems1(HttpSession session, Model model) {
-		String customerMail = (String) session.getAttribute("customerMail");
-		List<Map<String, Object>> carts = cartService.getCartItems(customerMail);
-		
-	// 오자윤 : 상품 정보 goods 테이블에서 가져오기
-	for(Map<String, Object> cart : carts) {
-		Integer goodsNo = (Integer) cart.get("goodsNo");
-		Map<String, Object> goods = cartService.getGoodsById(goodsNo);
-		cart.put("goodsTitle", goods.get("goodsTitle"));
-		cart.put("goodsPrice", goods.get("goodsPrice"));
-		cart.put("imageUrl", goods.get("imageUrl")); //image URL 추가
-		cart.put("goodsState", goods.get("goodsState")); // 옵션추가
-	}
-	
-	model.addAttribute("carts",carts);
-	
-	// 총 금액 계산
-	
-	return "cart";
-	}
 	
 	// 오자윤 : 장바구니 페이지 (장바구니 추가)
 	@PostMapping("/cart/add")
@@ -52,9 +33,25 @@ public class CartController {
 	@GetMapping("/cart")
     public String getCartItems(HttpSession session, Model model) {
         String customerMail = (String) session.getAttribute("customerMail");
-        List<Cart> cartItem = cartService.getCartItems(customerMail);
-        model.addAttribute("cartItem", cartItem);
-        return "cart"; // 장바구니 페이지 반환
+        List<Map<String, Object>> carts = cartService.getCartItem(customerMail);
+    	
+        // 상품 정보 goods 테이블에서 가져오기
+    	model.addAttribute("carts", carts);
+    	
+    	// 총 금액 계산
+    	int totalPrice = 0;
+    	for(Map<String, Object> cart : carts) {
+    		totalPrice += (Integer) cart.get("price"); // 각 상품의 가격 더하기
+    	}
+
+    	int shippingFee = 2500; // 고정 배송비
+    	int totalAmount = totalPrice + shippingFee;
+    	
+    	model.addAttribute("totalPrice", totalPrice);
+    	model.addAttribute("shippingFee", shippingFee);
+    	model.addAttribute("totalAmount", totalAmount);
+    	
+        return "/customer/cart"; // 장바구니 페이지 반환
     }
 
 	// 장바구니 수량 수정

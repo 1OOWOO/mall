@@ -1,6 +1,7 @@
 package com.example.mall.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,7 +13,7 @@ public interface CartMapper {
 	int  addCartItem(String customerMail, int goodNo, int cartAmount);
 	
 	// 오자윤 : 장바구니 항목 조회
-	List<Cart> getCartItem(String customerMail);
+	List<Map<String, Object>> getCartItem(String customerMail);
 	
 	// 오자윤 : 장바구니 수량 수정
 	int updateCartItem(int cartNo, String customerMail, int cartAmount);

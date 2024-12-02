@@ -1,12 +1,14 @@
 package com.example.mall.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.mall.mapper.CartMapper;
+import com.example.mall.mapper.GoodsMapper;
 import com.example.mall.vo.Cart;
 import com.example.mall.vo.Goods;
 
@@ -14,11 +16,8 @@ import com.example.mall.vo.Goods;
 @Transactional
 public class CartService {
 	@Autowired CartMapper cartMapper;
+	@Autowired GoodsMapper goodsMapper;
 	
-	// 오자윤 : 상품 정보 가져오기
-	public Goods getGoodsById(int goodsNo) {
-		return goodsMapper.getGoodsById(goodsNo);
-	}
 	
 	// 오자윤 : 장바구니 항목 추가
     public Integer addCartItem(String customerMail, int goodsNo, int cartAmount) {
@@ -26,7 +25,7 @@ public class CartService {
     }
 
     // 오자윤 : 장바구니 항목 조회
-    public List<Cart> getCartItems(String customerMail) {
+    public List<Map<String, Object>> getCartItem(String customerMail) {
         return cartMapper.getCartItem(customerMail);
     }
 
