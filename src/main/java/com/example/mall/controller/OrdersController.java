@@ -29,7 +29,7 @@ public class OrdersController {
         model.addAttribute("ordersList", ordersList);
         log.debug("Orders List Size: " + ordersList.size());
         
-        return "admin/ordersList";
+       return "admin/ordersList";
 	}
 	
 	// /admin/ordersList - 주문상태, 결제방법 수정

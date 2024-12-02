@@ -26,4 +26,12 @@ public interface GoodsMapper {
 	// /admin/goodsOne - 상품 수정
 	Integer updateGoods(Map<String,Object> map);
 	
+	// /customer/customerGoodsOne
+	Goods selectCustomerGoodsOne(Integer goodsNo);
+	
+	// /hello
+	List<Goods> selectAllGoods();
+	
+	// /customer/searchGoods
+	List<Map<String, Object>> selectGoodsByCategory(Integer categoryNo);
 }

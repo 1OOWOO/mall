@@ -7,14 +7,14 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OOWOO</title>
-<link rel='stylesheet' href='customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='customer/customercss/woocommerce.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
+<title>카테고리 검색 | ${category.categoryTitle}</title>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<link rel='stylesheet' href='customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 </head>
 
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
@@ -100,40 +100,30 @@
       <div id="content" class="site-content">
          <div id="primary" class="content-area column full">
             <main id="main" class="site-main" role="main">
-            <p class="woocommerce-result-count">
-                Showing ${goodsCount} results
-            </p>
-            <form class="woocommerce-ordering" method="get">
-               <select name="orderby" class="orderby">
-                  <option value="menu_order" selected="selected">Default sorting</option>
-                  <option value="popularity">Sort by popularity</option>
-                  <option value="rating">Sort by average rating</option>
-                  <option value="date">Sort by newness</option>
-                  <option value="price">Sort by price: low to high</option>
-                  <option value="price-desc">Sort by price: high to low</option>
-               </select>
-            </form>
-            <ul class="products">
-            	<c:forEach var="goods" items="${goodsList}">
-	               <li class="product">
-		               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${goods.goodsNo}"">
-			               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
-			               <h3>${goods.goodsTitle}</h3>
-			               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
-		               </a>
-	               </li>
-				</c:forEach>
-			
-				<!-- 세일 표시 <span class="onsale">Sale!</span> -->
-            </ul>
-	            <!-- 페이징
-		            <nav class="woocommerce-pagination">
-			            <ul class="page-numbers">
-			               <li><span class="page-numbers current">1</span></li>
-			               <li><a class="page-numbers" href="#">2</a></li>
-			               <li><a class="next page-numbers" href="#">→</a></li>
-			            </ul>
-		            </nav> -->
+	            <p class="woocommerce-result-count">
+	                Showing ${goodsCount} results
+	            </p>
+	            <form class="woocommerce-ordering" method="get">
+	               <select name="orderby" class="orderby">
+	                  <option value="menu_order" selected="selected">Default sorting</option>
+	                  <option value="popularity">Sort by popularity</option>
+	                  <option value="rating">Sort by average rating</option>
+	                  <option value="date">Sort by newness</option>
+	                  <option value="price">Sort by price: low to high</option>
+	                  <option value="price-desc">Sort by price: high to low</option>
+	               </select>
+	            </form>
+	            <ul class="products">
+	            	<c:forEach var="goods" items="${goodsList}">
+		               <li class="product">
+			               <a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=${category.categoryTitle}"">
+				               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
+				               <h3>${goods.goodsTitle}</h3>
+				               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
+			               </a>
+		               </li>
+					</c:forEach>
+	            </ul>
             </main>
          </div>
          <!-- #primary -->
@@ -153,10 +143,10 @@
    <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </div>
 <!-- #page -->
-<script src='customer/customerjs/jquery.js'></script>
-<script src='customer/customerjs/plugins.js'></script>
-<script src='customer/customerjs/scripts.js'></script>
-<script src='customer/customerjs/masonry.pkgd.min.js'></script>
+<script src='${pageContext.request.contextPath}/customer/customerjs/jquery.js'></script>
+<script src='${pageContext.request.contextPath}/customer/customerjs/plugins.js'></script>
+<script src='${pageContext.request.contextPath}/customer/customerjs/scripts.js'></script>
+<script src='${pageContext.request.contextPath}/customer/customerjs/masonry.pkgd.min.js'></script>
 <script>
 	
 </script>

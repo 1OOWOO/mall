@@ -25,4 +25,9 @@ public class GoodsCategoryService {
 	public Integer modifyGoodsCategory(Map<String,Object> map) {
 		return goodsCategoryMapper.updateGoodsCategory(map);
 	}
+	
+	// /customer/customerGoodsOne 특정 상품의 카테고리 조회
+	 public Category getCategoryByGoodsNo(Integer goodsNo) {
+        return goodsCategoryMapper.selectCategoryByGoodsNo(goodsNo);
+    }
 }

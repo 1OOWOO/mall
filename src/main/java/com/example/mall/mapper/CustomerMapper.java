@@ -10,7 +10,7 @@ import com.example.mall.vo.Customer;
 
 @Mapper
 public interface CustomerMapper {
-	// 자윤 : 회원리스트 검색
+	// 오자윤 : 회원리스트 검색
 	List<Customer> selectCustomerOfList(String customerMail);
 	
 	// 우정 : 회원가입
@@ -19,26 +19,26 @@ public interface CustomerMapper {
     // 우정 : 로그인
     Customer login(Customer customer);
 	
-	// 고객 상세정보 조회
+	// 오자윤 : 고객 상세정보 조회
 	Map<String, Object> selectCustomerOne(String customerMail);
 	
-	// 고객 이메일로 고객 정보 조회
-    Customer getCustomerByEmail(String email); 
+	// 오자윤 : 고객 이메일로 고객 정보 조회
+    Customer getCustomerByEmail(String customerMail); 
     
-	// 고객 삭제 메서드
-	int deleteCustomer(String customerId);
+	// 오자윤 : 고객 삭제 메서드
+    Integer deleteCustomer(String customerMail);
 
-	// 전체 고객 리스트 반환
-	List<Customer> getCustomerList();
+	// 오자윤 : 전체 고객 리스트 반환
+	List<Map<String, Object>> selectCustomerList(Map<String, Object> param);
 	
-	// 전체 고객 수 번환
-	int getTotalCount(); 
+	// 오자윤 : 전체 고객 수 번환
+	Integer getTotalCount(); 
 	
-    // 이메일로 고객 목록 검색 (페이징 처리)
-    List<Customer> searchCustomerByEmail(Map<String, Object> result);
+    // 오자윤 : 고객리스트 카운트
+	Integer countCustomerList();
     
-    // 이메일 검색 시 전체 고객 수 반환
-    int getTotalCountByEmail(@Param("email") String email);
+    // 오자윤 : 이메일 검색 시 전체 고객 수 반환
+    Integer getTotalCountByEmail(@Param("email") String customerMail);
 
 
 }

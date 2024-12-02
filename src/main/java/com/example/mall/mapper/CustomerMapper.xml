@@ -39,16 +39,23 @@
 	<!-- 오자윤 : 고객 삭제 쿼리 -->
 	<delete id="deleteCustomer" parameterType="String">
 		DELETE FROM customer
-		WEHRE customer_mail = #{customerMail}
+		WHERE customer_mail = #{customerMail}
 	</delete>
 
-    <select id="getCustomerList" resultType="com.example.mall.vo.Customer">
-        SELECT customer_mail customerMail,
-        customer_birth customerBirth,
-        create_date createDate FROM customer
+	<!-- 오자윤 : 고객리스트 가져오기 -->
+    <select id="selectCustomerList" resultType="com.example.mall.vo.Customer">
+        SELECT customer_mail customerMail
+        , customer_pw customerPw
+		, customer_birth customerBirth
+		, customer_gender customerGender
+		, update_date updateDate
+		, create_date createDate
+		FROM customer
+		LIMIT #{beginRow}, #{rowPerPage}
     </select>
     
-     <select id="getTotalCount" resultType="int">
+    <!-- 오자윤 : 고객리스트 카운트 -->
+     <select id="countCustomerList" resultType="int">
         SELECT COUNT(*) FROM customer
     </select>
     
