@@ -27,12 +27,12 @@ public class CustomerController {
     @GetMapping("/admin/customerList")
     public String customerList(HttpSession session, Model model, @RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "10") Integer rowPerPage) {
         
-    	Page page = new Page();
-    	page.setCurrentPage(currentPage);
-    	page.setRowPerPage(rowPerPage);
-    	page.setNumPerPage(10);
-    	page.setCountTotalRow(customerService.countCustomerList());
-    	
+       Page page = new Page();
+       page.setCurrentPage(currentPage);
+       page.setRowPerPage(rowPerPage);
+       page.setNumPerPage(10);
+       page.setCountTotalRow(customerService.countCustomerList());
+       
         model.addAttribute("currentPage", page.getCurrentPage());
         model.addAttribute("lastPage", page.countLastPage());
         model.addAttribute("beginPageNum", page.countBeginPageNum());
@@ -67,7 +67,7 @@ public class CustomerController {
     // 개별 회원
     @GetMapping("/admin/customerOne")
     public String customerOne(Model model, @RequestParam String customerMail) {
-    	 log.debug(customerMail + "-----> customerMail"); 
+        log.debug(customerMail + "-----> customerMail"); 
         Map<String, Object> customer = customerService.selectCustomerOne(customerMail);
         model.addAttribute("customer", customer);
         return "admin/customerOne";
@@ -77,10 +77,10 @@ public class CustomerController {
     @GetMapping("/admin/deleteCustomer")
     // 현재 페이지 초기화
     public String deleteCustomer(@RequestParam String customerMail,
-    							@RequestParam(required = false, defaultValue = "1") Integer currentPage,
-    							Model model) {
-    	log.debug(customerMail + "<---- customer 이메일");
-    	customerService.deleteCustomer(customerMail);
+                         @RequestParam(required = false, defaultValue = "1") Integer currentPage,
+                         Model model) {
+       log.debug(customerMail + "<---- customer 이메일");
+       customerService.deleteCustomer(customerMail);
         log.debug(currentPage +"<---- 현재페이지");
         
          return "redirect:/admin/customerList?page=" + currentPage;
