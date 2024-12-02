@@ -88,9 +88,11 @@ public class GoodsController {
 	public String goodsOne(Model model, @RequestParam Integer goodsNo) {
 		Map<String,Object> map = goodsService.getGoodsOne(goodsNo);
 		model.addAttribute("go",map); 
+		log.debug("goodsNo: "+Integer.toString(goodsNo));
 		
-		List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileList();
+		List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileListByNo(goodsNo);
 		model.addAttribute("goodsFileList",goodsFileList);
+		log.debug("goodsFileList: "+goodsFileList.toString());
 		
 		List<Category> categoryList = goodsCategoryService.getAllCategory();
 		model.addAttribute("categoryList",categoryList);
@@ -106,6 +108,7 @@ public class GoodsController {
 					            ,@RequestParam String goodsMemo
 					            ,@RequestParam String goodsState
 					            ,@RequestParam Integer goodsCategoryNo) {
+		log.debug("수정 전 goodsNo: "+goodsNo);
 		Map<String, Object> goodsMap = new HashMap<>();
 		goodsMap.put("goodsNo", goodsNo);
 		goodsMap.put("goodsTitle", goodsTitle);
@@ -121,7 +124,7 @@ public class GoodsController {
         goodsCategoryService.modifyGoodsCategory(categoryMap);
         log.debug("categoryMap: "+categoryMap);
         
-		return "redirect:/admin/goodsList"; 
+		return "redirect:/admin/goodsOne?goodsNo="+goodsNo; 
 	}
 	
 	// /customer/customerGoodsOne
