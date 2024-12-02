@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.mall.mapper.CartMapper"></mapper>
+<mapper namespace="com.example.mall.mapper.CartMapper">
+ 
+  <!-- 오자윤 : 장바구니 항목 추가 -->
+    <insert id="addCartItem" parameterType="map">
+        INSERT INTO cart (customer_mail, goods_no, cart_amount)
+        VALUES (#{customerMail}, #{goodsNo}, #{cartAmount})
+    </insert>
+
+    <!-- 오자윤 : 장바구니 항목 조회 -->
+    <select id="getCartItem" parameterType="int" resultType="com.example.mall.vo.Cart">
+        SELECT c.cart_id cartId,
+        g.goods_name goodsName,
+        c.cart_amount cartAmount,
+        g.price price
+        FROM cart c
+        JOIN goods g ON c.goods_no = g.goods_no
+        WHERE c.customer_mail = #{customerMail}
+    </select>
+
+    <!-- 오자윤 : 장바구니 항목 수량 수정 -->
+    <update id="updateCartItem" parameterType="map">
+        UPDATE cart
+        SET cart_amount = #{cartAmount}
+        WHERE cart_no = #{cartNo} AND customer_mail = #{customerMail}
+    </update>
+
+    <!-- 오자윤 : 장바구니 항목 삭제 -->
+    <delete id="deleteCartItem" parameterType="map">
+        DELETE FROM cart
+        WHERE cart_no = #{cartNo} AND customer_mail = #{customerMail}
+    </delete>
+
+    <!-- 오자윤 : 장바구니 비우기 -->
+    <delete id="clearCart" parameterType="int">
+        DELETE FROM cart
+        WHERE customer_mail = #{customerMail}
+    </delete>
+
+</mapper>
