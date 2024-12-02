@@ -71,7 +71,7 @@
             </table>
         </div>
 
-		    <form action="${pageContext.request.contextPath}/admin/deleteCustomer?customerMail=${c.customerMail}&currentPage=${currentPage}">
+		    <form action="${pageContext.request.contextPath}/admin/deleteCustomer?customerMail=${customer.customerMail}&currentPage=${currentPage}">
 		        <button type="submit" class="btn btn-danger">회원탈퇴</button>
 		    </form>
 
