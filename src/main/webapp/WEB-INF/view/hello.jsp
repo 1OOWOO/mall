@@ -8,13 +8,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OOWOO</title>
-<link rel='stylesheet' href='customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='customer/customercss/woocommerce.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<link rel='stylesheet' href='customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 </head>
 
 <body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
@@ -34,7 +34,7 @@
 	      		} else {
 	      			
 	      	%>
-	      	<span> ${loggedInCustomer.customerMail} 님 |<a href="logout"> 로그아웃 </a></span>
+	      	<span> <a href="${pageContext.request.contextPath}/customer/myPage"> ${loggedInCustomer.customerMail} 님 </a> |<a href="logout"> 로그아웃 </a></span>
 	      	
 	      	<%
 	      		}
