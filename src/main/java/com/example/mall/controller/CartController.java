@@ -16,7 +16,9 @@ import com.example.mall.vo.Goods;
 import org.springframework.ui.Model;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 public class CartController {
 	@Autowired private CartService cartService;
@@ -30,26 +32,28 @@ public class CartController {
     }
 
     // 장바구니 항목 조회
-	@GetMapping("/cart")
+	@GetMapping("/customer/cart")
     public String getCartItems(HttpSession session, Model model) {
-        String customerMail = (String) session.getAttribute("customerMail");
+		/* String customerMail = (String) session.getAttribute("customerMail"); */
+		String customerMail = "dfasdf@wix.com";
         List<Map<String, Object>> carts = cartService.getCartItem(customerMail);
+        
+        log.debug(carts+ "<---carts");
     	
         // 상품 정보 goods 테이블에서 가져오기
     	model.addAttribute("carts", carts);
     	
     	// 총 금액 계산
-    	int totalPrice = 0;
-    	for(Map<String, Object> cart : carts) {
-    		totalPrice += (Integer) cart.get("price"); // 각 상품의 가격 더하기
-    	}
-
-    	int shippingFee = 2500; // 고정 배송비
-    	int totalAmount = totalPrice + shippingFee;
-    	
-    	model.addAttribute("totalPrice", totalPrice);
-    	model.addAttribute("shippingFee", shippingFee);
-    	model.addAttribute("totalAmount", totalAmount);
+		/*
+		 * int totalPrice = 0; for(Map<String, Object> cart : carts) { totalPrice +=
+		 * (Integer) cart.get("price"); // 각 상품의 가격 더하기 }
+		 * 
+		 * int shippingFee = 2500; // 고정 배송비 int totalAmount = totalPrice + shippingFee;
+		 * 
+		 * model.addAttribute("totalPrice", totalPrice);
+		 * model.addAttribute("shippingFee", shippingFee);
+		 * model.addAttribute("totalAmount", totalAmount);
+		 */
     	
         return "/customer/cart"; // 장바구니 페이지 반환
     }

@@ -1,34 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOWOO | GoodsOne</title>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-        <h2>장바구니</h2>
-        <div class="cart-items">
-            <!-- 장바구니 항목 반복문 -->
-            <c:forEach var="c" items="${carts}">
-                <div class="cart-item">
-                    <input type="checkbox" >
-                    <img src="" alt="상품 이미지">
-                    <div class="item-details">
-                        <p>${c.goodsTitle}</p>
-                        <p>재고: ${c.cartAmount}</p>
-                        <p>금액: ${c.goodsPrice}원</p>
-                    </div>
-                </div>
-            </c:forEach>
-        </div>
+<!-- Author : 오아림 -->
+<body class="single single-product woocommerce woocommerce-page">
+<div id="page">
+	<div class="container">
+		<header id="masthead" class="site-header">
+			<div class="site-branding">
+				<h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
+				<h2 class="site-description">모방은 창조의 어머니이다</h2>
+			</div>
+			<nav id="site-navigation" class="main-navigation">
+				<button class="menu-toggle">Menu</button>
+				<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="menu-menu-1-container">
+					<ul id="menu-menu-1" class="menu">
+						<li><a href="${pageContext.request.contextPath}/hello">Home</a></li>
+						<li><a href="shop.html">Shop</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="elements.html">Elements</a></li>
+						<li><a href="#">Pages</a>
+							<ul class="sub-menu">
+								<li><a href="portfolio-item.html">Portfolio Item</a></li>
+								<li><a href="blog-single.html">Blog Article</a></li>
+								<li><a href="shop-single.html">Shop Item</a></li>
+								<li><a href="portfolio-category.html">Portfolio Category</a></li>
+							</ul>
+						</li>
+						<li><a href="contact.html">Contact</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column full">
+				<main id="main" class="site-main" role="main">
+				<div id="container" class="bg-light">
+					<div id="content" role="main">
+						<table class="table">
+						<c:forEach var="c" items="${carts}">
+							<tr>
+								<td>
+									<div class="row" >
+										<!-- <div><img src="${pageContext.request.contextPath }/"</div> -->
+										<div>
+											<div>${c.goodsTitle}</div>
+											<div>${c.cartAmount}개</div>
+											<div>${c.goodsPrice}원</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
+						</table>
+					</div>
+				</div>
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	<footer id="colophon" class="site-footer">
+	<div class="container">
+		<div class="site-info">
+			<h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+			Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
 
-        <div class="order-summary">
-            <h3>주문 예상금액</h3>
-            <p>상품 가격: <span id="total-price">${totalPrice}원</span></p>
-            <p>총 배송비: <span id="shipping-fee">2,500원</span></p>
-            <p>총 결제금액: <span id="total-amount">${totalAmount}원</span></p>
-            <button onclick="location.href='/checkout'">구매</button>
-        </div>
+		</div>
+	</div>
+	</footer>
+	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+</div>
+<!-- #page -->
+<script src='js/jquery.js'></script>
+<script src='js/plugins.js'></script>
+<script src='js/scripts.js'></script>
+<script src='js/masonry.pkgd.min.js'></script>
 </body>
 </html>
