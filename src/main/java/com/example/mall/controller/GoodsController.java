@@ -146,11 +146,15 @@ public class GoodsController {
 	// /customer/searchGoods
 	@GetMapping("/customer/searchGoods")
     public String searchGoods(Model model, @RequestParam Integer categoryNo) {
+		// 카테고리 검색 결과 개수
+		 Integer goodsCount = goodsService.countGoodsByCategory(categoryNo);
+		
         List<Map<String, Object>> goodsList = goodsService.getGoodsByCategory(categoryNo);
         
         String categoryTitle = (String)goodsList.get(0).get("categoryTitle"); // 첫 번째 상품에서 카테고리 제목 추출
         log.debug("categoryTitle: " + categoryTitle);
         
+        model.addAttribute("goodsCount", goodsCount);
         model.addAttribute("goodsList", goodsList);
         model.addAttribute("categoryNo", categoryNo);
         model.addAttribute("categoryTitle", categoryTitle);

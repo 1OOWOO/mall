@@ -18,7 +18,10 @@ import com.example.mall.mapper.GoodsMapper;
 import com.example.mall.vo.Goods;
 import com.example.mall.vo.GoodsFile;
 import com.example.mall.vo.GoodsForm;
+
+import lombok.extern.slf4j.Slf4j;
 //Author : 오아림
+@Slf4j
 @Service
 @Transactional
 public class GoodsService {
@@ -75,6 +78,8 @@ public class GoodsService {
 		
 		Integer row = goodsMapper.insertGoods(goods);  // Goods를 데이터베이스에 삽입
 		Integer goodsNo = goods.getGoodsNo();
+		log.debug("insertGoods 후 goodsNo: "+Integer.toString(goodsNo));
+		goodsForm.setGoodsNo(goodsNo);
 		
 		if (goodsForm.getGoodsCategoryNo() != null) {
 			Map<String, Object> categoryMap = new HashMap<>();
@@ -87,7 +92,7 @@ public class GoodsService {
 			List<MultipartFile> list = goodsForm.getGoodsFile();
 			for (MultipartFile mf : list) {
 				GoodsFile goodsFile = new GoodsFile();
-				goodsFile.setGoodsFileNo(goodsNo);
+				goodsFile.setGoodsFileNo(goodsNo); // 여기가 안되나?
 				goodsFile.setGoodsFileType(mf.getContentType());
                 goodsFile.setGoodsFileSize(String.valueOf(mf.getSize()));
                 
@@ -102,6 +107,7 @@ public class GoodsService {
                 
              // GoodsFile을 데이터베이스에 삽입
                 int row2 = goodsFileMapper.insertGoodsFile(goodsFile);
+                log.debug("insertGoodsFile row: "+Integer.toString(row2));
                 if (row2 == 1) {
                     // 물리적 파일 저장
                     try {
@@ -146,4 +152,8 @@ public class GoodsService {
         return goodsMapper.selectGoodsByCategory(categoryNo);
     }
 	
+	// /customer/searchGoods - 카테고리 검색 결과 개수
+	public Integer countGoodsByCategory(Integer categoryNo) {
+        return goodsMapper.countGoodsByCategory(categoryNo);
+    }
 }

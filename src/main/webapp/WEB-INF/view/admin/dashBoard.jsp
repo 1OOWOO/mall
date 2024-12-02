@@ -68,11 +68,11 @@
 						class="waves-effect waves-dark"><i class="fa fa-desktop"></i>
 							회원관리 </a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/admin/addGoods"
+						href="${pageContext.request.contextPath}/admin/goodsList"
 						class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
 							상품관리</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/admin/orderList"
+						href="${pageContext.request.contextPath}/admin/ordersList"
 						class="waves-effect waves-dark"><i class="fa fa-qrcode"></i>
 							주문관리</a></li>
 				</ul>
