@@ -91,24 +91,12 @@
 							<table>
 								<tr>
 									<td>No</td>
-									<td>사진</td>
 									<td>상품명</td>
 									<td>가격</td>
 								</tr>
 								<c:forEach var="g" items="${goodsList}">
 									<tr>
 										<td>${g.goodsNo}</td>
-										<td>
-											<c:if test="${goodsFileList!=null}">
-												<c:forEach var="file" items="${goodsFileList}">
-											         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
-												        alt="${file.goodsFileName}">
-											    </c:forEach>
-											 </c:if>  
-										    <c:if test="${empty goodsFileList}">
-												<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width: 50px; height: auto;">
-											</c:if>
-										</td>
 										<td>
 											<a href="${pageContext.request.contextPath}/admin/goodsOne?goodsNo=${g.goodsNo}">
 											${g.goodsTitle}</a>

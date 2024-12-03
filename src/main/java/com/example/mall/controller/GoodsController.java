@@ -3,6 +3,7 @@ package com.example.mall.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,13 +73,10 @@ public class GoodsController {
 			log.debug("searchGoods: "+searchGoods);
 		}
 		
-		List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileList();
-		model.addAttribute("goodsFileList",goodsFileList);
-		
-		model.addAttribute("goodsList",resultMap.get("goodsList"));
-		model.addAttribute("currentPage",currentPage);
-		model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));
-		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
+	   model.addAttribute("goodsList",resultMap.get("goodsList"));    
+	   model.addAttribute("currentPage",currentPage);
+	   model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));
+	   model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
 		
 		return "admin/goodsList";
 	}

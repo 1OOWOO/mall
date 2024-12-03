@@ -15,20 +15,6 @@
 			#{goodsNo},#{goodsFileName},#{goodsFileOrigin},#{goodsFileExt},#{goodsFileType},#{goodsFileSize}
 		)
 	</insert>
-	
-	<!-- /admin/goodsList -->
-	<select id="selectGoodsFileList" resultType="com.example.mall.vo.GoodsFile">
-		SELECT 
-			goods_file_no goodsFileNo
-			,goods_no goodsNo
-			,goods_file_name goodsFileName
-			,goods_file_origin goodsFileOrigin
-			,goods_file_ext goodsFileExt
-			,goods_file_type goodsFileType
-			,goods_file_size goodsFileSize
-		FROM goods_file 
-		WHERE goods_no = #{goodsNo}		
-	</select>
 
 	<!-- /admin/goodsOne -->
 	<select id="selectGoodsFileListByNo" parameterType="Integer" resultType="com.example.mall.vo.GoodsFile">

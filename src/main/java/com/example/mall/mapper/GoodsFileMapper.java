@@ -12,9 +12,6 @@ public interface GoodsFileMapper {
 	// /admin/addGoodsFile
 	Integer insertGoodsFile(GoodsFile goodsFile);
 	
-	// /admin/goodsList
-	List<GoodsFile> selectGoodsFileList();
-	
 	// /admin/goodsOne
 	List<GoodsFile> selectGoodsFileListByNo(@Param("goodsNo") Integer goodsNo);
 }
