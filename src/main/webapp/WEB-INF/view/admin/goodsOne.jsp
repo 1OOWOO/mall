@@ -140,17 +140,26 @@
 							</form>
 							
 							<h4>상품 이미지</h4>
-							<!-- <img src="/mall/upload/34af1f47bdd14daba389f9a20cff6308.png"> -->
-							<c:if test="${goodsFileList!=null}">
-								<c:forEach var="file" items="${goodsFileList}">
-							         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
-								        alt="${file.goodsFileName}">
-							    </c:forEach>
-							 </c:if>  
-						    <c:if test="${empty goodsFileList}">
-								<img src="${pageContext.request.contextPath}/upload/NoImage.png">
-							</c:if>
-							<br>
+							<form action="${pageContext.request.contextPath}/admin/addGoodsFile" method="post" enctype="multipart/form-data">
+   								<input type="hidden" name="goodsNo" value="${go.goodsNo}" />
+								<div id="fileDiv">
+									<button type="button" id="btnAddFile">파일 추가</button>
+									<button type="button" id="btnRemoveFile">파일 삭제</button>
+								</div>
+								    <button type="submit" class="btn">업로드</button>
+								<div style="color: Tomato;">${msg}</div>
+								<!-- <img src="/mall/upload/34af1f47bdd14daba389f9a20cff6308.png"> -->
+								<c:if test="${goodsFileList!=null}">
+									<c:forEach var="file" items="${goodsFileList}">
+								         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
+									        alt="${file.goodsFileName}" style="width: 300px; height: auto;">
+								    </c:forEach>
+								 </c:if>  
+							    <c:if test="${empty goodsFileList}">
+									<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width: 300px; height: auto;">
+								</c:if>
+								
+							</form>
 						</div>
 					</div>
 				</div>
@@ -159,6 +168,7 @@
 	</div>
 </body>
 <script>
+	// 상품 수정 버튼
 	$('#btnModifyGoods').click(function(){
 		if($('#goodsTitle').val() == ''){
     		alert('상품명을 입력하세요')
@@ -172,5 +182,24 @@
 			$('#formModifyGoods').submit();
 		}
 	});
+	
+	// 파일 추가 버튼
+	$('#btnAddFile').click(function(){
+		if($('.goodsFile').last().val() == ''){ // 마지막 input_file값이 공백이라면
+			alert('파일을 첨부하세요');
+		} else{
+			let html = '<input type="file" name="goodsFile" class="form-control" style="width:40%;">';
+			$('#fileDiv').append(html);
+		}
+	});
+	
+	// 파일 삭제 버튼
+	$('#btnRemoveFile').click(function(){
+		if($('.actorFile').length == 0){
+			alert('삭제할 파일이 없습니다.');
+		} else{
+			$('.actorFile').last().remove(); // 마지막 <input> 태그 제거
+		}
+	})
 </script>
 </html>

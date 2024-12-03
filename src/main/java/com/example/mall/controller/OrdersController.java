@@ -36,6 +36,9 @@ public class OrdersController {
 	@PostMapping("/admin/ordersList")
 	public String modifyOrders(@RequestParam Integer ordersNo
 					            ,@RequestParam String paymentState) {
+		log.debug("파라미터 paymentState: " + paymentState);
+		paymentState = paymentState.replace(",", "").trim(); // ','가 포함된 값이 들어와 ',' 자르기
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("ordersNo", ordersNo);
 		map.put("paymentState", paymentState);

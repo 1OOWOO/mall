@@ -110,7 +110,7 @@
 											<td>${o.goodsPrice}</td>
 											<td style="text-align: center;">
 								                <select name="paymentState" id="paymentState${o.ordersNo}">
-							                		<option value="${o.paymentState}">:${o.paymentState}:</option>
+							                		<option value="">:${o.paymentState}:</option>
 							                		<option value="결제완료">결제완료</option>
 							                		<option value="배송중">배송중</option>
 							                		<option value="배송완료">배송완료</option>
