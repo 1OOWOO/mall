@@ -71,7 +71,7 @@
             </table>
         </div>
 
-		    <form action="${pageContext.request.contextPath}/admin/deleteCustomer?customerMail=${customer.customerMail}&currentPage=${currentPage}">
+		    <form action="${pageContext.request.contextPath}/admin/deleteCustomer?customerMail=${customer.customerMail}">
 		        <button type="submit" class="btn btn-danger">회원탈퇴</button>
 		    </form>
 
@@ -82,7 +82,7 @@
             <div class="alert alert-danger">${error}</div>
         </c:if>
 
-        <a href="${pageContextPath.request.contextPath}/admin/customerList" class="btn btn-secondary">목록으로 돌아가기</a>
+        <a href="${pageContext.request.contextPath}/admin/customerList" class="btn btn-secondary">목록으로 돌아가기</a>
     </div>
 </body>
 </html>

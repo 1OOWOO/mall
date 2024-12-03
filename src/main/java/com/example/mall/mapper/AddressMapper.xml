@@ -6,5 +6,11 @@
         FROM address
         WHERE address_detail LIKE CONCAT('%', #{keyword}, '%')
     </select>
+    
+    <insert id="insertAddress" parameterType="map">
+    	INSERT INTO address (customer_mail, address_detail) 
+    	VALUES (#{customerMail}, #{addressDatail});
+    
+    </insert>
 </mapper>
 

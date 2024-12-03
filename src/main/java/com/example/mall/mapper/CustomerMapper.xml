@@ -26,14 +26,17 @@
    
    <!--  오자윤 : 고객 검색. -->
 	<select id="selectCustomerOne" parameterType="String" resultType="map">
-	  SELECT customer_mail customerMail,
-	  	customer_pw customerPw,
-        customer_birth customerBirth,
-        customer_gender customerGender,
-        create_date createDate,
-        update_date updateDate
-        FROM customer
-        WHERE customer_mail=#{customerMail}
+	  SELECT c.customer_mail customerMail,
+	  	c.customer_pw customerPw,
+        c.customer_birth customerBirth,
+        c.customer_gender customerGender,
+        c.create_date createDate,
+        c.update_date updateDate,
+        a.address_detail addressDetail
+        FROM customer c
+        LEFT OUTER JOIN address a
+        ON c.customer_mail = a.customer_mail
+        WHERE c.customer_mail=#{customerMail}
 	</select>
 	
 	<!-- 오자윤 : 고객 삭제 쿼리 -->

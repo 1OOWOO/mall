@@ -50,7 +50,7 @@
 					<%
 					} else {
 					%>
-					<span> ${loggedInCustomer.customerMail} 님 |<a href="logout">
+					<span> ${loggedInCustomer.customerMail} 님 |<a href="${pageContext.request.contextPath}/logout">
 							로그아웃 </a></span>
 
 					<%
@@ -125,15 +125,15 @@
 						<table>
 							<tr>
 								<td>이메일</td>
-								<td></td>
+								<td><input type="text" value="${customer.customerMail}"/></td>
 							</tr>
 							<tr>
 								<td>pw</td>
-								<td></td>
+								<td><input type="text" value="${customer.customerPw}"></td>
 							</tr>
 							<tr>
 								<td>주소</td>
-								<td></td>
+								<td><input type="text" value="${customer.addressDetail}"></td>
 							</tr>
 
 						</table>
