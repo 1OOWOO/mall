@@ -47,6 +47,7 @@
 				</div>
 			</nav>
 		</header>
+		<h3>장바구니</h3>
 		<!-- #masthead -->
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area column full">
@@ -65,6 +66,17 @@
 											<div>${c.goodsPrice}원</div>
 										</div>
 									</div>
+									
+									<c:forEach var="g" items="${goods}">
+									<div class="row" >
+										<!-- <div><img src="${pageContext.request.contextPath }/"</div> -->
+										<div>
+											<div>${c.goodsTitle}</div>
+											<div>${c.cartAmount}개</div>
+											<div>${c.goodsPrice}원</div>
+										</div>
+									</div>
+									</c:forEach>
 								</td>
 							</tr>
 						</c:forEach>

@@ -76,13 +76,11 @@ public class CustomerController {
     // 회원삭제
     @GetMapping("/admin/deleteCustomer")
     // 현재 페이지 초기화
-    public String deleteCustomer(@RequestParam String customerMail,
-    							@RequestParam(required = false, defaultValue = "1") Integer currentPage,
-    							Model model) {
+    public String deleteCustomer(String customerMail, @RequestParam(required = false, defaultValue = "1") Integer currentPage) {
     	log.debug(customerMail + "<---- customer 이메일");
     	customerService.deleteCustomer(customerMail);
         log.debug(currentPage +"<---- 현재페이지");
         
-         return "redirect:/admin/customerList?page=" + currentPage;
+         return "redirect:/admin/customerList?currentPage=" + currentPage;
         }
 }
