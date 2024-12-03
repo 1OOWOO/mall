@@ -28,7 +28,7 @@
 	      	Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
 	      		if ( loggedInCustomer == null) {
 	      	%>
-	      			<span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
+	      			<span> <a href="${pageContext.request.contextPath}/login"> 로그인 </a> | <a href="${pageContext.request.contextPath}/signUp"> 회원가입 </a> </span>
 	      	<%
 	      		} else {
 	      			

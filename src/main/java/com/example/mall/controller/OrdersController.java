@@ -37,9 +37,10 @@ public class OrdersController {
 	public String modifyOrders(@RequestParam Integer ordersNo
 					            ,@RequestParam String paymentState) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("orderId", ordersNo);
+		map.put("ordersNo", ordersNo);
 		map.put("paymentState", paymentState);
-		log.debug("orderId: "+ordersNo.toString());
+		log.debug("ordersNo: "+ordersNo.toString());
+		log.debug("paymentState: " + paymentState);
 		
 		ordersService.modifyOrders(map);
 		

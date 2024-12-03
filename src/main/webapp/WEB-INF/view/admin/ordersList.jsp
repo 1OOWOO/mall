@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>관리자 대시보드</title>
+<title>주문 관리</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" href="assets/materialize/css/materialize.min.css"
@@ -23,6 +23,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -82,17 +83,13 @@
 
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">OrdersList</h1>
+				<h1 class="page-header">주문 관리</h1>
 			</div>
 			<div id="page-inner">
 				<div class="dashboard-cards">
 					<div class="row">
-						<div class="col-sm-2 bg-light">
-					         <!-- leftMenu.jsp 추가 -->
-					         <c:import url="/WEB-INF/view/admin/leftMenu.jsp"></c:import>
-					    </div>
+						
 					    <div class="col-sm-10">
-							<h1>주문 관리</h1>
 							<form id="formModifyOrders${o.ordersNo}" action="${pageContext.request.contextPath}/admin/ordersList" method="post">
 								<table class="table table-striped table-bordered table-hover dataTable no-footer">
 									<tr role="row">

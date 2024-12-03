@@ -63,4 +63,9 @@ public class GoodsFileService {
 	public List<GoodsFile> getGoodsFileList(){
 		return goodsFileMapper.selectGoodsFileList();
 	}
+	
+	// /admin/goodsOne
+	public List<GoodsFile> getGoodsFileListByNo(Integer goodsNo){
+		return goodsFileMapper.selectGoodsFileListByNo(goodsNo);
+	}
 }

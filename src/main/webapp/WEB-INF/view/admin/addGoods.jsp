@@ -23,6 +23,7 @@
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
@@ -116,9 +117,10 @@
 								</tr>
 								<tr>
 									<td>재고</td>
-									<td><input type="radio" name="goodsState" id="goodsState"
-										value="재고있음">재고있음 <input type="radio"
-										name="goodsState" id="goodsState" value="재고없음">재고없음</td>
+									<td>
+										<input type="radio" name="goodsState" id="goodsState" value="재고있음">재고있음 
+										<input type="radio" name="goodsState" id="goodsState" value="재고없음">재고없음
+									</td>
 								</tr>
 								<tr>
 									<td>파일</td>
@@ -171,5 +173,35 @@
 
 
 </body>
+<script>
+	// 상품 추가 버튼
+	$('#btnAddGoods').click(function(){
+		if($('#goodsTitle').val()==''){
+			alert('상품명을 입력하세요');
+		} else if($('#goodsPrice').val()==null){
+			alert('상품 가격을 입력하세요');
+		}  else{
+			$('#formAddGoods').submit();
+		}
+	});
 
+	// 파일 추가 버튼
+	$('#btnAddFile').click(function(){
+		if($('.goodsFile').last().val() == ''){ // 마지막 input_file값이 공백이라면
+			alert('파일을 첨부하세요');
+		} else{
+			let html = '<input type="file" name="goodsFile" class="form-control" style="width:40%;">';
+			$('#fileDiv').append(html);
+		}
+	});
+	
+	// 파일 삭제 버튼
+	$('#btnRemoveFile').click(function(){
+		if($('.actorFile').length == 0){
+			alert('삭제할 파일이 없습니다.');
+		} else{
+			$('.actorFile').last().remove(); // 마지막 <input> 태그 제거
+		}
+	})
+</script>
 </html>

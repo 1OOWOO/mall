@@ -92,7 +92,7 @@ public class GoodsService {
 			List<MultipartFile> list = goodsForm.getGoodsFile();
 			for (MultipartFile mf : list) {
 				GoodsFile goodsFile = new GoodsFile();
-				goodsFile.setGoodsFileNo(goodsNo); // 여기가 안되나?
+				goodsFile.setGoodsNo(goodsNo); // 여기가 안되나?
 				goodsFile.setGoodsFileType(mf.getContentType());
                 goodsFile.setGoodsFileSize(String.valueOf(mf.getSize()));
                 
