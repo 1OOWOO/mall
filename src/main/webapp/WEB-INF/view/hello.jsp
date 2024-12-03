@@ -55,41 +55,41 @@
 		         <ul id="menu-menu-1" class="menu">
 		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
 		            <ul class="sub-menu">
-		               <li><a href="portfolio-item.html">봄</a></li>
-		               <li><a href="blog-single.html">여름</a></li>
-		               <li><a href="shop-single.html">가을</a></li>
-		               <li><a href="shop-single.html">겨울</a></li>
+		               <li>봄</li>
+		               <li>여름</li>
+		               <li>가을</li>
+		               <li>겨울</li>
 		            </ul>
 		            </li>
 		            
 		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
 		            <ul class="sub-menu">
-		               <li><a href="portfolio-item.html">모자</a></li>
-		               <li><a href="blog-single.html">넥&레그 워머</a></li>
-		               <li><a href="shop-single.html">목걸이</a></li>
+		               <li>모자</li>
+		               <li>넥&레그 워머</li>
+		               <li>목걸이</li>
 		            </ul>
 		            </li>
 		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
 		            <ul class="sub-menu">
-		               <li><a href="portfolio-item.html">노즈워크</a></li>
-		               <li><a href="blog-single.html">오뚜기</a></li>
-		               <li><a href="shop-single.html">터그</a></li>
-		               <li><a href="shop-single.html">인형</a></li>
+		               <li>노즈워크</li>
+		               <li>오뚜기</li>
+		               <li>터그</li>
+		               <li>인형</li>
 		            </ul>
 		            </li>
 		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
 		            <ul class="sub-menu">
-		               <li><a href="portfolio-item.html">목줄</a></li>
-		               <li><a href="blog-single.html">입마개</a></li>
-		               <li><a href="shop-single.html">리드줄</a></li>
-		               <li><a href="shop-single.html">하네스</a></li>
+		               <li>목줄</li>
+		               <li>입마개</li>
+		               <li>리드줄</li>
+		               <li>하네스</li>
 		            </ul>
 		            </li>
 		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
 		            <ul class="sub-menu">
-		               <li><a href="portfolio-item.html">육포</a></li>
-		               <li><a href="blog-single.html">비스킷</a></li>
-		               <li><a href="shop-single.html">비타민</a></li>
+		               <li>육포</li>
+		               <li>비스킷</li>
+		               <li>>비타민</li>
 		            </ul>
 		            </li>
 		         </ul>
@@ -113,11 +113,19 @@
                   <option value="price-desc">Sort by price: high to low</option>
                </select>
             </form>
+            
             <ul class="products">
             	<c:forEach var="goods" items="${goodsList}">
 	               <li class="product">
 		               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${goods.goodsNo}"">
-			               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
+			                 <c:if test="${not empty goodsFileMap[goods.goodsNo]}">
+				                <c:forEach var="file" items="${goodsFileMap[goods.goodsNo]}">
+				                    <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" style="width: 350px; object-fit: cover;">
+				                </c:forEach>
+				            </c:if>
+				            <c:if test="${empty goodsFileMap[goods.goodsNo]}">
+				                <img src="${pageContext.request.contextPath}/upload/NoImage.png">
+				            </c:if>
 			               <h3>${goods.goodsTitle}</h3>
 			               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
 		               </a>

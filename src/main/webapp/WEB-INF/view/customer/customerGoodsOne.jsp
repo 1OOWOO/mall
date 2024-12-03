@@ -58,8 +58,9 @@
 						</nav>
 						<div itemscope itemtype="http://schema.org/Product" class="product">
 							<div class="images">
-								<a href="" itemprop="image" class="woocommerce-main-image zoom" title="" data-rel="prettyPhoto"><!-- 상품 이미지 -->						
-								<img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j10-520x780-520x600.jpg" alt=""></img></a>
+								 <c:forEach var="file" items="${goodsFileList}">
+									<img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}"></img></a>
+								</c:forEach>
 							</div>
 							<div class="summary entry-summary">
 								<h1 itemprop="name" class="product_title entry-title">${goods.goodsTitle}</h1>

@@ -140,7 +140,11 @@ public class GoodsController {
         Category category = goodsCategoryService.getCategoryByGoodsNo(goodsNo);
         model.addAttribute("category", category);
         log.debug("category: " + category);
-		
+        
+        List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileListByNo(goodsNo);
+        model.addAttribute("goodsFileList", goodsFileList);
+        log.debug("goodsFileList: "+goodsFileList.toString());
+        
 		return "customer/customerGoodsOne";
 	}
 	

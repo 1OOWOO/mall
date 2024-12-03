@@ -24,7 +24,7 @@ public class GoodsFileController {
 	@GetMapping("/admin/addGoodsFile")
 	public String addGoodsFile(Model model,@RequestParam Integer goodsNo) {
 		model.addAttribute("goodsNo",goodsNo);
-		return "on/addGoodsFile";
+		return "admin/addGoodsFile";
 	}	
 	
 	@PostMapping("/admin/addGoodsFile")
