@@ -50,8 +50,8 @@
 					<%
 					} else {
 					%>
-					<span> ${loggedInCustomer.customerMail} 님 |<a href="${pageContext.request.contextPath}/logout">
-							로그아웃 </a></span>
+					<span> ${loggedInCustomer.customerMail} 님 |<a
+						href="${pageContext.request.contextPath}/logout"> 로그아웃 </a></span>
 
 					<%
 					}
@@ -121,11 +121,11 @@
 				<div id="primary" class="content-area column full">
 					<main id="main" class="site-main" role="main">
 						<h3 style="text-align: center;">마이페이지</h3>
-						<h6>개인정보</h6>
+						<h4>개인정보</h4>
 						<table>
 							<tr>
 								<td>이메일</td>
-								<td><input type="text" value="${customer.customerMail}"/></td>
+								<td><input type="text" value="${customer.customerMail}" /></td>
 							</tr>
 							<tr>
 								<td>pw</td>
@@ -137,9 +137,41 @@
 							</tr>
 
 						</table>
-						<ul class="products">
 
-						</ul>
+						<h4>주문조회</h4>
+						  <div class="col-sm-10">
+								<table class="table table-striped table-bordered table-hover dataTable no-footer">
+									<tr role="row">
+										<th>주문 번호</th>
+										<th>상품</th>
+										<th>수량</th>
+										<th>금액</th>
+										<th>주문 상태</th>
+										<th>결제 방법</th>
+										<th></th>
+									</tr>
+									<c:forEach var="o" items="${ordersList}">
+									<input type="hidden" name="ordersNo" value="${o.ordersNo}">
+										<tr>
+											<td style=" text-align: center;">${o.ordersNo}</td>
+											<td>${o.goodsTitle}</td>
+											<td style="text-align: center;">${o.ordersAmount}</td>
+											<td>${o.goodsPrice}</td>
+											<td style="text-align: center;">
+								                <select name="paymentState" id="paymentState${o.ordersNo}">
+							                		<option value="">:${o.paymentState}:</option>
+							                		<option value="결제완료">결제완료</option>
+							                		<option value="배송중">배송중</option>
+							                		<option value="배송완료">배송완료</option>
+							                	</select>
+							                </td>
+							                <td>${o.paymentMethod}</td>
+							                <td><button id="btnModifyOrders${o.ordersNo}" type="submit">수정</button></td>
+										</tr>
+									</c:forEach>
+								</table>
+						</div>
+
 						<!-- 페이징
 		            <nav class="woocommerce-pagination">
 			            <ul class="page-numbers">
