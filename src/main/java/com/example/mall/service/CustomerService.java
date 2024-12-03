@@ -62,7 +62,7 @@ public class CustomerService {
         }
 
         // 오자윤 : 전체 고객 수 가져오는 메서드
-        public Integer getTotalCount(String email) {
+        public Integer getTotalCount(String customerMail) {
             return customerMapper.getTotalCount(); // 전체 고객 수 반환
         }
         
@@ -72,13 +72,13 @@ public class CustomerService {
         }
 
         // 오자윤 : 이메일 검색 시 전체 고객 수 가져오기
-        public Integer getTotalCountByEmail(String email) {
-            return customerMapper.getTotalCountByEmail(email); // Mapper 호출
+        public Integer getTotalCountByEmail(String customerMail) {
+            return customerMapper.getTotalCountByEmail(customerMail); // Mapper 호출
         }
         
        // 오자윤 : 이메일로 고객 정보 조회 (단일 고객)
-            public Customer getCustomerByEmail(String email) {
-                return customerMapper.getCustomerByEmail(email); // Mapper 호출하여 고객 반환
+            public Customer getCustomerByEmail(String customerMail) {
+                return customerMapper.getCustomerByEmail(customerMail); // Mapper 호출하여 고객 반환
         }
 
 		

@@ -1,40 +1,97 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
-<link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/font-awesome.min.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='style.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
-    <meta charset="UTF-8">
-   <!-- Author : 오자윤 -->
-    
-<title>회원관리 상세정보</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>관리자 대시보드</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet" href="assets/materialize/css/materialize.min.css"
+	media="screen,projection" />
+<!-- Bootstrap Styles-->
+<link href="assets/css/bootstrap.css" rel="stylesheet" />
+<!-- FontAwesome Styles-->
+<link href="assets/css/font-awesome.css" rel="stylesheet" />
+<!-- Morris Chart Styles-->
+<link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+<!-- Custom Styles-->
+<link href="assets/css/custom-styles.css" rel="stylesheet" />
+<!-- Google Fonts-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
 </head>
-<body class="container-flud">
-   <div class="row">
-      <div class="col-sm-2 bg-light">
-         <!-- leftMenu.jsp 삽입 -->
-         <c:import url="/WEB-INF/view/admin/leftMenu.jsp"></c:import>
-      </div>
-     <div class="col-sm-10">
-     
-       <title>회원관리 상세정보</title>
-</head>
+
 <body>
-    <div class="container">
-        <h1>회원 관리</h1>
-        
+	<div id="wrapper">
+		<nav class="navbar navbar-default top-navbar" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle waves-effect waves-dark"
+					data-toggle="collapse" data-target=".sidebar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
+
+				<div id="sideNav" href="">
+					<i class="material-icons dp48">toc</i>
+				</div>
+			</div>
+
+			<ul class="nav navbar-top-links navbar-right">
+				<li><a class="dropdown-button waves-effect waves-dark"
+					href="#!" data-activates="dropdown1"><i
+						class="fa fa-user fa-fw"></i> <b>${loggedInStaff.staffId}님</b> <i
+						class="material-icons right">arrow_drop_down</i></a></li>
+			</ul>
+		</nav>
+		<!-- staff Menu -->
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a
+				href="${pageContext.request.contextPath}/admin/staffLogout"><i
+					class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+		</ul>
+		<!-- Left Menu  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li><a class="active-menu waves-effect waves-dark"
+						href="${pageContext.request.contextPath}/admin/dashBoard"><i
+							class="fa fa-dashboard"></i> 대시보드</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/admin/customerList"
+						class="waves-effect waves-dark"><i class="fa fa-desktop"></i>
+							회원관리 </a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/admin/goodsList"
+						class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
+							상품관리</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/admin/ordersList"
+						class="waves-effect waves-dark"><i class="fa fa-qrcode"></i>
+							주문관리</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /. NAV SIDE  -->
+
+		<div id="page-wrapper">
+			<div class="header">
+				<h1 class="page-header">회원상세정보</h1>
+			</div>
+			<div id="page-inner">
+				<div class="dashboard-cards">
+					<div class="row">
+		</head>
+		<body>
+		    <div class="container">
+		        
         <div class="customer-info">
-            <h2 class="mt-4">회원 상세 정보</h2>
             <table class="table table-bordered">
                 <thead class="thead-light">
                     <tr>
@@ -70,10 +127,6 @@
                 </tbody>
             </table>
         </div>
-
-		    <form action="${pageContext.request.contextPath}/admin/deleteCustomer?customerMail=${customer.customerMail}">
-		        <button type="submit" class="btn btn-danger">회원탈퇴</button>
-		    </form>
 
         <c:if test="${not empty message}">
             <div class="alert alert-success">${message}</div>
