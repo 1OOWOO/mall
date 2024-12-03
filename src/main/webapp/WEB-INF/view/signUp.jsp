@@ -12,7 +12,7 @@
 <body>
     <div class="container mt-5">
         <h2>회원가입</h2>
-         <div class="form-group">
+        <%--  <div class="form-group">
                 <label for="searchAddress">주소 검색</label>
                 <form action="${pageContext.request.contextPath}/signUp" method="get">
                     <div class="input-group">
@@ -22,10 +22,10 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> --%>
 
             <!-- 검색 결과를 보여줄 DIV -->
-            <div id="addressSearchResults" class="mt-3">
+            <%-- <div id="addressSearchResults" class="mt-3">
                 <h4>검색 결과</h4>
                 <select id="resultAddress" size="5" class="form-control">
                     <c:forEach items="${addressList}" var="a">
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label for="selectedAddress">선택된 주소</label>
                 <input type="text" class="form-control" name="selectedAddress" id="selectedAddress" readonly>
-            </div>
+            </div> --%>
             
         <form action="${pageContext.request.contextPath}/signUp" method="post">
             <div class="form-group">
@@ -61,12 +61,16 @@
                     <option value="여자">여</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="addressDetail">주소</label>
+                <input type="text" class="form-control" name="addressDetail" placeholder="주소" required>
+            </div>
 
             <button type="submit" class="btn btn-primary">회원가입</button>
         </form>
     </div>
 
-    <script>
+    <!-- <script>
         // 주소 선택 버튼 클릭 시 선택된 주소를 입력 필드에 추가
         document.getElementById('btnAddrSel').onclick = function () {
             const selectedOption = document.getElementById('resultAddress').value;
@@ -76,6 +80,6 @@
                 alert('주소를 선택하세요.');
             }
         };
-    </script>
+    </script> -->
 </body>
 </html>

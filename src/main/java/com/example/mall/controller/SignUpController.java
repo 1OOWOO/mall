@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -40,10 +42,15 @@ public class SignUpController {
    
     // 우정 : 회원가입 처리 (signUp 페이지에서 직접 처리)
     @PostMapping("/signUp")
-    public String register(Customer customer, Model model) {
+    public String register(Model model, String addressDetail, Customer customer) {
         try {
+        	log.debug(addressDetail + "=====================================================================");
             // 고객 등록
-            customerService.registerCustomer(customer);
+			customerService.registerCustomer(customer);
+            Map<String, Object> insert = new HashMap<>();
+            insert.put("addressDatail", addressDetail);
+			insert.put("customerMail", customer.getCustomerMail());
+            addressService.insertAddress(insert);
 
             // 성공 시 알림과 함께 hello 페이지로 리다이렉트
             model.addAttribute("message", "회원가입이 완료되었습니다.");
