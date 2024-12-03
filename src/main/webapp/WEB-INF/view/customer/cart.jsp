@@ -59,27 +59,41 @@
 							<tr>
 								<td>
 									<div class="row" >
-										<!-- <div><img src="${pageContext.request.contextPath }/"</div> -->
+									<c:if test="${goodsFileList!=null}">
+									<c:forEach var="file" items="${goodsFileList}">
+								         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
+									        alt="${file.goodsFileName}" style="width: 300px; height: auto;">
+								    </c:forEach>
+								 </c:if>  
+							    <c:if test="${empty goodsFileList}">
+									<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width: 300px; height: auto;">
+								</c:if>
 										<div>
 											<div>${c.goodsTitle}</div>
 											<div>${c.cartAmount}개</div>
 											<div>${c.goodsPrice}원</div>
 										</div>
 									</div>
+								   </td>
+						        </tr>
+						    </c:forEach>
+						</table>
 									
-									<c:forEach var="g" items="${goods}">
-									<div class="row" >
-										<!-- <div><img src="${pageContext.request.contextPath }/"</div> -->
-										<div>
-											<div>${c.goodsTitle}</div>
-											<div>${c.cartAmount}개</div>
-											<div>${c.goodsPrice}원</div>
-										</div>
-									</div>
-									</c:forEach>
+								<div class="col-3">
+								    <table class="table table-bordered mr-3 bg-light">
+								        <tr>
+								            <th class="text-center">총 금액</th>
+								        </tr>
+								        <tr>
+								            <td>${cart[0].totalPrice}원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								        </tr>
+								        <tr>
+								            <td><button class="btn btn-main w-100" type="button" id="cartButton">결제</button></td>
+								        </tr>
+								    </table>
+								</div>
 								</td>
 							</tr>
-						</c:forEach>
 						</table>
 					</div>
 				</div>
