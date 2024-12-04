@@ -159,9 +159,20 @@
 										<td>${o.goodsPrice}</td>
 										<td style="text-align: center;"><input type="text"
 											name="paymentState" id="paymentState${o.ordersNo}"
-											value="${o.paymentState}" style="text-align: center;" readonly/></td>
-										<td><button> 리뷰 쓰기 </button></td>
+											value="${o.paymentState}" style="text-align: center;"
+											readonly /></td>
+										<td><button onclick='btnClick()'>리뷰 쓰기</button></td>
 
+									</tr>
+									<tr>
+										<td colspan="6">
+											<form action="/reviews/save" method="POST">
+												<div id="review" style="display: none; margin-top: 10px;">
+													<textarea name="reviewContent" rows="4" cols="50" placeholder="리뷰를 작성하세요."></textarea>
+													<button type="submit">리뷰작성</button>
+												</div>
+											</form>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -202,7 +213,14 @@
 	<script src='customer/customerjs/scripts.js'></script>
 	<script src='customer/customerjs/masonry.pkgd.min.js'></script>
 	<script>
-		
+		function btnClick() {
+			const review = document.getElementById('review');
+			if (review.style.display === 'none') {
+				review.style.display = 'block';
+			} else {
+				review.style.display = 'none';
+			}
+		}
 	</script>
 </body>
 </html>

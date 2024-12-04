@@ -42,7 +42,7 @@ public class CustomerService {
     
     
 	// 오자윤 : 고객 상세정보 조회
-	public List<Map<String, Object>> selectCustomerOne(String customerMail) {
+	public Map<String, Object> selectCustomerOne(String customerMail) {
 		return customerMapper.selectCustomerOne(customerMail);
 	}
 
