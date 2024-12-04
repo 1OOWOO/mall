@@ -45,7 +45,6 @@
 	      <div class="site-branding">
 	         <!-- <h1 class="site-title"><a href="index.html" rel="home">OOWOO</a></h1> -->
 	         <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
-	         <h2 class="site-description">모방은 창조의 어머니이다.</h2>
 	      </div>
 	      <nav id="site-navigation" class="main-navigation">
 		      <button class="menu-toggle">Menu</button>
@@ -113,13 +112,20 @@
 	               </select>
 	            </form>
 	            <ul class="products">
-	            	<c:forEach var="g" items="${goodsList}">
+	            	<c:forEach var="goods" items="${goodsList}">
 		               <li class="product">
-			               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${g.goodsNo}">
-				               <img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
-				               <h3>${g.goodsTitle}</h3>
-				               <span class="price"><span class="amount">${g.goodsPrice}</span></span>
-			               </a>
+			               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${goods.goodsNo}"">
+			                 <c:if test="${not empty goodsFileMap[goods.goodsNo]}">
+				                <c:forEach var="file" items="${goodsFileMap[goods.goodsNo]}">
+				                    <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" style="width: 350px; object-fit: cover;">
+				                </c:forEach>
+				            </c:if>
+				            <c:if test="${empty goodsFileMap[goods.goodsNo]}">
+				                <img src="${pageContext.request.contextPath}/upload/NoImage.png">
+				            </c:if>
+			               <h3>${goods.goodsTitle}</h3>
+			               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
+		               </a>
 		               </li>
 					</c:forEach>
 	            </ul>

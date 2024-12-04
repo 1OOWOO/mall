@@ -164,6 +164,15 @@ public class GoodsController {
         model.addAttribute("categoryNo", categoryNo);
         model.addAttribute("categoryTitle", categoryTitle);
         
+        Map<Integer, List<GoodsFile>> goodsFileMap = new HashMap<>();
+        List<Goods> goodsListForFile = goodsService.getAllGoods();
+        
+        for (Goods goods : goodsListForFile) {
+            List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileListByNo(goods.getGoodsNo());
+            goodsFileMap.put(goods.getGoodsNo(), goodsFileList);
+        }
+        model.addAttribute("goodsFileMap", goodsFileMap);
+        
         return "customer/searchGoods";
     }
 }

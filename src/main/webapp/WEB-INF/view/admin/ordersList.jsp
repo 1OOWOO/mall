@@ -116,7 +116,7 @@
 							                	</select>
 							                </td>
 							                <td>${o.paymentMethod}</td>
-							                <td><button id="btnModifyOrders${o.ordersNo}" type="submit">수정</button></td>
+							                <td><button id="btnModifyOrders${o.ordersNo}" type="submit" class="btn">수정</button></td>
 										</tr>
 									</c:forEach>
 								</table>
