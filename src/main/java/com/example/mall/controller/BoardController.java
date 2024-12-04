@@ -27,6 +27,6 @@ public class BoardController {
         boardService.saveBoard(board);
 
         // 성공 후 리다이렉트(리스트 페이지로 이동 등)
-        return "redirect:/customer/myPage"; // MyPage로 리다이렉트 (예시)
+        return "redirect:/customer/myPage"; // MyPage로 리다이렉트
     }
 }

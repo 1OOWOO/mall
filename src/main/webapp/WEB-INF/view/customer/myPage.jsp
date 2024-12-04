@@ -150,7 +150,7 @@
 									<th>주문 상태</th>
 									<th>리뷰</th>
 								</tr>
-								<c:forEach var="o" items="${ordersList}">
+								<c:forEach var="o" items="${ordersList}" varStatus="status">
 									<input type="hidden" name="ordersNo" value="${o.ordersNo}">
 									<tr>
 										<td style="text-align: center;">${o.ordersNo}</td>
@@ -161,14 +161,15 @@
 											name="paymentState" id="paymentState${o.ordersNo}"
 											value="${o.paymentState}" style="text-align: center;"
 											readonly /></td>
-										<td><button onclick='btnClick()'>리뷰 쓰기</button></td>
+										<td><button onclick="btnClick(${status.index})">리뷰 쓰기</button></td>
 
 									</tr>
 									<tr>
 										<td colspan="6">
-											<form action="/reviews/save" method="POST">
-												<div id="review" style="display: none; margin-top: 10px;">
-													<textarea name="reviewContent" rows="4" cols="50" placeholder="리뷰를 작성하세요."></textarea>
+											<form action="${pageContext.request.contextPath}/board/save" method="POST">
+												<input type="hidden" name="ordersNo" value="${o.ordersNo}">
+												<div id="${status.index}" style="display: none; margin-top: 10px;">
+													<textarea name="boardContent" rows="4" cols="50" placeholder="리뷰를 작성하세요."></textarea>
 													<button type="submit">리뷰작성</button>
 												</div>
 											</form>
@@ -213,8 +214,8 @@
 	<script src='customer/customerjs/scripts.js'></script>
 	<script src='customer/customerjs/masonry.pkgd.min.js'></script>
 	<script>
-		function btnClick() {
-			const review = document.getElementById('review');
+		function btnClick(reviews) {
+			const review = document.getElementById(reviews);
 			if (review.style.display === 'none') {
 				review.style.display = 'block';
 			} else {
