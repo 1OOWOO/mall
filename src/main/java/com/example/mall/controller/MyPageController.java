@@ -36,7 +36,7 @@ public class MyPageController {
         String customerMail = loggedInCustomer.getCustomerMail();
 
         // 고객 정보 가져오기
-        List<Map<String, Object>> customer = customerService.selectCustomerOne(customerMail);
+        Map<String, Object> customer = customerService.selectCustomerOne(customerMail);
         model.addAttribute("customer", customer);
 
         // 주문 목록 가져오기

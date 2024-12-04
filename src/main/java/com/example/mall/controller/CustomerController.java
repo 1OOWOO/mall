@@ -68,7 +68,7 @@ public class CustomerController {
     @GetMapping("/admin/customerOne")
     public String customerOne(Model model, @RequestParam String customerMail) {
     	 log.debug(customerMail + "-----> customerMail"); 
-        List<Map<String, Object>> customer = customerService.selectCustomerOne(customerMail);
+        Map<String, Object> customer = customerService.selectCustomerOne(customerMail);
         model.addAttribute("customer", customer);
         return "admin/customerOne";
     }

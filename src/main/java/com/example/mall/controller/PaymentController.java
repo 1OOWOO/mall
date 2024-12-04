@@ -36,7 +36,7 @@ public class PaymentController {
     	// 고객 이메일 가져오기
     	String customerMail = ((Customer)session.getAttribute("loginCustomer")).getCustomerMail();
     	// 고객 주소리스트 가져오기
-    	List<Map<String, Object>> customer = customerService.selectCustomerOne(customerMail);
+    	Map<String, Object> customer = customerService.selectCustomerOne(customerMail);
     	model.addAttribute("customer",customer);
     	// 고객 장바구니리스트 가져오기
     	List<Map<String, Object>> cartList = cartService.getCartItem(customerMail);
