@@ -29,4 +29,19 @@
 		FROM goods_file 
 		WHERE goods_no = #{goodsNo}		
 	</select>
+	
+	<!-- /admin/goodsOne - removeGoodsFile -->
+	<delete id="deleteGoodsFile" parameterType="Integer">
+        DELETE FROM goods_file
+        WHERE goods_file_no = #{goodsFileNo}
+    </delete>
+    
+    <select id="selectGoodsFileOne" parameterType="Integer" resultType="com.example.mall.vo.GoodsFile">
+    	SELECT 
+			goods_file_no goodsFileNo
+			, goods_file_name goodsFileName
+			, goods_file_ext goodsFileExt
+		FROM goods_file
+		WHERE goods_file_no = #{goodsFileNo}
+    </select>
 </mapper>

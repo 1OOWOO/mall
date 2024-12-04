@@ -44,4 +44,11 @@ public class GoodsFileController {
 		goodsFileService.addGoodsFile(goodsForm, path);
 		return "redirect:/admin/goodsOne?goodsNo="+goodsForm.getGoodsNo();
 	}
+	
+	@GetMapping("/admin/removeGoodsFile")
+	public String removeGoodsFile(HttpSession session, @RequestParam Integer goodsFileNo, @RequestParam Integer goodsNo) {
+		String path = session.getServletContext().getRealPath("/upload/");
+		goodsFileService.removeGoodsFile(goodsFileNo, path);
+		return "redirect:/admin/goodsOne?goodsNo=" + goodsNo;
+	}
 }

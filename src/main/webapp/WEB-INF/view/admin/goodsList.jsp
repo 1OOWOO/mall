@@ -60,7 +60,7 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li><a class="active-menu waves-effect waves-dark"
+					<li><a class="waves-effect waves-dark"
 						href="${pageContext.request.contextPath}/admin/dashBoard"><i
 							class="fa fa-dashboard"></i> 대시보드</a></li>
 					<li><a
@@ -69,7 +69,7 @@
 							회원관리 </a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/admin/goodsList"
-						class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
+						class="active-menu waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
 							상품관리</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/admin/ordersList"
@@ -82,13 +82,13 @@
 
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">주문 관리</h1>
+				<h1 class="page-header">상품 관리</h1>
 			</div>
 			<div id="page-inner">
 				<div class="dashboard-cards">
 					<div class="row">
 				    	<div class="col-sm-10">
-							<table>
+							<table class="table">
 								<tr>
 									<td>No</td>
 									<td>상품명</td>
@@ -107,7 +107,7 @@
 							</table>
 							
 							<!-- 페이징 -->
-							<div >
+							<div class="page-wrapper">
 								<nav style="text-align: center;">
 									<ul class="flex-control-paging pagination justify-content-start">
 										<c:if test="${currentPage > 10}">
@@ -148,7 +148,7 @@
 									</ul>
 								</nav>
 							</div>
-							<a href="${pageContext.request.contextPath}/admin/addGoods">상품 등록</a>
+							<a href="${pageContext.request.contextPath}/admin/addGoods" style="font-size: 20px;">상품 등록</a>
 						</div>
 					</div>
 				</div>

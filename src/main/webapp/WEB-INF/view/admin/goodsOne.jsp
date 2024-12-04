@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>상품 관리 | 상품 상세</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" href="assets/materialize/css/materialize.min.css"
@@ -45,36 +46,33 @@
 			</div>
 
 			<ul class="nav navbar-top-links navbar-right">
-				<li><a class="dropdown-button waves-effect waves-dark"
-					href="#!" data-activates="dropdown1"><i
-						class="fa fa-user fa-fw"></i> <b>${loggedInStaff.staffId}님</b> <i
-						class="material-icons right">arrow_drop_down</i></a></li>
+				<li>
+					<a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> 
+					<b>${loggedInStaff.staffId}님</b> <i class="material-icons right">arrow_drop_down</i></a>
+				</li>
 			</ul>
 		</nav>
 		<!-- staff Menu -->
 		<ul id="dropdown1" class="dropdown-content">
-			<li><a
-				href="${pageContext.request.contextPath}/admin/staffLogout"><i
-					class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+			<li>
+				<a href="${pageContext.request.contextPath}/admin/staffLogout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+			</li>
 		</ul>
 		<!-- Left Menu  -->
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li><a class="active-menu waves-effect waves-dark"
+					<li><a class="waves-effect waves-dark"
 						href="${pageContext.request.contextPath}/admin/dashBoard"><i
 							class="fa fa-dashboard"></i> 대시보드</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/admin/customerList"
-						class="waves-effect waves-dark"><i class="fa fa-desktop"></i>
+					<li>
+						<a href="${pageContext.request.contextPath}/admin/customerList" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>
 							회원관리 </a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/admin/goodsList"
-						class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
+					<li>
+						<a href="${pageContext.request.contextPath}/admin/goodsList" class="active-menu waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
 							상품관리</a></li>
-					<li><a
-						href="${pageContext.request.contextPath}/admin/ordersList"
-						class="waves-effect waves-dark"><i class="fa fa-qrcode"></i>
+					<li>
+						<a href="${pageContext.request.contextPath}/admin/ordersList" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i>
 							주문관리</a></li>
 				</ul>
 			</div>
@@ -91,7 +89,7 @@
 					    <div class="col-sm-10">
 							<h3 style=" text-align: center;">${go.goodsTitle}</h3><br>
 							<form id="formModifyGoods" action="${pageContext.request.contextPath}/admin/modifyGoods" method="post">
-								<table>
+								<table class="table">
 									<tr>
 										<td>No</td>
 										<td>
@@ -126,16 +124,16 @@
 									<tr>
 										<td>재고</td>
 										<td>
-											${go.goodsState} <br>
+											<span style="color:gray;">${go.goodsState}</span>
 											<input type="radio" name="goodsState" value="재고있음">재고있음
-											<input type="radio" name="goodsState" value="재고없음">재고없음
+											<input type="radio" name="goodsState" value="재고없음">재고없음 
 										</td>
 									</tr>
 									<tr>
 										<td>업데이트</td>
 										<td>${go.updateDate}</td>
 									</tr>
-								</table><br>
+								</table>
 								<button type="button" id="btnModifyGoods">상품 수정</button>
 							</form>
 							
@@ -148,18 +146,22 @@
 								</div>
 								    <button type="submit" class="btn">업로드</button>
 								<div style="color: Tomato;">${msg}</div>
+							</form><br>
 								<!-- <img src="/mall/upload/34af1f47bdd14daba389f9a20cff6308.png"> -->
-								<c:if test="${goodsFileList!=null}">
-									<c:forEach var="file" items="${goodsFileList}">
-								         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
-									        alt="${file.goodsFileName}" style="width: 300px; height: auto;">
-								    </c:forEach>
-								 </c:if>  
-							    <c:if test="${empty goodsFileList}">
-									<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width: 300px; height: auto;">
-								</c:if>
-								
-							</form>
+							<c:if test="${goodsFileList!=null}">
+								<c:forEach var="file" items="${goodsFileList}">
+							         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
+								        alt="${file.goodsFileName}" style="width: 300px; height: auto;">
+								        <a href="${pageContext.request.contextPath}/admin/removeGoodsFile?goodsFileNo=${file.goodsFileNo}&goodsNo=${go.goodsNo}">
+								        	&nbsp; <i class="fa-solid fa-xmark fa-2xl"></i></a> <!-- 이미지삭제 버튼 -->
+							    </c:forEach>
+							 </c:if>  
+						    <c:if test="${empty goodsFileList}">
+								<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width: 300px; height: auto;">
+							</c:if>
+							
+							<br><br>
+							<a href="javascript:history.back()" class="btn">목록</a>
 						</div>
 					</div>
 				</div>
@@ -188,17 +190,17 @@
 		if($('.goodsFile').last().val() == ''){ // 마지막 input_file값이 공백이라면
 			alert('파일을 첨부하세요');
 		} else{
-			let html = '<input type="file" name="goodsFile" class="form-control" style="width:40%;">';
+			let html = '<input type="file" name="goodsFile" class="goodsFile form-control" style="width:40%;">';
 			$('#fileDiv').append(html);
 		}
 	});
 	
 	// 파일 삭제 버튼
 	$('#btnRemoveFile').click(function(){
-		if($('.actorFile').length == 0){
+		if($('.goodsFile').length == 0){
 			alert('삭제할 파일이 없습니다.');
 		} else{
-			$('.actorFile').last().remove(); // 마지막 <input> 태그 제거
+			$('.goodsFile').last().remove(); // 마지막 <input> 태그 제거
 		}
 	})
 </script>

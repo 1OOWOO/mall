@@ -60,12 +60,12 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li><a class="active-menu waves-effect waves-dark"
+					<li><a class="waves-effect waves-dark"
 						href="${pageContext.request.contextPath}/admin/dashBoard"><i
 							class="fa fa-dashboard"></i> 대시보드</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/admin/customerList"
-						class="waves-effect waves-dark"><i class="fa fa-desktop"></i>
+						class="active-menu waves-effect waves-dark"><i class="fa fa-desktop"></i>
 							회원관리 </a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/admin/goodsList"

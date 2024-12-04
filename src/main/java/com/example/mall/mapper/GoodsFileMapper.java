@@ -14,4 +14,8 @@ public interface GoodsFileMapper {
 	
 	// /admin/goodsOne
 	List<GoodsFile> selectGoodsFileListByNo(@Param("goodsNo") Integer goodsNo);
+		// 이미지 삭제 removeGoodsFile
+	Integer deleteGoodsFile(Integer goodsFileNo);
+		// 이미지 삭제 -  파일 이름
+	GoodsFile selectGoodsFileOne(Integer goodsFileNo);
 }

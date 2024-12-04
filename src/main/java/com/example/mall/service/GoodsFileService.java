@@ -63,4 +63,16 @@ public class GoodsFileService {
 	public List<GoodsFile> getGoodsFileListByNo(Integer goodsNo){
 		return goodsFileMapper.selectGoodsFileListByNo(goodsNo);
 	}
+	
+	// /admin/goodsOne
+	public void removeGoodsFile(Integer goodsFileNo, String path) {
+		// 1. 파일 이름 select
+		GoodsFile goodsFile = goodsFileMapper.selectGoodsFileOne(goodsFileNo);
+		int row = goodsFileMapper.deleteGoodsFile(goodsFileNo);
+		if(row == 1) { // 2. File 정보 삭제가 되었다면 물리적 파일삭제
+			String fullName = path + goodsFile.getGoodsFileName()+"."+goodsFile.getGoodsFileExt();
+			File f = new File(fullName); 
+			f.delete();
+		}
+	}
 }

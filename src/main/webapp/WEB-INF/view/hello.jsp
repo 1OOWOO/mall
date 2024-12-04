@@ -113,7 +113,6 @@
                   <option value="price-desc">Sort by price: high to low</option>
                </select>
             </form>
-            
             <ul class="products">
             	<c:forEach var="goods" items="${goodsList}">
 	               <li class="product">

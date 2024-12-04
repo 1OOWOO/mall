@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>주문 관리</title>
+<title>상품 관리</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" href="assets/materialize/css/materialize.min.css"
@@ -61,7 +61,7 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li><a class="active-menu waves-effect waves-dark"
+					<li><a class="waves-effect waves-dark"
 						href="${pageContext.request.contextPath}/admin/dashBoard"><i
 							class="fa fa-dashboard"></i> 대시보드</a></li>
 					<li><a
@@ -74,7 +74,7 @@
 							상품관리</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/admin/ordersList"
-						class="waves-effect waves-dark"><i class="fa fa-qrcode"></i>
+						class="active-menu waves-effect waves-dark"><i class="fa fa-qrcode"></i>
 							주문관리</a></li>
 				</ul>
 			</div>
@@ -88,7 +88,6 @@
 			<div id="page-inner">
 				<div class="dashboard-cards">
 					<div class="row">
-						
 					    <div class="col-sm-10">
 							<form id="formModifyOrders${o.ordersNo}" action="${pageContext.request.contextPath}/admin/ordersList" method="post">
 								<table class="table table-striped table-bordered table-hover dataTable no-footer">
