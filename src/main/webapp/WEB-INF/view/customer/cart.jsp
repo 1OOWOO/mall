@@ -15,8 +15,18 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+	.btn-main {
+        background-color: #007BFF;
+        color: white; 
+    }
+
+    .btn-main:hover {
+        background-color: #0056b3;
+    
+</style>
 </head>
-<!-- Author : 오아림 -->
+<!-- Author : 오자윤 -->
 <body class="single single-product woocommerce woocommerce-page">
 <div id="page">
 	<div class="container">
@@ -54,7 +64,13 @@
 				<main id="main" class="site-main" role="main">
 				<div id="container" class="bg-light">
 					<div id="content" role="main">
+						<form id="cartForm" method="post" action="${pageContext.request.contextPath}/customer/paymentList">
 						<table class="table">
+						<c:if test="${carts.isEmpty()}">
+			        		<tr>
+			        			<td colspan="7" class="text-center">상품이 비었습니다.</td>
+			        		</tr>
+			        	</c:if>
 						<c:forEach var="c" items="${carts}">
 							<tr>
 								<td>
@@ -65,10 +81,9 @@
 									        alt="${file.goodsFileName}" style="width: 300px; height: auto;">
 								    </c:forEach>
 								 </c:if>  
-							    <c:if test="${empty goodsFileList}">
-									<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width: 300px; height: auto;">
-								</c:if>
+							    
 										<div>
+											<input type="checkbox" name="goodsChoice" id="goodsChoice" value="${c.cartNo}">
 											<div>${c.goodsTitle}</div>
 											<div>${c.cartAmount}개</div>
 											<div>${c.goodsPrice}원</div>
@@ -84,11 +99,20 @@
 								        <tr>
 								            <th class="text-center">총 금액</th>
 								        </tr>
+								        <c:if test="${cart.isEmpty()}">
+								        	<tr>
+								        		<td>0원</td>
+								        	</tr>
+								        </c:if>
+								        <c:if test="${!cart.isEmpty()}">
+								           <tr>
+								            	<td>${cart[0].totalPrice}원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            </tr>
+								        </c:if>
 								        <tr>
-								            <td>${cart[0].totalPrice}원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
 								        </tr>
 								        <tr>
-								            <td><button class="btn btn-main w-100" type="button" id="cartButton">결제</button></td>
+								            <td><button class="btn btn-main w-100" type="submit" id="cartButton">결제</button></td>
 								        </tr>
 								    </table>
 								</div>
@@ -110,16 +134,28 @@
 		<div class="site-info">
 			<h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
 			Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-
 		</div>
 	</div>
 	</footer>
+	</form>
 	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </div>
+
 <!-- #page -->
 <script src='js/jquery.js'></script>
 <script src='js/plugins.js'></script>
 <script src='js/scripts.js'></script>
 <script src='js/masonry.pkgd.min.js'></script>
+<script>
+	// 체크박스 하나라도 안 했을 시 경고 메시지.
+	$('#cartButton').click(function() {
+		if ($('input[name="goodsChoice"]:checked').length === 0) {
+			alert('상품을 선택해주세요.');
+		} else {
+			console.log(goodsChoice);
+			$('#cartForm').submit();
+		}
+	});
+</script>
 </body>
 </html>

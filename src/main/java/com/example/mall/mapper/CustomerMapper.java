@@ -20,7 +20,7 @@ public interface CustomerMapper {
     Customer login(Customer customer);
 	
 	// 오자윤 : 고객 상세정보 조회
-	Map<String, Object> selectCustomerOne(String customerMail);
+	List<Map<String, Object>> selectCustomerOne(String customerMail);
 	
 	// 오자윤 : 고객 이메일로 고객 정보 조회
     Customer getCustomerByEmail(String customerMail); 

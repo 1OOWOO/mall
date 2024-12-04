@@ -81,7 +81,7 @@
 										${goods.goodsMemo}
 									</p>
 								</div>
-								<form class="cart" method="post" enctype='multipart/form-data'>
+								<form class="cart" method="post" action="${pageContext.request.contextPath}/customer/cart" enctype='multipart/form-data'>
 									<div class="quantity">
 										<input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4"/>
 									</div>									

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mall.service.CartService;
 import com.example.mall.vo.Cart;
+import com.example.mall.vo.Customer;
 import com.example.mall.vo.Goods;
 
 import org.springframework.ui.Model;
@@ -25,10 +26,19 @@ public class CartController {
 	
 	
 	// 오자윤 : 장바구니 페이지 (장바구니 추가)
-	@PostMapping("/cart/add")
-    public String addCartItem(@RequestParam String customerMail, @RequestParam int goodsNo, @RequestParam int cartAmount) {
-        cartService.addCartItem(customerMail, goodsNo, cartAmount);
-        return "redirect:/cart"; // 장바구니 페이지로 리다이렉트
+	@PostMapping("/customer/cart")
+    public String cartList(Model model, HttpSession session) {
+		Customer loginCustomer = (Customer) session.getAttribute("loginCustomer");
+		// 로그인 유효성 검사
+		if(loginCustomer == null) {
+			return "redirect:/login";
+		}
+		// 고객 이메일 가져오기
+		String customerMail = ((Customer)session.getAttribute("loginCustomer")).getCustomerMail();
+		// 장바구니 목록 가져오기
+		List<Map<String, Object>> cart = cartService.getCartItem(customerMail);
+		model.addAttribute("cart", cart);
+        return "/customer/cart"; // 장바구니 페이지로 리다이렉트
     }
 
     // 장바구니 항목 조회
