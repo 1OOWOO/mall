@@ -45,8 +45,7 @@
 	      </div>
 	      <div class="site-branding">
 	         <!-- <h1 class="site-title"><a href="index.html" rel="home">OOWOO</a></h1> -->
-	         <h1 class="site-title"><a href="index.html" rel="home"><img src="images/logo.png"></a></h1>
-	         <h2 class="site-description">모방은 창조의 어머니이다.</h2>
+	         <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="images/logo.png"></a></h1>
 	      </div>
 	      <nav id="site-navigation" class="main-navigation">
 		      <button class="menu-toggle">Menu</button>

@@ -35,7 +35,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				<a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/admin/dashBoard"><i
 					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
 
 				<div id="sideNav" href="">
@@ -107,48 +107,52 @@
 							</table>
 							
 							<!-- 페이징 -->
-							<div class="page-wrapper">
-								<nav style="text-align: center;">
-									<ul class="flex-control-paging pagination justify-content-start">
+							<div>
+								<div class="dataTables_paginate paging_simple_numbers">
+									<ul class="pagination">
 										<c:if test="${currentPage > 10}">
-											<li class="page-item"> <!-- 이전 10 페이지 -->
-												<a class="page-link" href="${pageContext.request.contextPath}/admin/goodsList?goodsNo=${goodsNo}&urrentPage=${currentPage-10}"> 
+											<li class="paginate_button previous"> <!-- 이전 10 페이지 -->
+												<a href="${pageContext.request.contextPath}/admin/goodsList?goodsNo=${goodsNo}&urrentPage=${currentPage-10}"> 
 												<span aria-hidden="true">&laquo;</span></a>
 											</li>
 										</c:if>
 										<c:if test="${currentPage <= 10}"> <!-- 이전 10 페이지가 없으면 비활성화-->
-											<li class="page-item disabled"> 
-										      <span class="page-link">&laquo;</span>
+											<li class="paginate_button disabled"> 
+										      <span>&laquo;</span>
 										    </li>
 										</c:if>
 										
 										<c:forEach var="num" begin="${startPagingNum}" end="${endPagingNum}">
 											<c:if test="${num == currentPage}">
-												<li class="page-item"><span class="page-link" style="font-weight:bold;">${num}</span></li>
+												<li class="paginate_button active"><span class="page-link">${num}</span></li>
 											</c:if>
 											<c:if test="${num != currentPage}">
-												<li class="page-item">
-													<a class="page-link" href="${pageContext.request.contextPath}/admin/goodsList?goodsNo=${goodsNo}&currentPage=${num}">${num}</a>
+												<li class="paginate_button ">
+													<a href="${pageContext.request.contextPath}/admin/goodsList?goodsNo=${goodsNo}&currentPage=${num}">${num}</a>
 												</li>
 											</c:if>
 										</c:forEach>
 										
 										<c:if test="${currentPage + 10 <= lastPage}">
-										    <li class="page-item"> <!-- 다음 10 페이지 -->
-										        <a class="page-link" href="${pageContext.request.contextPath}/admin/goodsList?goodsNo=${goodsNo}&currentPage=${currentPage + 10}" aria-label="Next">
-										            <span aria-hidden="true">&raquo;</span>
+										    <li class="paginate_button "> <!-- 다음 10 페이지 -->
+										        <a href="${pageContext.request.contextPath}/admin/goodsList?goodsNo=${goodsNo}&currentPage=${currentPage + 10}" aria-label="Next">
+										            <span>&raquo;</span> <!-- '>>' 표시 -->
 										        </a>
 										    </li>
 										</c:if>
 										<c:if test="${currentPage + 10 > lastPage}"> <!-- 다음 10 페이지가 없으면 비활성화-->
-										    <li class="page-item disabled">
-										        <span class="page-link">&raquo;</span>
+										    <li class="paginate_button disabled">
+										        <span>&raquo;</span>
 										    </li>
 										</c:if>
 									</ul>
-								</nav>
-							</div>
-							<a href="${pageContext.request.contextPath}/admin/addGoods" style="font-size: 20px;">상품 등록</a>
+								</div>
+								</div>
+							<div>
+								<button onclick="location.href='${pageContext.request.contextPath}/admin/addGoods'" class="waves-effect waves-light btn-large">
+							       <i class="material-icons dp48">library_add</i>상품등록
+							    </button>
+							</div><br>
 						</div>
 					</div>
 				</div>

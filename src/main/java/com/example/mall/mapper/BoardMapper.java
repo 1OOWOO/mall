@@ -17,3 +17,4 @@ public interface BoardMapper {
     List<Map<String, Object>> selectAllBoards(int goodsNo);
 
 }
+

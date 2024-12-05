@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mall - 로그인</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel='stylesheet' href='css/woocommerce-layout.css' type='text/css' media='all'/>
     <link rel='stylesheet' href='css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
     <link rel='stylesheet' href='css/woocommerce.css' type='text/css' media='all'/>
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5" style="width:50%">
         <h2>로그인</h2>
 
         <!-- 로그인 실패 메시지 -->
@@ -44,14 +45,19 @@
                     <label for="customerPw">비밀번호</label>
                     <input type="password" class="form-control" name="customerPw" placeholder="비밀번호" required>
                 </div>
-                <button type="submit" class="btn btn-primary">로그인</button>
+                <div class="text-center">
+               		<button type="submit" class="btn btn-primary" style="width: 30%;">로그인</button>
+                </div>
             </form>
-            <div>
-                <a href="${pageContext.request.contextPath}/signUp">회원가입</a>
-                <a href="${pageContext.request.contextPath}/findPw">비밀번호 찾기</a>
+            <div class="text-center"><br>
+                <a href="${pageContext.request.contextPath}/signUp" class="btn btn btn-outline-dark">회원가입</a>
+                <a href="${pageContext.request.contextPath}/findPw" class="btn btn btn-outline-dark">비밀번호 찾기</a>
+            </div>
+            <div style="display: flex; margin: 20px 0;  align-items: center; justify-content: center;"><br>
+            	<i class="material-icons dp48">assignment_ind</i>
+            	<a href="${pageContext.request.contextPath}/admin/staffLogin" class="btn">관리자 로그인</a>
             </div>
         </c:if>
-
     </div>
 </body>
 </html>

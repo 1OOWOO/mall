@@ -35,7 +35,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				<a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/admin/dashBoard"><i
 					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
 
 				<div id="sideNav" href="">
@@ -88,15 +88,16 @@
 				<div class="dashboard-cards">
 					<div class="row">
 						<!-- 이메일 검색 폼 -->
-						<form action="/admin/customerList" method="get">
-							<div class="input-group">
+						<form action="${pageContext.request.contextPath}/admin/customerList" method="get">
+							<div class="input-group" style=" display: flex;">
+								<i class="material-icons dp48">search</i>
 								<input type="text" id="searchEmail" name="searchEmail"
 									class="form-control" placeholder="이메일 검색"
-									value="${searchEmail}">
-								<button type="submit" class="btn btn-primary">검색</button>
+									value="${searchEmail}" style="width: 250px;">
+								<button type="submit" class="btn">검색</button>
 							</div>
 						</form>
-						<table class="table table-bordered">
+						<table class="table">
 							<thead>
 								<tr>
 									<th>이메일</th>

@@ -36,7 +36,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				<a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/admin/dashBoard"><i
 					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
 
 				<div id="sideNav" href="">
@@ -116,7 +116,7 @@
 							                	</select>
 							                </td>
 							                <td>${o.paymentMethod}</td>
-							                <td><button id="btnModifyOrders${o.ordersNo}" type="submit">수정</button></td>
+							                <td><button id="btnModifyOrders${o.ordersNo}" type="submit" class="btn">수정</button></td>
 										</tr>
 									</c:forEach>
 								</table>
