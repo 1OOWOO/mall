@@ -134,7 +134,7 @@
 										<td>${go.updateDate}</td>
 									</tr>
 								</table>
-								<button type="button" id="btnModifyGoods">상품 수정</button>
+								<button type="button" id="btnModifyGoods" class="btn">상품 수정</button>
 							</form>
 							
 							<h4>상품 이미지</h4>
@@ -144,7 +144,7 @@
 									<button type="button" id="btnAddFile">파일 추가</button>
 									<button type="button" id="btnRemoveFile">파일 삭제</button>
 								</div>
-								    <button type="submit" class="btn">업로드</button>
+								    <button type="submit" class="btn btn-success">업로드</button>
 								<div style="color: Tomato;">${msg}</div>
 							</form><br>
 								<!-- <img src="/mall/upload/34af1f47bdd14daba389f9a20cff6308.png"> -->

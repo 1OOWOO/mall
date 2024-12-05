@@ -88,7 +88,7 @@
 		SELECT 
 			goods_no goodsNo
 			, goods_title goodsTitle
-			, goods_price goodPrice
+			, goods_price goodsPrice
 			, goods_state goodsState
 		FROM goods
 	</select>

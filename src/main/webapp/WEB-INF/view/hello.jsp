@@ -125,7 +125,8 @@
 				                <img src="${pageContext.request.contextPath}/upload/NoImage.png">
 				            </c:if>
 			               <h3>${goods.goodsTitle}</h3>
-			               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
+			               <span class="price"><span class="amount">&#8361; ${goods.goodsPrice}</span></span>
+		               		<c:if test="${goods.goodsState == '재고없음'}"><strong>Sold Out</<strong></c:if>
 		               </a>
 	               </li>
 				</c:forEach>
@@ -150,7 +151,7 @@
    <footer id="colophon" class="site-footer">
    <div class="container">
       <div class="site-info">
-         <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+         <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">OOWOO</h1>
          Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
 
       </div>

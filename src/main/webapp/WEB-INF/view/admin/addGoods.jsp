@@ -25,7 +25,6 @@
 <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
-
 <body>
 	<div id="wrapper">
 		<nav class="navbar navbar-default top-navbar" role="navigation">
@@ -176,11 +175,15 @@
 <script>
 	// 상품 추가 버튼
 	$('#btnAddGoods').click(function(){
-		if($('#goodsTitle').val()==''){
+		if($('#goodsTitle').val()==''){ // id
 			alert('상품명을 입력하세요');
-		} else if($('#goodsPrice').val()==null){
+		} else if($('#goodsPrice').val()==null || $('#goodsPrice').val() == ''){
 			alert('상품 가격을 입력하세요');
-		}  else{
+		} else if($('#goodsCategoryTitle').val()==''){
+			alert('카테고리를 선택하세요');
+		} else if($('input[name="goodsState"]:checked').length == 0) {
+			alert('상품 재고를 선택하세요');
+		} else{
 			$('#formAddGoods').submit();
 		}
 	});
