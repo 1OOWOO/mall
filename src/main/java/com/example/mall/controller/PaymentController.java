@@ -4,12 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mall.service.CartService;
 import com.example.mall.service.CustomerService;
 import com.example.mall.service.PaymentService;
 import com.example.mall.vo.Customer;
+import com.example.mall.vo.Payment;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,29 @@ public class PaymentController {
     @Autowired CustomerService customerService;
     @Autowired CartService cartService;
     //Author : 오자윤
+   
+    @GetMapping("/customer/completePayment")
+    public String completePayment(@RequestParam Integer paymentNo, Model model) {
+    	
+    	// 오더리스트 가져오기
+    	List<Map<String, Object>> orderList = paymentService.completePayment(paymentNo);
+    	model.addAttribute("orderList", orderList);
+    	
+    	return "customer/payment";
+    }
+    
+    @PostMapping("/customer/addPayment")
+    public String addPayment(Payment payment, @RequestParam(value="cartNo", required=false) List<Integer> cartNo) {
+    	log.debug("cartNo------>", cartNo);
+    	log.debug("payment------>", payment);
+    	
+    	Integer paymentNo = paymentService.addPayment(payment, cartNo);
+    	
+    	return "redirect:/customer/completePayment?paymentNo=" + paymentNo;
+    	
+    }
+    
+    
     // 결제 페이지 호출
     @PostMapping("/customer/paymentList")
     public String paymentPage(HttpSession session, Model model, @RequestParam(value="goodsChoice", required = false) List<Integer> goodsChoice) {
@@ -58,20 +83,7 @@ public class PaymentController {
     	return "customer/payment";
     }
     
-    // 결제 처리
-    @PostMapping("/processPayment")
-    public String processPayment(
-            @RequestParam String customerMail,
-            @RequestParam String paymentMethod,
-            @RequestParam Map<String, Object> paymentDetails, // 결제 세부 정보
-            Model model) {
-        
-        // 결제 정보 저장
-        paymentService.processPayment(paymentDetails);
-        // 결제 완료 메시지
-        model.addAttribute("message", "결제가 완료되었습니다.");
-        return "redirect:/"; // 결제 완료 후 이동할 페이지
-    }
+    
     // 고객의 결제 정보 조회
     @GetMapping("/admin/paymentInfo")
     public String paymentInfo(@RequestParam String customerMail, Model model) {

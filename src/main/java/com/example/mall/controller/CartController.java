@@ -62,19 +62,35 @@ public class CartController {
 		return "redirect:/customer/cart?customerMail=" + cart.getCustomerMail();
 	}
 	
+	// 오자윤 : 장바구니 삭제
+	@GetMapping("/customer/deleteCart")
+	public String deleteCart(@RequestParam int cartNo, HttpSession session) {
+		String customerMail = (String) session.getAttribute("loggedInCustomer");
+		log.debug("cartNo----->", cartNo);
+		int row = cartService.removeCart(cartNo);
+		
+		if(row == 1) {
+				log.debug("삭제 성공");
+				return "redirect:/customer/cart?customerMail=" + customerMail;
+		}
+		log.debug("삭제 실패");
+		return "redirect:/customer/cart?customerMail=" + customerMail;
+	}
+	
     // 오자윤 : 장바구니 항목 조회
 	@GetMapping("/customer/cart")
-    public String getCartItems(HttpSession session, Model model) {
-		/* String customerMail = (String) session.getAttribute("customerMail"); */
-		String customerMail = "dfasdf@wix.com";
-        List<Map<String, Object>> carts = cartService.getCartItem(customerMail);
-        
-        log.debug(carts+ "<---carts");
-    	
-        // 상품 정보 goods 테이블에서 가져오기
-    	model.addAttribute("carts", carts);
-    	
-    	
+    public String cartList(Model model, @RequestParam String customerMail) {
+		// 장바구니 가져오기
+		List<Map<String, Object>> cartList = cartService.getCartItem(customerMail);
+		
+		long paymentPrice = cartService.getCartByPayment(cartList);
+		
+		log.debug("paymentPrice : " + paymentPrice);
+		
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("customerMail", customerMail);
+		model.addAttribute("paymentPrice", paymentPrice);
+		
         return "/customer/cart"; // 장바구니 페이지 반환
     }
 

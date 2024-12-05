@@ -5,12 +5,18 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.mall.vo.Payment;
+
 @Mapper
 public interface PaymentMapper {
-    
-    // 결제 정보 저장
-    Integer insertPayment(Map<String, Object> paymentDetails);
-    
+    // Author : 오자윤
+	
+	// 결제 완료
+	Integer insertPayment(Payment payment);
+	
+	// 결제 완료창
+	List<Map<String, Object>> completePayment(Integer paymentNo); 
+	
     // 특정 고객의 결제 정보 조회
     Map<String, Object> selectPaymentByCustomerMail(String customerMail);
     

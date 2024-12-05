@@ -79,7 +79,7 @@
         </header>
 
         <h2>결제 정보 입력</h2>
-        <form action="<c:url value='/processPayment'/>" method="post">
+        <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
             <div>
                 <label for="customerMail">이메일:</label>
                 <input type="email" id="customerMail" name="customerMail" required>
@@ -108,7 +108,7 @@
  			<tr>
 		 		 <td><button class="btn btn-main w-100" type="submit" id="cartButton">결제하기</button></td>
 			</tr>
-        	
+        	</br
             <c:if test="${not empty message}">
                 <div class="alert">${message}</div>
             </c:if>

@@ -11,6 +11,10 @@ import com.example.mall.vo.Cart;
 
 @Mapper
 public interface CartMapper {
+	
+	// 오자윤 : 장바구니 항목 삭제
+	int removeCart(int cartNo);
+	
 	// 오자윤 : 장바구니 항목 가져오기
 	Map<String, Object> selectedCart(Integer cartNo);
 	

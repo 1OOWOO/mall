@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.PaymentMapper">
-
+	<!-- Author : 오자윤 -->
     <!-- 주문자 정보 입력 -->
     <insert id="insertAddress" parameterType="map">
         INSERT INTO address (customer_mail, address_detail)
@@ -16,10 +16,18 @@
     </select>
 
     <!-- 결제 정보 저장 -->
-    <insert id="insertPayment" parameterType="map">
-        INSERT INTO payment (customer_mail, payment_status)
-        VALUES (#{customerMail}, '결제완료')
-    </insert>
+    <select id="completePayment" parameterType="Integer" resultType="Map">
+        SELECT
+        	o.orders_no ordersNo
+			, o.create_date createDate
+			, a.address_detail addressDetail
+			, p.payment_price paymentPrice
+			, p.payment_method paymentMethod
+		FROM orders o 
+		JOIN payment p ON p.payment_no = o.payment_no
+		JOIN address a ON a.address_no = p.address_no
+		WHERE p.payment_no = #{paymentNo}
+    </select>
     
     <!-- 결제 수단 조회 -->
     <select id="getPaymentMethods" parameterType="String" resultType="String">
@@ -29,4 +37,16 @@
         AND payment_status = '결제완료'
     </select>
     
+    <!-- 결제완료 -->
+    <insert id="insertPayment" parameterType="com.example.mall.vo.Payment" useGeneratedKeys="true" keyProperty="paymentNo">
+    	INSERT INTO payment(
+    			address_no
+    			, payment_price
+    			, payment_method
+    		) VALUES (
+    			#{addressNo}
+    			, #{paymentPrice}
+    			, #{paymentMethod}
+   			)
+	</insert>
 </mapper>

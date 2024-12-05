@@ -93,61 +93,48 @@
         </header>
         
 		<h3>장바구니</h3>
+		<form method="post" action="${pageContext.request.contextPath}/customer/checkGoods" id="cartForm">
+			<input type="hidden" name="customerMail" value="${customerMail}">
 		<!-- #masthead -->
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area column full">
 				<main id="main" class="site-main" role="main">
 				<div id="container" class="bg-light">
 					<div id="content" role="main">
-						<form id="cartForm" method="post" action="${pageContext.request.contextPath}/customer/paymentList">
 						<table class="table">
 						<c:if test="${carts.isEmpty()}">
 			        		<tr>
 			        			<td colspan="7" class="text-center">상품이 비었습니다.</td>
 			        		</tr>
 			        	</c:if>
-						<c:forEach var="c" items="${carts}">
 							<tr>
-								<td>
-									<div class="row" >
-									<c:if test="${goodsFileList!=null}">
-									<c:forEach var="file" items="${goodsFileList}">
-								         <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" 
-									        alt="${file.goodsFileName}" style="width: 300px; height: auto;">
-								    </c:forEach>
-								 </c:if>  
+								<th>상품명</th>
+								<th>수량</th>
+								<th>금액</th>
+								<th>삭제</th>
+							</tr>
+							
+						<c:forEach var="c" items="${cartList}">
 							    
-										<div>
-											<input type="checkbox" name="goodsChoice" id="goodsChoice" value="${c.cartNo}">
-											<div>${c.goodsTitle}</div>
-											<div>${c.cartAmount}개</div>
-											<div>${c.goodsPrice}원</div>
-										</div>
-									</div>
-								   </td>
-						        </tr>
+								<input type="checkbox" name="goodsChoice" id="goodsChoice" value="${c.cartNo}">
+								<div>${c.goodsTitle}</div>
+								<div>${c.cartAmount}개</div>
+								<div>${c.goodsPrice}원</div>
+								<!-- 오류 해결 필요 -->
+								<div><a href="${pageContext.request.contextPath}/customer/deleteCart?cartNo=${c.cartNo}">삭제</a></div>
 						    </c:forEach>
 						</table>
-									
+								</form>	
 								<div class="col-3">
 								    <table class="table table-bordered mr-3 bg-light">
-								        <tr>
-								            <th class="text-center">총 금액</th>
-								        </tr>
-								        <c:if test="${cart.isEmpty()}">
-								        	<tr>
-								        		<td>0원</td>
-								        	</tr>
-								        </c:if>
-								        <c:if test="${!cart.isEmpty()}">
 								           <tr>
 								            	<td><strong id="totalPrice">원</strong></td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
 								            </tr>
-								        </c:if>
+									        <tr>
+									        </tr>
 								        <tr>
-								        </tr>
-								        <tr>
-								            <td><button class="btn btn-main w-100" type="submit" id="cartButton">결제</button></td>
+								            <td><button type="submit" id="checkBtn" 
+								            formaction="${pageContext.request.contextPath}/customer/paymentList?customerMail=${customerMail}"class="btn btn-main w-100" type="submit" id="cartButton">결제</button></td>
 								        </tr>
 								    </table>
 								</div>

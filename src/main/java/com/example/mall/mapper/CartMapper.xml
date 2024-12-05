@@ -43,5 +43,12 @@
         WHERE c.customer_mail = #{customerMail}
     </select>
 
+	<!-- 오자윤 : 장바구니 삭제 -->
+	<delete id="removeCart" parameterType="int">
+		DELETE FROM cart
+		WHERE
+		cart_no = #{cartNo}
+	</delete>
+
 
 </mapper>
