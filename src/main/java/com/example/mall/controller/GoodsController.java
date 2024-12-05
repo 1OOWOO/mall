@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.mall.service.BoardService;
 import com.example.mall.service.GoodsCategoryService;
 import com.example.mall.service.GoodsFileService;
 import com.example.mall.service.GoodsService;
+import com.example.mall.vo.Board;
 import com.example.mall.vo.Category;
 import com.example.mall.vo.Goods;
 import com.example.mall.vo.GoodsFile;
@@ -30,6 +32,7 @@ public class GoodsController {
 	@Autowired GoodsService goodsService;
 	@Autowired GoodsFileService goodsFileService;
 	@Autowired GoodsCategoryService goodsCategoryService;
+	@Autowired BoardService boardService;
 	
 	// /admin/addGoods
 	@GetMapping("/admin/addGoods")
@@ -144,6 +147,12 @@ public class GoodsController {
         List<GoodsFile> goodsFileList = goodsFileService.getGoodsFileListByNo(goodsNo);
         model.addAttribute("goodsFileList", goodsFileList);
         log.debug("goodsFileList: "+goodsFileList.toString());
+        
+        List<Map<String, Object>> boards = boardService.getBoardList(goodsNo);
+        log.debug("boards : " + boards);
+
+        // JSP에 전달
+        model.addAttribute("boards", boards);
         
 		return "customer/customerGoodsOne";
 	}
