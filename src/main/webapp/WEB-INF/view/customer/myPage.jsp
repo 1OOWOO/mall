@@ -124,7 +124,7 @@
 						<table>
 							<tr>
 								<td>이메일</td>
-								<td><input type="text" value="${customer.customerMail}" /></td>
+								<td><input type="text" value="${customer.customerMail}"/></td>
 							</tr>
 							<tr>
 								<td>pw</td>

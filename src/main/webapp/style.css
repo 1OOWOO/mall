@@ -1804,6 +1804,12 @@ ul.shortcode-archive li {
    color:#ccc;
    padding-left: 10px;
 }
+
+/* ----------------------------------- 커스텀 -------------------------------------- */
+.woocommerce ul.products li.product, .woocommerce-page ul.products li.product {
+	width: 33.3%;
+	margin: 0px;
+}
 /*--------------------------------------------------------------16.0 Media Queries--------------------------------------------------------------*/
 @media (max-width:600px) {
    .entry-meta {
