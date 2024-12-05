@@ -36,7 +36,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				<a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/admin/dashBoard"><i
 					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
 
 				<div id="sideNav" href="">
@@ -83,7 +83,7 @@
 
 		<div id="page-wrapper">
 			<div class="header">
-				<h1 class="page-header">상품관리</h1>
+				<h1 class="page-header">상품 추가</h1>
 			</div>
 			<div id="page-inner">
 				<div class="dashboard-cards">
@@ -134,7 +134,7 @@
 								</tr>
 							</table>
 							<div>
-								<button id="btnAddGoods" type="button">상품 추가</button>
+								<button id="btnAddGoods" type="button" class="btn">상품 추가</button>
 							</div>
 						</form>
 

@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>관리자 대시보드</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" href="assets/materialize/css/materialize.min.css"
@@ -35,7 +36,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				<a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/admin/dashBoard"><i
 					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
 
 				<div id="sideNav" href="">
@@ -156,8 +157,16 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> <br><br><br>
 			<!-- /. PAGE INNER  -->
+			
+			<div class="col-sm-4">
+				<div class="alert alert-warning">
+					<i class="fa-solid fa-house" style="color:darkslategrey;"></i>
+					<a href="${pageContext.request.contextPath}/hello" style="color:darkslategrey;">
+					<strong>OOWOO 바로가기</strong></a>
+				</div>
+ 			</div>
 		</div>
 		<!-- /. PAGE WRAPPER  -->
 	</div>

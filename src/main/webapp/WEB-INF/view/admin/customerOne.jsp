@@ -35,7 +35,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				<a class="navbar-brand waves-effect waves-dark" href="${pageContext.request.contextPath}/admin/dashBoard"><i
 					class="large material-icons">track_changes</i> <strong>OOWOO</strong></a>
 
 				<div id="sideNav" href="">
@@ -135,7 +135,7 @@
             <div class="alert alert-danger">${error}</div>
         </c:if>
 
-        <a href="${pageContext.request.contextPath}/admin/customerList" class="btn btn-secondary">목록으로 돌아가기</a>
+        <a href="${pageContext.request.contextPath}/admin/customerList" class="btn btn-secondary">목록</a>
     </div>
 </body>
 </html>
