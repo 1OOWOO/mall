@@ -30,7 +30,7 @@ public class PaymentController {
     	Customer loginCustomer = (Customer) session.getAttribute("loginCustomer");
     	// 로그인하지 않은 경우, 로그인 페이지로 리다이렉트
     	if (loginCustomer == null) {
-    		return "redirect:/login";
+    		return "redirect:/customer/payment";
     	}
     	
     	// 고객 이메일 가져오기
@@ -51,6 +51,11 @@ public class PaymentController {
     	List<Map<String,Object>> cart = cartService.getCartItem(customerMail);
     	model.addAttribute("countCartList", cart.get(0).get("countCartList"));
         return "customer/paymentList"; // 결제 페이지 JSP 파일 이름
+    }
+    
+    @GetMapping("/customer/payment")
+    public String paymentList(Model model) {
+    	return "customer/payment";
     }
     
     // 결제 처리

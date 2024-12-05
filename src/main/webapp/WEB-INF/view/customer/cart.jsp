@@ -16,47 +16,82 @@
 <link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
-	.btn-main {
+
+    html, body {
+        height: 100%; /* 전체 높이를 100%로 설정 */
+        margin: 0; /* 기본 여백 제거 */
+        display: flex;
+        flex-direction: column; /* 수직 방향으로 정렬 */
+    }
+
+    #page {
+        flex: 1; /* 페이지 내용이 남은 공간을 차지하도록 설정 */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* 내용과 footer 간의 공간을 분배 */
+    }
+
+    .container {
+        flex: 1; /* 컨테이너가 전체 높이를 차지하도록 설정 */
+        display: flex;
+        flex-direction: column; /* 수직 방향으로 정렬 */
+        padding: 20px; /* 패딩 추가 */
+    }
+
+    .btn-main {
         background-color: #007BFF;
         color: white; 
     }
-
+    
     .btn-main:hover {
         background-color: #0056b3;
-    
+    }
 </style>
 </head>
 <!-- Author : 오자윤 -->
 <body class="single single-product woocommerce woocommerce-page">
 <div id="page">
-	<div class="container">
-		<header id="masthead" class="site-header">
-			<div class="site-branding">
-				<h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
-				<h2 class="site-description">모방은 창조의 어머니이다</h2>
-			</div>
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle">Menu</button>
-				<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-				<div class="menu-menu-1-container">
-					<ul id="menu-menu-1" class="menu">
-						<li><a href="${pageContext.request.contextPath}/hello">Home</a></li>
-						<li><a href="shop.html">Shop</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><a href="#">Pages</a>
-							<ul class="sub-menu">
-								<li><a href="portfolio-item.html">Portfolio Item</a></li>
-								<li><a href="blog-single.html">Blog Article</a></li>
-								<li><a href="shop-single.html">Shop Item</a></li>
-								<li><a href="portfolio-category.html">Portfolio Category</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</nav>
-		</header>
+    <div class="container">
+        <header id="masthead" class="site-header">
+            <div class="site-branding">
+                <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
+                <h2 class="site-description">모방은 창조의 어머니이다</h2>
+            </div>
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle">Menu</button>
+                <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+                <div class="menu-menu-1-container">
+                    <ul id="menu-menu-1" class="menu">
+                        <li><a href="${pageContext.request.contextPath}/hello">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="elements.html">Elements</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="portfolio-item.html">Portfolio Item</a></li>
+                                <li><a href="blog-single.html">Blog Article</a></li>
+                                <li><a href="shop-single.html">Shop Item</a></li>
+                                <li><a href="portfolio-category.html">Portfolio Category</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <style>
+				 html, body {
+				    height: 100%; /* 전체 높이를 100%로 설정 */
+				    margin: 0; /* 기본 여백 제거 */
+				    display: flex;
+				    flex-direction: column; /* 수직 방향으로 정렬 */
+				}
+				
+				#page {
+				    flex: 1; /* 페이지 내용이 남은 공간을 차지하도록 설정 */
+				}
+            </style>
+        </header>
+        
 		<h3>장바구니</h3>
 		<!-- #masthead -->
 		<div id="content" class="site-content">
@@ -106,7 +141,7 @@
 								        </c:if>
 								        <c:if test="${!cart.isEmpty()}">
 								           <tr>
-								            	<td>${cart[0].totalPrice}원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            	<td><strong id="totalPrice">원</strong></td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
 								            </tr>
 								        </c:if>
 								        <tr>
@@ -130,16 +165,19 @@
 	</div>
 	<!-- .container -->
 	<footer id="colophon" class="site-footer">
-	<div class="container">
-		<div class="site-info">
-			<h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
-			Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-		</div>
-	</div>
-	</footer>
-	</form>
-	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+        <div class="container">
+            <div class="site-info">
+                <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+                Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
+            </div>
+        </div>
+    </footer>
 </div>
+
+<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+</body>
+</html>
+
 
 <!-- #page -->
 <script src='js/jquery.js'></script>

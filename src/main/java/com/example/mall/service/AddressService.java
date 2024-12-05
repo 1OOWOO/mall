@@ -11,10 +11,14 @@ import java.util.Map;
 
 @Service
 public class AddressService {
-
     @Autowired
     private AddressMapper addressMapper;
 
+    // 오자윤 : 고객 주소리스트
+    public List<Address> AddressListByCustomerMail(String customerMail) {
+    	return addressMapper.addressListByCustomerMail(customerMail);
+    }
+   
     // 주소 검색 로직
     public List<Address> searchAddresses(String keyword) {
         return addressMapper.searchAddresses(keyword);

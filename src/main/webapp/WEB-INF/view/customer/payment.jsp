@@ -2,52 +2,129 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
-    <title>결제 페이지</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='/css/styles.css'/>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOWOO | GoodsOne</title>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-layout.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/woocommerce.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/font-awesome.min.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    html, body {
+        height: 100%; /* 전체 높이를 100%로 설정 */
+        margin: 0; /* 기본 여백 제거 */
+        display: flex;
+        flex-direction: column; /* 수직 방향으로 정렬 */
+    }
+
+    #page {
+        flex: 1; /* 페이지 내용이 남은 공간을 차지하도록 설정 */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* 내용과 footer 간의 공간을 분배 */
+    }
+
+    .container {
+        flex: 1; /* 컨테이너가 전체 높이를 차지하도록 설정 */
+        display: flex;
+        flex-direction: column; /* 수직 방향으로 정렬 */
+        padding: 20px; /* 패딩 추가 */
+    }
+
+    .btn-main {
+        background-color: #007BFF;
+        color: white; 
+    }
+
+    .btn-main:hover {
+        background-color: #0056b3;
+    }
+</style>
 </head>
-<body>
-	<h2>결제 정보 입력</h2>
+<body class="single single-product woocommerce woocommerce-page">
+<div id="page">
+    <div class="container">
+        <header id="masthead" class="site-header">
+            <div class="site-branding">
+                <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
+                <h2 class="site-description">모방은 창조의 어머니이다</h2>
+            </div>
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle">Menu</button>
+                <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+                <div class="menu-menu-1-container">
+                    <ul id="menu-menu-1" class="menu">
+                        <li><a href="${pageContext.request.contextPath}/hello">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="elements.html">Elements</a></li>
+                        <li><a href="#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="portfolio-item.html">Portfolio Item</a></li>
+                                <li><a href="blog-single.html">Blog Article</a></li>
+                                <li><a href="shop-single.html">Shop Item</a></li>
+                                <li><a href="portfolio-category.html">Portfolio Category</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
 
-<form action="<c:url value='/processPayment'/>" method="post">
-    <div>
-        <label for="customerMail">이메일:</label>
-        <input type="email" id="customerMail" name="customerMail" required>
-    </div>
-    
-	<div>
-	    <label>결제 수단:</label>
-	    <label>
-	        <input type="radio" value="신용카드" name="paymentMethod" required> 신용카드
-	    </label>
-	    <label>
-	        <input type="radio" value="체크카드" name="paymentMethod" required> 체크카드
-	    </label>
-	</div>
-    
-    <div>
-        <label for="amount">결제 금액:</label>
-        <input type="number" id="amount" name="amount">
+        <h2>결제 정보 입력</h2>
+        <form action="<c:url value='/processPayment'/>" method="post">
+            <div>
+                <label for="customerMail">이메일:</label>
+                <input type="email" id="customerMail" name="customerMail" required>
+            </div>
+            
+            <div>
+                <label>결제 수단:</label>
+                <label>
+                    <input type="radio" value="신용카드" name="paymentMethod" required> 신용카드
+                </label>
+                <label>
+                    <input type="radio" value="체크카드" name="paymentMethod" required> 체크카드
+                </label>
+            </div>
+            
+            <div>
+                <label for="amount">결제 금액:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+        
+            <div>
+                <label for="notes">배송 요청사항:</label>
+                <textarea id="notes" name="notes"></textarea>
+            </div>
+            <br>
+ 			<tr>
+		 		 <td><button class="btn btn-main w-100" type="submit" id="cartButton">결제하기</button></td>
+			</tr>
+        	
+            <c:if test="${not empty message}">
+                <div class="alert">${message}</div>
+            </c:if>
+        </form>
     </div>
 
-    <div>
-        <label for="notes">배송 요청사항:</label>
-        <textarea id="notes" name="notes"></textarea>
-    </div>
-    
-    <div>
-        <button type="submit">결제하기</button>
-    </div>
+    <footer id="colophon" class="site-footer">
+        <div class="container">
+            <div class="site-info">
+                <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+                Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
+            </div>
+        </div>
+    </footer>
+</div>
 
-    <c:if test="${not empty message}">
-        <div class="alert">${message}</div>
-    </c:if>
-</form>
-
+<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </body>
 </html>
