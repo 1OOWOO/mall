@@ -25,5 +25,4 @@ public class BoardService {
     public List<Map<String, Object>> getBoardList(int goodsNo) {
         return boardMapper.selectAllBoards(goodsNo);
     }
-
 }
