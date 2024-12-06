@@ -154,6 +154,10 @@ public class GoodsController {
         // JSP에 전달
         model.addAttribute("boards", boards);
         
+        Integer boardCount = boardService.getBoardCount(goodsNo);
+        model.addAttribute("boardCount", boardCount);
+        log.debug("boardCount: "+boardCount);
+        
 		return "customer/customerGoodsOne";
 	}
 	

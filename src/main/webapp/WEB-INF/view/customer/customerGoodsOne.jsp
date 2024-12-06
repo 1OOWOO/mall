@@ -66,7 +66,54 @@
 							src="${pageContext.request.contextPath}/images/logo.png"></a>
 					</h1>
 				</div>
-			</header>
+				<nav id="site-navigation" class="main-navigation">
+				      <button class="menu-toggle">Menu</button>
+				      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				      <div class="menu-menu-1-container">
+				         <ul id="menu-menu-1" class="menu">
+				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
+				            <ul class="sub-menu">
+				               <li>봄</li>
+				               <li>여름</li>
+				               <li>가을</li>
+				               <li>겨울</li>
+				            </ul>
+				            </li>
+				            
+				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
+				            <ul class="sub-menu">
+				               <li>모자</li>
+				               <li>넥&레그 워머</li>
+				               <li>목걸이</li>
+				            </ul>
+				            </li>
+				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
+				            <ul class="sub-menu">
+				               <li>노즈워크</li>
+				               <li>오뚜기</li>
+				               <li>터그</li>
+				               <li>인형</li>
+				            </ul>
+				            </li>
+				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
+				            <ul class="sub-menu">
+				               <li>목줄</li>
+				               <li>입마개</li>
+				               <li>리드줄</li>
+				               <li>하네스</li>
+				            </ul>
+				            </li>
+				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
+				            <ul class="sub-menu">
+				               <li>육포</li>
+				               <li>비스킷</li>
+				               <li>비타민</li>
+				            </ul>
+				            </li>
+				         </ul>
+				      </div>
+			      </nav>
+				</header>
 			<!-- #masthead -->
 			<div id="content" class="site-content">
 				<div id="primary" class="content-area column full">
@@ -88,17 +135,14 @@
 									</div>
 									<div class="summary entry-summary">
 										<h1 itemprop="name" class="product_title entry-title">${goods.goodsTitle}</h1>
-										<div class="woocommerce-product-rating"
-											itemprop="aggregateRating" itemscope
-											itemtype="http://schema.org/AggregateRating">
+										<div class="woocommerce-product-rating">
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-												class="fa fa-star"></i> <a href="#reviews"
-												class="woocommerce-review-link" rel="nofollow">(<span
-												itemprop="reviewCount" class="count">2</span> customer
-												reviews)
-											</a>
-											<!-- 리뷰개수 -->
+												class="fa fa-star"></i>
+												<c:if test="${boardCount == 0}"> (0 customer reviews)</c:if>
+												<c:if test="${boardCount != 0}">
+													(<span itemprop="reviewCount" class="count"> ${boardCount}</span> customer reviews)
+												</c:if>
 										</div>
 										<div itemprop="offers" itemscope
 											itemtype="http://schema.org/Offer">
@@ -130,13 +174,13 @@
 										</form>
 
 										<!-- 재고 없으면 Buy버튼 비활성화 -->
-										${goods.goodsState}<br>
 										<c:if test="${goods.goodsState == '재고없음'}">
+											${goods.goodsState}<br>
 											<button type="submit"
 												class="single_add_to_cart_button button alt" disabled>Buy</button>
 										</c:if>
 										<c:if test="${goods.goodsState != '재고없음'}">
-											<button type="submit"
+											<br><button type="submit"
 												class="single_add_to_cart_button button alt">Buy</button>
 										</c:if>
 
@@ -184,7 +228,7 @@
 			<div class="container">
 				<div class="site-info">
 					<h1
-						style="font-family: 'Herr Von Muellerhoff'; color: #ccc; font-weight: 300; text-align: center; margin-bottom: 0; margin-top: 0; line-height: 1.4; font-size: 46px;">Moschino</h1>
+						style="font-family: 'Herr Von Muellerhoff'; color: #ccc; font-weight: 300; text-align: center; margin-bottom: 0; margin-top: 0; line-height: 1.4; font-size: 46px;">OOWOO</h1>
 					Shared by <i class="fa fa-love"></i><a
 						href="https://bootstrapthemes.co">BootstrapThemes</a>
 
