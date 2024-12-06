@@ -67,53 +67,54 @@
 					</h1>
 				</div>
 				<nav id="site-navigation" class="main-navigation">
-				      <button class="menu-toggle">Menu</button>
-				      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-				      <div class="menu-menu-1-container">
-				         <ul id="menu-menu-1" class="menu">
-				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
-				            <ul class="sub-menu">
-				               <li>봄</li>
-				               <li>여름</li>
-				               <li>가을</li>
-				               <li>겨울</li>
-				            </ul>
-				            </li>
-				            
-				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
-				            <ul class="sub-menu">
-				               <li>모자</li>
-				               <li>넥&레그 워머</li>
-				               <li>목걸이</li>
-				            </ul>
-				            </li>
-				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
-				            <ul class="sub-menu">
-				               <li>노즈워크</li>
-				               <li>오뚜기</li>
-				               <li>터그</li>
-				               <li>인형</li>
-				            </ul>
-				            </li>
-				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
-				            <ul class="sub-menu">
-				               <li>목줄</li>
-				               <li>입마개</li>
-				               <li>리드줄</li>
-				               <li>하네스</li>
-				            </ul>
-				            </li>
-				            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
-				            <ul class="sub-menu">
-				               <li>육포</li>
-				               <li>비스킷</li>
-				               <li>비타민</li>
-				            </ul>
-				            </li>
-				         </ul>
-				      </div>
-			      </nav>
-				</header>
+					<button class="menu-toggle">Menu</button>
+					<a class="skip-link screen-reader-text" href="#content">Skip to
+						content</a>
+					<div class="menu-menu-1-container">
+						<ul id="menu-menu-1" class="menu">
+							<li><a
+								href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
+								<ul class="sub-menu">
+									<li>봄</li>
+									<li>여름</li>
+									<li>가을</li>
+									<li>겨울</li>
+								</ul></li>
+
+							<li><a
+								href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
+								<ul class="sub-menu">
+									<li>모자</li>
+									<li>넥&레그 워머</li>
+									<li>목걸이</li>
+								</ul></li>
+							<li><a
+								href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
+								<ul class="sub-menu">
+									<li>노즈워크</li>
+									<li>오뚜기</li>
+									<li>터그</li>
+									<li>인형</li>
+								</ul></li>
+							<li><a
+								href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
+								<ul class="sub-menu">
+									<li>목줄</li>
+									<li>입마개</li>
+									<li>리드줄</li>
+									<li>하네스</li>
+								</ul></li>
+							<li><a
+								href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
+								<ul class="sub-menu">
+									<li>육포</li>
+									<li>비스킷</li>
+									<li>비타민</li>
+								</ul></li>
+						</ul>
+					</div>
+				</nav>
+			</header>
 			<!-- #masthead -->
 			<div id="content" class="site-content">
 				<div id="primary" class="content-area column full">
@@ -139,9 +140,10 @@
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i>
-												<c:if test="${boardCount == 0}"> (0 customer reviews)</c:if>
-												<c:if test="${boardCount != 0}">
-													(<span itemprop="reviewCount" class="count"> ${boardCount}</span> customer reviews)
+											<c:if test="${boardCount == 0}"> (0 customer reviews)</c:if>
+											<c:if test="${boardCount != 0}">
+													(<span itemprop="reviewCount" class="count">
+													${boardCount}</span> customer reviews)
 												</c:if>
 										</div>
 										<div itemprop="offers" itemscope
@@ -161,16 +163,16 @@
 											action="${pageContext.request.contextPath}/customer/addCart"
 											enctype='multipart/form-data'>
 											<div class="quantity">
-												<input type="number" step="1" min="1" max=""
+												<span> 수량 </span><input type="number" step="1" min="1" max=""
 													name="cartAmount" value="1" title="Qty"
 													class="input-text qty text" size="4" />
+												<button type="submit"
+													class="single_add_to_cart_button button alt">Add to Cart</button>
 											</div>
 											<input type="hidden" name="customerMail"
 												value="${loggedInCustomer.customerMail}"> <input
 												type="hidden" name="goodsNo" value="${goods.goodsNo}">
-											<button type="submit"
-												class="single_add_to_cart_button button alt">Add to
-												Cart</button>
+
 										</form>
 
 										<!-- 재고 없으면 Buy버튼 비활성화 -->
@@ -180,7 +182,8 @@
 												class="single_add_to_cart_button button alt" disabled>Buy</button>
 										</c:if>
 										<c:if test="${goods.goodsState != '재고없음'}">
-											<br><button type="submit"
+											<br>
+											<button type="submit"
 												class="single_add_to_cart_button button alt">Buy</button>
 										</c:if>
 
@@ -201,8 +204,7 @@
 																	<div class="comment-text">
 																		<p class="meta">
 																			<strong itemprop="author">${board.customerMail}</strong>
-																			&ndash; <span>${board.createDate}</span>
-																			:
+																			&ndash; <span>${board.createDate}</span> :
 																		</p>
 																		<div itemprop="description" class="description">
 																			<p>${board.boardContent}</p>
