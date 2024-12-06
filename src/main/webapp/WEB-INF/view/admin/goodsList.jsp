@@ -93,6 +93,7 @@
 									<td>No</td>
 									<td>상품명</td>
 									<td>가격</td>
+									<td></td>
 								</tr>
 								<c:forEach var="g" items="${goodsList}">
 									<tr>
@@ -102,6 +103,7 @@
 											${g.goodsTitle}</a>
 										</td>
 										<td>${g.goodsPrice}</td>
+										<td><td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td></td>
 									</tr>
 								</c:forEach>
 							</table>
