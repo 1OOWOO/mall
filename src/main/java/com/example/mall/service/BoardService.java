@@ -25,4 +25,9 @@ public class BoardService {
     public List<Map<String, Object>> getBoardList(int goodsNo) {
         return boardMapper.selectAllBoards(goodsNo);
     }
+    
+    // 오아림 : customerGoodsOne - 리뷰 개수
+    public Integer getBoardCount(Integer goodsNo) {
+    	return boardMapper.selectBoardCount(goodsNo);
+    }
 }

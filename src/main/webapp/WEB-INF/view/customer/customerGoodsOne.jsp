@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.example.mall.vo.Customer"%>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -21,31 +22,74 @@
 <div id="page">
 	<div class="container">
 		<header id="masthead" class="site-header">
+		  <!-- 로그인  -->
+	      <div style="float: right;">
+	      <%
+	      	Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
+	      		if ( loggedInCustomer == null) {
+	      	%>
+	      			<span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a> </span>
+	      	<%
+	      		} else {
+	      			
+	      	%>
+	      	<span> <a href="${pageContext.request.contextPath}/customer/myPage"> ${loggedInCustomer.customerMail} 님 </a> |<a href="logout"> 로그아웃 </a></span>
+	      	
+	      	<%
+	      		}
+	      	%>
+	      </div>
 			<div class="site-branding">
 				<h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
-				<h2 class="site-description">모방은 창조의 어머니이다</h2>
 			</div>
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle">Menu</button>
-				<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-				<div class="menu-menu-1-container">
-					<ul id="menu-menu-1" class="menu">
-						<li><a href="${pageContext.request.contextPath}/hello">Home</a></li>
-						<li><a href="shop.html">Shop</a></li>
-						<li><a href="blog.html">Blog</a></li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><a href="#">Pages</a>
-							<ul class="sub-menu">
-								<li><a href="portfolio-item.html">Portfolio Item</a></li>
-								<li><a href="blog-single.html">Blog Article</a></li>
-								<li><a href="shop-single.html">Shop Item</a></li>
-								<li><a href="portfolio-category.html">Portfolio Category</a></li>
-							</ul>
-						</li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
-				</div>
-			</nav>
+			
+	      <nav id="site-navigation" class="main-navigation">
+		      <button class="menu-toggle">Menu</button>
+		      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+		      <div class="menu-menu-1-container">
+		         <ul id="menu-menu-1" class="menu">
+		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
+		            <ul class="sub-menu">
+		               <li>봄</li>
+		               <li>여름</li>
+		               <li>가을</li>
+		               <li>겨울</li>
+		            </ul>
+		            </li>
+		            
+		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
+		            <ul class="sub-menu">
+		               <li>모자</li>
+		               <li>넥&레그 워머</li>
+		               <li>목걸이</li>
+		            </ul>
+		            </li>
+		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
+		            <ul class="sub-menu">
+		               <li>노즈워크</li>
+		               <li>오뚜기</li>
+		               <li>터그</li>
+		               <li>인형</li>
+		            </ul>
+		            </li>
+		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
+		            <ul class="sub-menu">
+		               <li>목줄</li>
+		               <li>입마개</li>
+		               <li>리드줄</li>
+		               <li>하네스</li>
+		            </ul>
+		            </li>
+		            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
+		            <ul class="sub-menu">
+		               <li>육포</li>
+		               <li>비스킷</li>
+		               <li>비타민</li>
+		            </ul>
+		            </li>
+		         </ul>
+		      </div>
+	      </nav>
 		</header>
 		<!-- #masthead -->
 		<div id="content" class="site-content">
@@ -91,11 +135,12 @@
 								</form>
 								
 								<!-- 재고 없으면 Buy버튼 비활성화 -->
-								${goods.goodsState}<br>
 								<c:if test="${goods.goodsState == '재고없음'}"> 
+									${goods.goodsState}<br>
 								    <button type="submit" class="single_add_to_cart_button button alt" disabled>Buy</button>
 								</c:if>
 								<c:if test="${goods.goodsState != '재고없음'}">
+								    <br>
 								    <button type="submit" class="single_add_to_cart_button button alt">Buy</button>
 								</c:if>
 								

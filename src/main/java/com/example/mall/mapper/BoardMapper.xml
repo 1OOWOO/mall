@@ -24,7 +24,17 @@
 			JOIN address a ON a.address_no = p.address_no
 			JOIN goods g ON g.goods_no = o.goods_no
 		WHERE g.goods_no = ${goodsNo}
-		
 	</select>
-
+	
+	<!-- customerGoodsOne - 리뷰 개수 -->
+	<select id="selectBoardCount" resultType="Integer">
+		SELECT 
+		    o.goods_no goodsNo
+		    ,COUNT(b.board_content)
+		FROM 
+		    orders o
+		LEFT JOIN 
+		    board b ON o.orders_no = b.orders_no
+		WHERE o.goods_no = #{goodsNo}
+	</select>
 </mapper>
