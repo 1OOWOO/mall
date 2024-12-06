@@ -117,7 +117,7 @@
 			               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${goods.goodsNo}"">
 			                 <c:if test="${not empty goodsFileMap[goods.goodsNo]}">
 				                <c:forEach var="file" items="${goodsFileMap[goods.goodsNo]}">
-				                    <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" style="width: 350px; object-fit: cover;">
+				                    <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" style="width: 350px;  height: 250px; object-fit: cover;">
 				                </c:forEach>
 				            </c:if>
 				            <c:if test="${empty goodsFileMap[goods.goodsNo]}">
@@ -125,6 +125,7 @@
 				            </c:if>
 			               <h3>${goods.goodsTitle}</h3>
 			               <span class="price"><span class="amount">${goods.goodsPrice}</span></span>
+			               <c:if test="${goods.goodsState == '재고없음'}"><strong>Sold Out</<strong></c:if>
 		               </a>
 		               </li>
 					</c:forEach>
