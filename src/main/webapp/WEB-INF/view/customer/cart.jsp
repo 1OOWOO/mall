@@ -112,25 +112,36 @@
 								<th>상품명</th>
 								<th>수량</th>
 								<th>금액</th>
+								<th>삭제</th>
 							</tr>
 							<c:forEach var="c" items="${cartList}">
 								<tr>
-									<td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}"></td>
+									<td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td>
 									<td>${c.goodsTitle}</td>
 									<td>${c.cartAmount}개</td>
 									<td>${c.goodsPrice}원</td>
+									<td><a href="${pageContext.request.contextPath}/customer/deleteCart?cartNo=${c.cartNo}" class="btn btn-main w-100">삭제</a></td>
 								</tr>
+								
 						    </c:forEach>
 							</table>							
 								</form>	
 								<div class="col-3">
 								    <table class="table table-bordered mr-3 bg-light">
 								           <tr>
-								            	<td><strong id="totalPrice">원</strong></td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            	<th class="text center">총 합계</th> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
 								            </tr>
-									        <tr>
-									        </tr>
-								        <tr>
+								            <c:if test="${cart.isEmpty()}">
+								           <tr>
+								            	<td>0원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            </tr>
+								            </c:if>
+								            <c:if test="${!cart.isEmpty()}">
+								           <tr>
+								            	<td>${cartList[0].totalPrice}원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            </tr>
+								            </c:if>
+								            
 								            <td><button type="submit" id="checkBtn" 
 								            formaction="${pageContext.request.contextPath}/customer/paymentList?customerMail=${customerMail}"class="btn btn-main w-100" type="submit" id="cartButton">결제</button></td>
 								        </tr>

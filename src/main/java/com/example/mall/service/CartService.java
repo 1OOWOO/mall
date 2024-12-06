@@ -24,17 +24,6 @@ public class CartService {
 	@Autowired CartMapper cartMapper;
 	@Autowired GoodsMapper goodsMapper;
 	
-	// 오자윤 : 장바구니 총합
-	public long getCartByPayment(List<Map<String, Object>> cartList) {
-	    // Map에서 totalPrice를 가져와 long으로 변환하고 모든 금액을 합산
-	    long payment = cartList.stream()
-	        .mapToLong(c -> {
-	            Object totalPriceObj = c.get("totalPrice"); // totalPrice 값을 가져오기.
-	            return totalPriceObj != null ? (long) totalPriceObj : 0; // null 체크 후 long으로 변환
-	        })
-	        .sum(); // 모든 가격을 합산
-	    return payment;
- 	}
 	
 	// 오자윤 : 장바구니 삭제
 	public int removeCart(int cartNo) {

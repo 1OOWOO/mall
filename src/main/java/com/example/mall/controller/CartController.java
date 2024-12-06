@@ -85,13 +85,8 @@ public class CartController {
 		log.debug("고객 이메일---------> " + customerMail);
 		log.debug("장바구니 항목 수-----------> " + cartList.size());
 		
-		long paymentPrice = cartService.getCartByPayment(cartList);
-		
-		log.debug("paymentPrice : " + paymentPrice);
-		
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("customerMail", customerMail);
-		model.addAttribute("paymentPrice", paymentPrice);
 		
         return "/customer/cart"; // 장바구니 페이지 반환
     }
