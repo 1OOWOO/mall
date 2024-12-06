@@ -88,22 +88,31 @@
 				<div class="dashboard-cards">
 					<div class="row">
 				    	<div class="col-sm-10">
-							<table class="table">
+							<table class="table" style="width:70%">
 								<tr>
 									<td>No</td>
+									<td></td>
 									<td>상품명</td>
 									<td>가격</td>
-									<td></td>
 								</tr>
 								<c:forEach var="g" items="${goodsList}">
 									<tr>
 										<td>${g.goodsNo}</td>
 										<td>
 											<a href="${pageContext.request.contextPath}/admin/goodsOne?goodsNo=${g.goodsNo}">
+												<c:if test="${g.goodsFileName == null}">
+													<img src="${pageContext.request.contextPath}/upload/NoImage.png" style="width:100px; height:100px;">
+												</c:if>
+												<c:if test="${g.goodsFileName != null}">
+													<img src="${pageContext.request.contextPath}/upload/${g.goodsFileName}.${g.goodsFileExt}" style="width:100px; height:100px;">
+												</c:if>
+											</a>
+										</td>
+										<td>
+											<a href="${pageContext.request.contextPath}/admin/goodsOne?goodsNo=${g.goodsNo}">
 											${g.goodsTitle}</a>
 										</td>
 										<td>${g.goodsPrice}</td>
-										<td><td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td></td>
 									</tr>
 								</c:forEach>
 							</table>

@@ -44,7 +44,7 @@
 					Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
 					if (loggedInCustomer == null) {
 					%>
-					<span> <a href="login"> 로그인 </a> | <a href="signUp">
+					<span> <a href="${pageContext.request.contextPath}/login"> 로그인 </a> | <a href="${pageContext.request.contextPath}/signUp">
 							회원가입 </a>
 					</span>
 					<%
@@ -140,11 +140,11 @@
 											<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
 												class="fa fa-star"></i>
-											<c:if test="${boardCount == 0}"> (0 customer reviews)</c:if>
-											<c:if test="${boardCount != 0}">
-													(<span itemprop="reviewCount" class="count">
-													${boardCount}</span> customer reviews)
-												</c:if>
+											<c:if test="${boardCount == 0}"> (0 customer review)</c:if>
+											<c:if test="${boardCount == 1}"> (1 customer review)</c:if>
+											<c:if test="${boardCount > 1}">
+												(<span itemprop="reviewCount" class="count"> ${boardCount}</span> customer reviews)
+											</c:if>
 										</div>
 										<div itemprop="offers" itemscope
 											itemtype="http://schema.org/Offer">

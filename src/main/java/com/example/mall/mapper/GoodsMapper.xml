@@ -23,16 +23,20 @@
 	<!-- /admin/goodsList -->
 	<select id="selectGoodsList" parameterType="Map" resultType="Map">
 		SELECT 
-			goods_no goodsNo
-			,goods_title goodsTitle
-			,goods_price goodsPrice
-		FROM goods
+			f.goods_file_name goodsFileName
+			, f.goods_file_ext goodsFileExt
+			, g.goods_title goodsTitle
+			, g.goods_price goodsPrice
+			, g.goods_no goodsNo
+		FROM goods g
 		<where> <!-- 검색어 있을때만 실행 -->
 			<if test="searchWord != null">
 				goods_title LIKE CONCAT('%',#{searchWord}.'%')
 			</if>
 		</where>
-		ORDER BY goods_no ASC
+		LEFT JOIN goods_file f
+		ON g.goods_no = f.goods_no
+		ORDER BY g.goods_no ASC
 		LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	

@@ -24,6 +24,7 @@
 			,go.goods_price goodsPrice
 			,p.payment_state paymentState
 			,p.payment_method paymentMethod
+			,a.customer_mail customerMail
 		FROM payment p
 		INNER JOIN (SELECT 
 							g.goods_no goods_no
@@ -37,7 +38,6 @@
 						ON g.goods_no = o.goods_no) go
 		ON go.payment_no = p.payment_no
 		JOIN address a on a.address_no = p.address_no
-		WHERE a.customer_mail = #{customerMail}
 	</select>
 	
 	<!-- /admin/ordersList - 주문 수정 -->

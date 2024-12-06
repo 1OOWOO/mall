@@ -93,6 +93,7 @@
 								<table class="table table-striped table-bordered table-hover dataTable no-footer">
 									<tr role="row">
 										<th>주문 번호</th>
+										<th>회원</th>
 										<th>상품</th>
 										<th>수량</th>
 										<th>금액</th>
@@ -104,6 +105,10 @@
 									<input type="hidden" name="ordersNo" value="${o.ordersNo}">
 										<tr>
 											<td style=" text-align: center;">${o.ordersNo}</td>
+											<td>
+												<a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${o.customerMail}">
+													${o.customerMail} </a>
+											</td>
 											<td>${o.goodsTitle}</td>
 											<td style="text-align: center;">${o.ordersAmount}</td>
 											<td>${o.goodsPrice}</td>
