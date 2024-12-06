@@ -63,7 +63,8 @@
 				<div class="site-branding">
 					<!-- <h1 class="site-title"><a href="index.html" rel="home">OOWOO</a></h1> -->
 					<h1 class="site-title">
-						<a href="index.html" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a>
+						<a href="${pageContext.request.contextPath}/hello" rel="home"><img
+							src="${pageContext.request.contextPath}/images/logo.png"></a>
 					</h1>
 				</div>
 				<nav id="site-navigation" class="main-navigation">
