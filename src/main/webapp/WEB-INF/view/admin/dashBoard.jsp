@@ -78,6 +78,11 @@
 							주문관리</a></li>
 				</ul>
 			</div>
+			<div class="alert">
+				<i class="fa-solid fa-house" style="color:darkgrey;"></i>
+				<a href="${pageContext.request.contextPath}/hello" style="color:darkgrey;">
+				<strong>OOWOO 바로가기</strong></a>
+			</div>
 		</nav>
 		<!-- /. NAV SIDE  -->
 
@@ -160,13 +165,6 @@
 			</div> <br><br><br>
 			<!-- /. PAGE INNER  -->
 			
-			<div class="col-sm-4">
-				<div class="alert alert-warning">
-					<i class="fa-solid fa-house" style="color:darkslategrey;"></i>
-					<a href="${pageContext.request.contextPath}/hello" style="color:darkslategrey;">
-					<strong>OOWOO 바로가기</strong></a>
-				</div>
- 			</div>
 		</div>
 		<!-- /. PAGE WRAPPER  -->
 	</div>

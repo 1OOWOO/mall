@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>상품 관리</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 <link rel="stylesheet" href="assets/materialize/css/materialize.min.css"
@@ -77,6 +78,11 @@
 						class="active-menu waves-effect waves-dark"><i class="fa fa-qrcode"></i>
 							주문관리</a></li>
 				</ul>
+			</div>
+			<div class="alert">
+				<i class="fa-solid fa-house" style="color:darkgrey;"></i>
+				<a href="${pageContext.request.contextPath}/hello" style="color:darkgrey;">
+				<strong>OOWOO 바로가기</strong></a>
 			</div>
 		</nav>
 		<!-- /. NAV SIDE  -->

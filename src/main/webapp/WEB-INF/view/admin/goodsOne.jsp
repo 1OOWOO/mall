@@ -76,6 +76,11 @@
 							주문관리</a></li>
 				</ul>
 			</div>
+			<div class="alert">
+				<i class="fa-solid fa-house" style="color:darkgrey;"></i>
+				<a href="${pageContext.request.contextPath}/hello" style="color:darkgrey;">
+				<strong>OOWOO 바로가기</strong></a>
+			</div>
 		</nav>
 		<!-- /. NAV SIDE  -->
 
