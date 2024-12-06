@@ -118,7 +118,7 @@
 		               <a href="${pageContext.request.contextPath}/customer/customerGoodsOne?goodsNo=${goods.goodsNo}"">
 			                 <c:if test="${not empty goodsFileMap[goods.goodsNo]}">
 				                <c:forEach var="file" items="${goodsFileMap[goods.goodsNo]}">
-				                    <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" style="width: 350px;  height: 250px; object-fit: cover;">
+				                    <img src="${pageContext.request.contextPath}/upload/${file.goodsFileName}.${file.goodsFileExt}" style="width: 350px;  height: 300px; object-fit: cover;">
 				                </c:forEach>
 				            </c:if>
 				            <c:if test="${empty goodsFileMap[goods.goodsNo]}">
