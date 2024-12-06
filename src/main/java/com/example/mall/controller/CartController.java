@@ -65,16 +65,16 @@ public class CartController {
 	// 오자윤 : 장바구니 삭제
 	@GetMapping("/customer/deleteCart")
 	public String deleteCart(@RequestParam int cartNo, HttpSession session) {
-		String customerMail = (String) session.getAttribute("loggedInCustomer");
+		Customer customerMail = (Customer)session.getAttribute("loggedInCustomer");
 		log.debug("cartNo----->", cartNo);
 		int row = cartService.removeCart(cartNo);
 		
 		if(row == 1) {
 				log.debug("삭제 성공");
-				return "redirect:/customer/cart?customerMail=" + customerMail;
+				return "redirect:/customer/cart?customerMail=" + customerMail.getCustomerMail();
 		}
 		log.debug("삭제 실패");
-		return "redirect:/customer/cart?customerMail=" + customerMail;
+		return "redirect:/customer/cart?customerMail=" + customerMail.getCustomerMail();
 	}
 	
     // 오자윤 : 장바구니 항목 조회
@@ -82,6 +82,8 @@ public class CartController {
     public String cartList(Model model, @RequestParam String customerMail) {
 		// 장바구니 가져오기
 		List<Map<String, Object>> cartList = cartService.getCartItem(customerMail);
+		log.debug("고객 이메일---------> " + customerMail);
+		log.debug("장바구니 항목 수-----------> " + cartList.size());
 		
 		long paymentPrice = cartService.getCartByPayment(cartList);
 		

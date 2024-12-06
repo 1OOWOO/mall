@@ -31,15 +31,18 @@
         				
     </insert>
 
-    <!-- 오자윤 : 장바구니 항목 조회 -->
+    <!-- 오자윤 : 장바구니 항목 조회 및 사진 가져오기-->
     <select id="getCartItem" parameterType="String" resultType="map">
         SELECT c.cart_no cartNo,
+        f.goods_file_ext goodsFileExt,
+        f.goods_file_name goodsFileName,
         g.goods_title goodsTitle,
         c.cart_amount cartAmount,
         g.goods_price goodsPrice,
-        g.goods_no goodsNo
+        g.goods_no goodsNo,
         FROM cart c
-        JOIN goods g ON c.goods_no = g.goods_no
+        LEFT OUTER JOIN goods_file f ON c.goods_no = f.goods_no
+        LEFT OUTER JOIN goods g ON c.goods_no = g.goods_no
         WHERE c.customer_mail = #{customerMail}
     </select>
 

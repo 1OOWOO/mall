@@ -108,22 +108,20 @@
 			        		</tr>
 			        	</c:if>
 							<tr>
+								<th></th>
 								<th>상품명</th>
 								<th>수량</th>
 								<th>금액</th>
-								<th>삭제</th>
 							</tr>
-							
-						<c:forEach var="c" items="${cartList}">
-							    
-								<input type="checkbox" name="goodsChoice" id="goodsChoice" value="${c.cartNo}">
-								<div>${c.goodsTitle}</div>
-								<div>${c.cartAmount}개</div>
-								<div>${c.goodsPrice}원</div>
-								<!-- 오류 해결 필요 -->
-								<div><a href="${pageContext.request.contextPath}/customer/deleteCart?cartNo=${c.cartNo}">삭제</a></div>
+							<c:forEach var="c" items="${cartList}">
+								<tr>
+									<td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}"></td>
+									<td>${c.goodsTitle}</td>
+									<td>${c.cartAmount}개</td>
+									<td>${c.goodsPrice}원</td>
+								</tr>
 						    </c:forEach>
-						</table>
+							</table>							
 								</form>	
 								<div class="col-3">
 								    <table class="table table-bordered mr-3 bg-light">
