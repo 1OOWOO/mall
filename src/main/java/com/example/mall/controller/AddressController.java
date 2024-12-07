@@ -2,7 +2,9 @@ package com.example.mall.controller;
 
 import com.example.mall.service.AddressService;
 import com.example.mall.vo.Address;
+import com.example.mall.vo.Customer;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,19 @@ public class AddressController {
     private AddressService addressService;
 
     // 고객 주소 가져오기
-    @GetMapping("/customer/addressList")
-    public String addressList(Model model, @RequestParam String customerMail) {
-    	return "customer/addressList";
+    public String addressList(HttpSession session, Model model) {
+	    Customer loginCustomer = (Customer) session.getAttribute("loggedInCustomer");
+	    if(loginCustomer == null) {
+	    	return "redirect:/login";
+	    }
+	    // 고객 이메일 가져오기
+	    String customerMail = loginCustomer.getCustomerMail();
+	    // 주소 목록 가져오기
+	    List<Address> addressList = addressService.AddressListByCustomerMail(customerMail);
+	    model.addAttribute("addressList", addressList);
+	    log.debug("addressList--------->" + addressList);
+	    
+	    return "customer/payment";
     }
     
     // 주소 검색 처리

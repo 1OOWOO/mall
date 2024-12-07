@@ -15,5 +15,6 @@ public interface AddressMapper {
 	List<Address> addressListByCustomerMail(String customerMail);
 	
     List<Address> searchAddresses(@Param("keyword") String keyword);
+    
     Integer insertAddress(Map<String, Object> param);
 }

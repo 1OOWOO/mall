@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.example.mall.vo.Customer" %>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -38,14 +39,6 @@
         padding: 20px; /* 패딩 추가 */
     }
 
-    .btn-main {
-        background-color: #007BFF;
-        color: white; 
-    }
-    
-    .btn-main:hover {
-        background-color: #0056b3;
-    }
 </style>
 </head>
 <!-- Author : 오자윤 -->
@@ -53,11 +46,29 @@
 <div id="page">
     <div class="container">
         <header id="masthead" class="site-header">
+        <!-- 로그인  -->
+				<div style="float: right;">
+					<%
+					Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
+					if (loggedInCustomer == null) {
+					%>
+					<span> <a href="login"> 로그인 </a> | <a href="signUp">
+							회원가입 </a>
+					</span>
+					<%
+					} else {
+					%>
+					<span> <a
+						href="${pageContext.request.contextPath}/customer/myPage">
+							${loggedInCustomer.customerMail} 님 </a> |<a href="logout"> 로그아웃 </a></span>
+					<%
+					}
+					%>
+				</div>
             <div class="site-branding">
                 <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
-                <h2 class="site-description">모방은 창조의 어머니이다</h2>
             </div>
-<nav id="site-navigation" class="main-navigation">
+				<nav id="site-navigation" class="main-navigation">
 				      <button class="menu-toggle">Menu</button>
 				      <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
 				      <div class="menu-menu-1-container">
@@ -111,7 +122,7 @@
 				    display: flex;
 				    flex-direction: column; /* 수직 방향으로 정렬 */
 				}
-				
+			
 				#page {
 				    flex: 1; /* 페이지 내용이 남은 공간을 차지하도록 설정 */
 				}
@@ -119,15 +130,14 @@
         </header>
         
 		<h3>장바구니</h3>
-		<form method="post" action="${pageContext.request.contextPath}/customer/checkGoods" id="cartForm">
-			<input type="hidden" name="customerMail" value="${customerMail}">
 		<!-- #masthead -->
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area column full">
 				<main id="main" class="site-main" role="main">
 				<div id="container" class="bg-light">
-					<div id="content" role="main">
+					<div id="content" role="main"> 
 						<table class="table">
+					
 						<c:if test="${carts.isEmpty()}">
 			        		<tr>
 			        			<td colspan="7" class="text-center">상품이 비었습니다.</td>
@@ -138,24 +148,25 @@
 								<th>상품명</th>
 								<th>수량</th>
 								<th>금액</th>
+								<th>총 가격</th>
 								<th>삭제</th>
 							</tr>
 							<c:forEach var="c" items="${cartList}">
-								<tr>
+								<tr><!-- payment 에 cartNo 값 넘겨주기 -->
 									<td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td>
 									<td>${c.goodsTitle}</td>
 									<td>${c.cartAmount}개</td>
 									<td>${c.goodsPrice}원</td>
+									<td>${c.goodsTotalPrice}원</td>
 									<td><a href="${pageContext.request.contextPath}/customer/deleteCart?cartNo=${c.cartNo}" class="btn btn-main w-100">삭제</a></td>
 								</tr>
-								
+							
 						    </c:forEach>
 							</table>							
-								</form>	
 								<div class="col-3">
 								    <table class="table table-bordered mr-3 bg-light">
 								           <tr>
-								            	<th class="text center">총 합계</th> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            	<th class="text center">총 합계</th> 
 								            </tr>
 								            <c:if test="${cart.isEmpty()}">
 								           <tr>
@@ -164,21 +175,18 @@
 								            </c:if>
 								            <c:if test="${!cart.isEmpty()}">
 								           <tr>
-								            	<td>${cartList[0].totalPrice}원</td> <!-- cart가 비어있지 않은 경우에 대한 처리가 필요합니다 -->
+								            	<td>${cartList[0].totalPrice}원</td> 
 								            </tr>
 								            </c:if>
-								            
-								            <td><button type="submit" id="checkBtn" 
-								            formaction="${pageContext.request.contextPath}/customer/paymentList?customerMail=${customerMail}"class="btn btn-main w-100" type="submit" id="cartButton">결제</button></td>
+								            <td><a href="${pageContext.request.contextPath}/customer/paymentList"class="btn btn-main w-100" >결제</a></td>
 								        </tr>
 								    </table>
 								</div>
-								</td>
+							</td>
 							</tr>
 						</table>
 					</div>
 				</div>
-				</main>
 				<!-- #main -->
 			</div>
 			<!-- #primary -->
