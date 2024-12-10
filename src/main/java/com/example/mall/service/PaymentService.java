@@ -24,7 +24,8 @@ public class PaymentService {
 	@Autowired OrdersMapper ordersMapper;
 	
 	// 오자윤 : 결제 완료 시 orders payment 생성, cart 삭제
-	public Integer addPayment(Payment payment, List<Integer> cartNo) {
+	public Integer addPayment(Payment payment, List<Integer> cartNo, Integer addressNo) {
+		payment.setAddressNo(addressNo);
 		Integer paymentRow = paymentMapper.insertPayment(payment);
 		Integer paymentNo = payment.getPaymentNo();
 		if(paymentRow == 1) {

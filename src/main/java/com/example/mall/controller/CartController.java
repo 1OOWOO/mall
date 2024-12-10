@@ -80,6 +80,9 @@ public class CartController {
     // 오자윤 : 장바구니 항목 조회
 	@GetMapping("/customer/cart")
     public String cartList(Model model, @RequestParam String customerMail) {
+		// 주소 목록 가져오기
+		List<Address> addressList = addressService.AddressListByCustomerMail(customerMail);
+		model.addAttribute("addressList", addressList);
 		// 장바구니 가져오기
 		List<Map<String, Object>> cartList = cartService.getCartItem(customerMail);
 		log.debug("고객 이메일---------> " + customerMail);

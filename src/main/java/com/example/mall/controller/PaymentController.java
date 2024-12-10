@@ -39,11 +39,14 @@ public class PaymentController {
     }
     
     @PostMapping("/customer/addPayment")
-    public String addPayment(Payment payment, @RequestParam(value="cartNo", required=false) List<Integer> cartNo) {
+    public String addPayment(@RequestParam Integer addressNo, @RequestParam Integer paymentPrice, Payment payment, @RequestParam(value="cartNo", required=false) List<Integer> cartNo) {
+    	payment.setAddressNo(addressNo);
+    	payment.setPaymentPrice(paymentPrice);
+    	log.debug("addressNo------>", addressNo);
     	log.debug("cartNo------>", cartNo);
     	log.debug("payment------>", payment);
-    	Integer paymentNo = paymentService.addPayment(payment, cartNo);
-    	return "redirect:/customer/completePayment?paymentNo=" + paymentNo;
+    	Integer paymentNo = paymentService.addPayment(payment, cartNo, addressNo);
+    	return "redirect:/customer/myPage?paymentNo=" + paymentNo;
     }
     
     // 결제 페이지 호출

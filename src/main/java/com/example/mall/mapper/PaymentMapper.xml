@@ -37,7 +37,7 @@
         AND payment_status = '결제완료'
     </select>
     
-    <!-- 결제완료 -->
+    <!-- cart에서 결제 클릭시 payment 테이블에 값 저장-->
     <insert id="insertPayment" parameterType="com.example.mall.vo.Payment" useGeneratedKeys="true" keyProperty="paymentNo">
     	INSERT INTO payment(
     			address_no
