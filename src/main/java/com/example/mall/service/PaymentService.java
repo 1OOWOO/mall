@@ -26,9 +26,10 @@ public class PaymentService {
 	// 오자윤 : 결제 완료 시 orders payment 생성, cart 삭제
 	public Integer addPayment(Payment payment, List<Integer> cartNo, Integer addressNo) {
 		payment.setAddressNo(addressNo);
+		// 결제 정보를 payment 테이블에 삽입 후 paymentNo 가져오기
 		Integer paymentRow = paymentMapper.insertPayment(payment);
 		Integer paymentNo = payment.getPaymentNo();
-		if(paymentRow == 1) {
+		if(paymentRow == 1) { // 결제가 성공적으로 완료된 경우
 				Integer count = 0;
 				for(Integer c : cartNo) {
 					// 장바구니에서 선택된 항목들의 정보를 가져와서 Order 객체에 저장
@@ -40,7 +41,7 @@ public class PaymentService {
 					// orders 테이블에 결제 정보 추가
 					count += ordersMapper.insertOrders(orders);
 				}
-				if(count == cartNo.size()) {
+				if(count == cartNo.size()) { // 주문 성공적으로 생성시, 장바구니 항목 삭제
 					count = 0;
 					for(Integer c : cartNo) {
 						count += cartMapper.removeCart(c);

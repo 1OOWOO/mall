@@ -121,6 +121,8 @@
 					        <tr>
 					            <th>상세 주소</th>
 					            <td>${addressList[0].addressDetail}</td>
+					            <!-- 주소값 addPayment 넘기기 -->
+					          <td><input type="hidden" name="addressNo" value="${addressList[0].addressNo}"></td>
 					        </tr>
 					    </c:if>
 					</c:if>
@@ -141,6 +143,8 @@
                             <td>${c.goodsTitle}</td>
                             <td>${c.cartAmount}개</td>
                             <td>${c.goodsPrice}원</td>
+                            <!-- cartNo 값 addPayment 넘기기 -->
+                            <td><input type="hidden" name="cartNo" value="${c.cartNo}"></td>
                         </tr>
                     </c:forEach>
                     <th>결제수단</th>
@@ -162,6 +166,8 @@
                             <c:if test="${!cart.isEmpty()}">
                                 <tr>
                                     <td>총합계 : ${cartList[0].totalPrice}원</td>
+                                    <!-- 결제금액 addPayment 값 넘기기 -->
+                                   <td><input type="hidden" name="paymentPrice" value="${cartList[0].totalPrice}"></td>
                                 </tr>
                             </c:if>
                             <td><a href="${pageContext.request.contextPath}/customer/myPage" class="btn btn-primary">결제</a></td>

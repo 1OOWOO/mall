@@ -149,7 +149,7 @@
                                 </tr>
                                 <c:forEach var="c" items="${cartList}">
                                     <tr>
-                                        <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td>
+                                        <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:150px; height:150px;"></td>
                                         <td>${c.goodsTitle}</td>
                                         <td>${c.cartAmount}개</td>
                                         <td>${c.goodsPrice}원</td>
