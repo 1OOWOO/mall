@@ -40,6 +40,10 @@ public class CustomerService {
         customerMapper.insertCustomer(customer); // DB에 저장
     }
     
+    // 오자윤 : 고객리스트 검색 시 정보 반환
+    public List<Customer> searchByEmail(String customerMail) {
+    	return customerMapper.searchByEmail(customerMail);
+    }
     
 	// 오자윤 : 고객 상세정보 조회
 	public Map<String, Object> selectCustomerOne(String customerMail) {
@@ -71,11 +75,6 @@ public class CustomerService {
         	return customerMapper.countCustomerList(); // Mapper 호출
         }
 
-        // 오자윤 : 이메일 검색 시 전체 고객 수 가져오기
-        public Integer getTotalCountByEmail(String customerMail) {
-            return customerMapper.getTotalCountByEmail(customerMail); // Mapper 호출
-        }
-        
        // 오자윤 : 이메일로 고객 정보 조회 (단일 고객)
             public Customer getCustomerByEmail(String customerMail) {
                 return customerMapper.getCustomerByEmail(customerMail); // Mapper 호출하여 고객 반환

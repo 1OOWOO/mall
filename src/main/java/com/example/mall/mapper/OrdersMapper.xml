@@ -15,6 +15,7 @@
 					, #{paymentNo}
 			)
 	</insert>
+	
 	<!-- /admin/ordersList -->
 	<select id="selectOrdersList" resultType="Map">
 		SELECT 

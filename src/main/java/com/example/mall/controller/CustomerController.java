@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.mall.service.CustomerService;
 import com.example.mall.util.Page;
@@ -14,6 +15,7 @@ import com.example.mall.vo.Customer;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +25,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    // 오자윤 : 회원이메일 검색 버튼요청시 
+    // 오자윤 : 회원정보
     @GetMapping("/admin/customerList")
     public String customerList(HttpSession session, Model model, @RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "10") Integer rowPerPage) {
         
@@ -45,7 +47,17 @@ public class CustomerController {
         model.addAttribute("currentPage", currentPage);
         return "admin/customerList"; 
     }
-
+    
+    // 오자윤 : 고객이메일 검색 요청(AJAX)
+    @GetMapping("/admin/customerList/search")
+    @ResponseBody
+    public List<Customer> searchCustomerList(@RequestParam(value="searchEmail", required = false) String customerMail) {
+    	if (customerMail !=null && !customerMail.isEmpty()) {
+    		return customerService.searchByEmail(customerMail);
+    	}
+    	return new ArrayList<>(); // 결과 없을 경우, 빈 리스트 반환
+    }
+    
     // 우정 : 회원가입 처리 (signup 페이지에서 직접 처리)
     @PostMapping("/signup")
     public String register(Customer customer, Model model) {

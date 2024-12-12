@@ -10,6 +10,9 @@ import com.example.mall.vo.Customer;
 
 @Mapper
 public interface CustomerMapper {
+	// 오자윤 : 이메일로 고객 정보 검색
+	List<Customer> searchByEmail(String customerMail);
+	
 	// 오자윤 : 회원리스트 검색
 	List<Customer> selectCustomerOfList(String customerMail);
 	
@@ -37,8 +40,6 @@ public interface CustomerMapper {
     // 오자윤 : 고객리스트 카운트
 	Integer countCustomerList();
     
-    // 오자윤 : 이메일 검색 시 전체 고객 수 반환
-    Integer getTotalCountByEmail(@Param("email") String customerMail);
 
 
 }

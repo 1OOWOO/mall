@@ -97,12 +97,41 @@
 						<form action="${pageContext.request.contextPath}/admin/customerList" method="get">
 							<div class="input-group" style=" display: flex;">
 								<i class="material-icons dp48">search</i>
-								<input type="text" id="searchEmail" name="searchEmail"
-									class="form-control" placeholder="이메일 검색"
+								<input type="text" id="searchEmail" name="searchEmail" class="form-control" placeholder="이메일 검색"
 									value="${searchEmail}" style="width: 250px;">
+								<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 								<button type="submit" class="btn">검색</button>
-							</div>
-						</form>
+								<div id="customerResult"></div>
+								
+								<script>
+								// 이메일 검색기능, AJAX
+									$(document).ready(function() {
+									  $("#searchButton").click(function() {
+										const email = $("#searchEmail").val();
+									$.ajax({
+										url : "${pageContext.request.contextPath}/admin/customerList/search"
+										type: "GET"
+										data: { searchEmail: email },
+										success: function(data) {
+									        $("#customerResult").empty(); // 기존 결과 지우기
+							                if (data.length > 0) {
+							                    let resultHtml = "<table class='table'><thead><tr><th>이메일</th><th>생년월일</th><th>가입날짜</th></tr></thead><tbody>";
+							                    data.forEach(function(customer) {
+							                        resultHtml += `<tr><td>${customer.customerMail}</td><td>${customer.customerBirth}</td><td>${customer.createDate}</td></tr>`;
+							                    });
+							                    resultHtml += "</tbody></table>";
+							                    $("#customerResult").append(resultHtml);
+							                } else {
+							                    $("#customerResult").append("<p>검색된 결과가 없습니다.</p>");
+							                }
+							            },
+							            error: function() {
+							                alert("검색 중 오류가 발생했습니다.");
+							            }
+							        });
+							    });
+							});
+						</script>
 						<table class="table">
 							<thead>
 								<tr>

@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.CustomerMapper">
+	
+	<!-- 오자윤 : customerList 에 고객 검색시 -->
+	<select id="searchByEmail" resultType="map">
+		SELECT customer_mail customerMail
+				customer_birth customerBirth
+				create_date createDate
+		FROM customer
+		WHERE customer_mail = #{customerMail]
+	</select>
+
 	<!--  오자윤 : customerList 고객검색 -->
 	<select id="selectCustomerOfList" parameterType="String" resultType="com.example.mall.vo.Customer">
 	  SELECT customer_mail customerMail
@@ -24,7 +34,7 @@
       WHERE customer_mail = #{customerMail} AND customer_pw = #{customerPw}
    </select>
    
-   <!--  오자윤 : 고객 검색. -->
+   <!--  오자윤 : 개별 고객 상세정보 -->
 	<select id="selectCustomerOne" parameterType="String" resultType="map">
 	  SELECT c.customer_mail customerMail,
 	  	c.customer_pw customerPw,
@@ -60,25 +70,6 @@
     <!-- 오자윤 : 고객리스트 카운트 -->
      <select id="countCustomerList" resultType="int">
         SELECT COUNT(*) FROM customer
-    </select>
-    
-    <!-- 오자윤 : 이메일로 고객 목록 검색 -->
-    <select id="searchCustomersByEmail" 
-    parameterType="Map"
-    resultType="com.example.mall.vo.Customer">
-        SELECT customer_mail customerMail,
-               customer_birth customerBirth,
-               create_date createDate 
-        FROM customer
-        WHERE customer_mail LIKE CONCAT('%', #{email}, '%')
-        LIMIT #{page}, #{size}
-    </select>
-
-    <!-- 오자윤 : 이메일 검색 시 전체 고객 수 -->
-    <select id="getTotalCountByEmail" resultType="int">
-        SELECT COUNT(*) 
-        FROM customer
-        WHERE customer_mail LIKE CONCAT('%', #{email}, '%')
     </select>
     
 </mapper>
