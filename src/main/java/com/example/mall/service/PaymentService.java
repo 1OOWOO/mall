@@ -44,15 +44,16 @@ public class PaymentService {
 					log.debug("orders" + orders.toString());
 					//count += ordersMapper.insertOrders(orders);
 					// orders 테이블에 결제 정보 추가
-					Integer insertRow = ordersMapper.insertOrders(orders);
-					log.debug("insertRow" + insertRow);
+					count += ordersMapper.insertOrders(orders);
+					log.debug("count------->" + count);
 				}
 				if(count == cartNo.size()) { // 주문 성공적으로 생성시, 장바구니 항목 삭제
 					log.debug("카드삭제 성공" + count);
 					count = 0;
 					for(Integer c : cartNo) {
-						Integer rowmoveRow = cartMapper.removeCart(c);
-						log.debug("rowmoveRow--------->" + rowmoveRow);
+						log.debug("Removng cartNo as c--------->" + c);
+						count += cartMapper.removeCart(c);
+						log.debug("rowmoveRow--------->" + count);
 					}
 				}
 		}

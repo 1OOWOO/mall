@@ -45,6 +45,7 @@ public class PaymentController {
     	log.debug("addressNo------>", addressNo);
     	log.debug("cartNo------>", cartNo);
     	log.debug("payment------>", payment);
+    	log.debug("paymentPrice------>", paymentPrice);
     	Integer paymentNo = paymentService.addPayment(payment, cartNo, addressNo);
     	return "redirect:/customer/myPage?paymentNo=" + paymentNo;
     }
