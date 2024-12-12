@@ -140,11 +140,12 @@
                     <c:forEach var="c" items="${cartList}">
                         <tr>
                             <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td>
-                            <td>${c.goodsTitle}</td>
+                            <td>${c.goodsTitle}${c.cartNo}</td>
                             <td>${c.cartAmount}개</td>
                             <td>${c.goodsPrice}원</td>
                             <!-- cartNo 값 addPayment 넘기기 -->
-                            <td><input type="hidden" name="cartNo" value="${c.cartNo}"></td>
+                            <td> 
+                            <input type="hidden" name="cartNo" value="${c.cartNo}"></td>
                         </tr>
                     </c:forEach>
                     <th>결제수단</th>

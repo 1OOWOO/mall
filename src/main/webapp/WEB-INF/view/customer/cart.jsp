@@ -137,7 +137,6 @@
 		                        <input type="radio" id="paymentPay" name="paymentMethod" value="페이" required>
 		                        <label for="paymentPay">페이</label>
 		                     </div>
-                            <input type="hidden" name="cartNo" value="${cartNo}"/>
                             <table class="table">
                                 <tr>
                                     <th></th>
@@ -148,6 +147,7 @@
                                     <th>삭제</th>
                                 </tr>
                                 <c:forEach var="c" items="${cartList}">
+                          		  <input type="hidden" name="cartNo" value="${c.cartNo}"/>
                                     <tr>
                                         <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:150px; height:150px;"></td>
                                         <td>${c.goodsTitle}</td>

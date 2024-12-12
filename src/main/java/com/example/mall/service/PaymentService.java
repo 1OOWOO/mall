@@ -30,21 +30,29 @@ public class PaymentService {
 		Integer paymentRow = paymentMapper.insertPayment(payment);
 		Integer paymentNo = payment.getPaymentNo();
 		if(paymentRow == 1) { // 결제가 성공적으로 완료된 경우
+				log.debug("결제성공" + paymentRow);
 				Integer count = 0;
+				log.debug("cartNo" + cartNo.toString());
 				for(Integer c : cartNo) {
 					// 장바구니에서 선택된 항목들의 정보를 가져와서 Order 객체에 저장
 					Map<String, Object> cart = cartMapper.selectedCart(c);
+					log.debug("cart" + cart.toString());
 					Orders orders = new Orders();
 					orders.setGoodsNo((Integer)cart.get("goodsNo"));
 					orders.setOrdersAmount((Integer)cart.get("cartAmount"));
 					orders.setPaymentNo(paymentNo);
+					log.debug("orders" + orders.toString());
+					//count += ordersMapper.insertOrders(orders);
 					// orders 테이블에 결제 정보 추가
-					count += ordersMapper.insertOrders(orders);
+					Integer insertRow = ordersMapper.insertOrders(orders);
+					log.debug("insertRow" + insertRow);
 				}
 				if(count == cartNo.size()) { // 주문 성공적으로 생성시, 장바구니 항목 삭제
+					log.debug("카드삭제 성공" + count);
 					count = 0;
 					for(Integer c : cartNo) {
-						count += cartMapper.removeCart(c);
+						Integer rowmoveRow = cartMapper.removeCart(c);
+						log.debug("rowmoveRow--------->" + rowmoveRow);
 					}
 				}
 		}

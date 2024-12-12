@@ -33,8 +33,10 @@ public class AddressController {
 	    String customerMail = loginCustomer.getCustomerMail();
 	    // 주소 목록 가져오기
 	    List<Address> addressList = addressService.AddressListByCustomerMail(customerMail);
+	    
 	    model.addAttribute("addressList", addressList);
-	    log.debug("addressList--------->" + addressList);
+	    
+	    log.debug("addressList--------->" + addressList.toString());
 	    
 	    return "customer/payment";
     }

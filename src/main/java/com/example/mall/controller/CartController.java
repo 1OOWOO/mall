@@ -89,6 +89,8 @@ public class CartController {
 		log.debug("장바구니 항목 수-----------> " + cartList.size());
 		
 		model.addAttribute("cartList", cartList);
+		log.debug("cartList--->" + cartList.toString());
+		log.debug("addressList--->" + addressList.toString());
 		model.addAttribute("customerMail", customerMail);
 		
         return "/customer/cart"; // 장바구니 페이지 반환
