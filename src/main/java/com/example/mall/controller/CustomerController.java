@@ -52,7 +52,7 @@ public class CustomerController {
     
     // 오자윤 : admin/customerList 고객이메일 검색, AJAX 요청
     @GetMapping("/admin/customerList/search")
-    @ResponseBody
+    @ResponseBody // HTTP 응답 본문을 JSON 형식으로 구성.
     public ResponseEntity<Map<String, Object>> searchCustomerList(@RequestParam(value="searchEmail", required = false) String customerMail) {
         log.debug("customerMail 검색창----->" + customerMail); // 고객이 검색한 이메일 정보
         List<Customer> customerList = new ArrayList<>(); // 고객 리스트 초기화

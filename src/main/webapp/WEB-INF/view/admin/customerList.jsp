@@ -179,21 +179,21 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#searchButton').on('click', function() {
-            var searchEmail = $('#searchEmail').val();
+<script> // 고객 검색기능
+    $(document).ready(function() { // 문서 완전히 로드시 실행
+        $('#searchButton').on('click', function() { //
+            var searchEmail = $('#searchEmail').val(); // 입력된 이메일 값 가져옴
 
             $.ajax({
                 url: '${pageContext.request.contextPath}/admin/customerList/search', // 검색 요청 URL
                 method: 'GET',
-                data: { searchEmail: searchEmail },
+                data: { searchEmail: searchEmail }, // 서버로 전송할 데이터 (검색 이메일)
                 success: function(response) {
                     var customerList = response.customerList; // 고객 리스트
                     var tbody = $('#customerResults');
                     tbody.empty(); // 기존 결과 비우기
 
-                    if (customerList.length > 0) {
+                    if (customerList.length > 0) { // 고객 리스트에 결과 있는 확인
                         customerList.forEach(function(customer) {
                             tbody.append(
                                 '<tr>' +
@@ -203,11 +203,11 @@
                                 '</tr>'
                             );
                         });
-                    } else {
+                    } else { // 고객 리스트 비어있는 경우
                         tbody.append('<tr><td colspan="3" class="text-center">검색된 결과가 없습니다.</td></tr>');
                     }
                 },
-                error: function() {
+                error: function() { // 요처이 실패했을 때 호출
                     alert('검색 중 오류가 발생했습니다.');
                 }
             });
