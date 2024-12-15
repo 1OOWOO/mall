@@ -128,6 +128,7 @@
                             <select name="addressNo" id="addressNo" required>
                                 <c:forEach var="address" items="${addressList}">
                                     <option value="${address.addressNo}">${address.addressDetail}</option>
+                                     <input type="hidden" name="addressNo" value="${address.addressNo}"/>
                                 </c:forEach>
                             </select>
                               <div>

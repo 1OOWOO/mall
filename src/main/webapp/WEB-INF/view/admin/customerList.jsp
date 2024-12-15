@@ -84,7 +84,6 @@
 				<strong>OOWOO 바로가기</strong></a>
 			</div>
 		</nav>
-		<!-- /. NAV SIDE  -->
 
 		<div id="page-wrapper">
 			<div class="header">
@@ -93,45 +92,16 @@
 			<div id="page-inner">
 				<div class="dashboard-cards">
 					<div class="row">
-						<!-- 이메일 검색 폼 -->
-						<form action="${pageContext.request.contextPath}/admin/customerList" method="get">
+						<!-- 이메일 검색 폼 / AJAX 사용 -->
+						<form id="searchForm" method="get">
 							<div class="input-group" style=" display: flex;">
-								<i class="material-icons dp48">search</i>
 								<input type="text" id="searchEmail" name="searchEmail" class="form-control" placeholder="이메일 검색"
 									value="${searchEmail}" style="width: 250px;">
-								<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-								<button type="submit" class="btn">검색</button>
+								<button type="button" id="searchButton" class="btn">검색</button>
 								<div id="customerResult"></div>
-								
-								<script>
-								// 이메일 검색기능, AJAX
-									$(document).ready(function() {
-									  $("#searchButton").click(function() {
-										const email = $("#searchEmail").val();
-									$.ajax({
-										url : "${pageContext.request.contextPath}/admin/customerList/search"
-										type: "GET"
-										data: { searchEmail: email },
-										success: function(data) {
-									        $("#customerResult").empty(); // 기존 결과 지우기
-							                if (data.length > 0) {
-							                    let resultHtml = "<table class='table'><thead><tr><th>이메일</th><th>생년월일</th><th>가입날짜</th></tr></thead><tbody>";
-							                    data.forEach(function(customer) {
-							                        resultHtml += `<tr><td>${customer.customerMail}</td><td>${customer.customerBirth}</td><td>${customer.createDate}</td></tr>`;
-							                    });
-							                    resultHtml += "</tbody></table>";
-							                    $("#customerResult").append(resultHtml);
-							                } else {
-							                    $("#customerResult").append("<p>검색된 결과가 없습니다.</p>");
-							                }
-							            },
-							            error: function() {
-							                alert("검색 중 오류가 발생했습니다.");
-							            }
-							        });
-							    });
-							});
-						</script>
+							</div>		
+						</form>
+						
 						<table class="table">
 							<thead>
 								<tr>
@@ -140,11 +110,11 @@
 									<th>가입날짜</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="customerResults">
 								<c:forEach var="c" items="${customerList}">
 									<tr>
 										<td>
-										<a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${c.customerMail}">${c.customerMail}</a>
+											<a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=${c.customerMail}">${c.customerMail}</a>
 										</td>
 										<td>${c.customerBirth}</td>
 										<td>${c.createDate}</td>
@@ -208,5 +178,41 @@
 
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#searchButton').on('click', function() {
+            var searchEmail = $('#searchEmail').val();
+
+            $.ajax({
+                url: '${pageContext.request.contextPath}/admin/customerList/search', // 검색 요청 URL
+                method: 'GET',
+                data: { searchEmail: searchEmail },
+                success: function(response) {
+                    var customerList = response.customerList; // 고객 리스트
+                    var tbody = $('#customerResults');
+                    tbody.empty(); // 기존 결과 비우기
+
+                    if (customerList.length > 0) {
+                        customerList.forEach(function(customer) {
+                            tbody.append(
+                                '<tr>' +
+                                '<td><a href="${pageContext.request.contextPath}/admin/customerOne?customerMail=' + customer.customerMail + '">' + customer.customerMail + '</a></td>' +
+                                '<td>' + customer.customerBirth + '</td>' +
+                                '<td>' + customer.createDate + '</td>' +
+                                '</tr>'
+                            );
+                        });
+                    } else {
+                        tbody.append('<tr><td colspan="3" class="text-center">검색된 결과가 없습니다.</td></tr>');
+                    }
+                },
+                error: function() {
+                    alert('검색 중 오류가 발생했습니다.');
+                }
+            });
+        });
+    });
+</script>
 
 </html>

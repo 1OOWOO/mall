@@ -3,21 +3,14 @@
 <mapper namespace="com.example.mall.mapper.CustomerMapper">
 	
 	<!-- 오자윤 : customerList 에 고객 검색시 -->
-	<select id="searchByEmail" resultType="map">
-		SELECT customer_mail customerMail
-				customer_birth customerBirth
+	<select id="searchByEmail" resultType="com.example.mall.vo.Customer">
+		SELECT customer_mail customerMail,
+			customer_birth customerBirth,
 				create_date createDate
 		FROM customer
-		WHERE customer_mail = #{customerMail]
+		WHERE customer_mail = #{customerMail}
 	</select>
 
-	<!--  오자윤 : customerList 고객검색 -->
-	<select id="selectCustomerOfList" parameterType="String" resultType="com.example.mall.vo.Customer">
-	  SELECT customer_mail customerMail
-        FROM customer
-        WHERE customer_mail=#{customerMail}
-	</select>
-	
 	<!--  우정 : 고객 회원가입  -->
 	<insert id="insertCustomer" parameterType="com.example.mall.vo.Customer">
 	    INSERT INTO customer (customer_mail, customer_pw, customer_birth, customer_gender, create_date, update_date)

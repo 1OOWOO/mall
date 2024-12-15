@@ -40,8 +40,8 @@ public class CustomerService {
         customerMapper.insertCustomer(customer); // DB에 저장
     }
     
-    // 오자윤 : 고객리스트 검색 시 정보 반환
-    public List<Customer> searchByEmail(String customerMail) {
+    // 오자윤 : admin/customerList 고객이메일 검색
+    public Customer searchByEmail(String customerMail) {
     	return customerMapper.searchByEmail(customerMail);
     }
     

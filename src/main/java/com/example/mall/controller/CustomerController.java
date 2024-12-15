@@ -1,6 +1,7 @@
 package com.example.mall.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,15 +50,24 @@ public class CustomerController {
         return "admin/customerList"; 
     }
     
-    // 오자윤 : 고객이메일 검색 요청(AJAX)
+    // 오자윤 : admin/customerList 고객이메일 검색, AJAX 요청
     @GetMapping("/admin/customerList/search")
     @ResponseBody
-    public List<Customer> searchCustomerList(@RequestParam(value="searchEmail", required = false) String customerMail) {
-    	if (customerMail !=null && !customerMail.isEmpty()) {
-    		return customerService.searchByEmail(customerMail);
-    	}
-    	return new ArrayList<>(); // 결과 없을 경우, 빈 리스트 반환
+    public ResponseEntity<Map<String, Object>> searchCustomerList(@RequestParam(value="searchEmail", required = false) String customerMail) {
+        log.debug("customerMail 검색창----->" + customerMail); // 고객이 검색한 이메일 정보
+        List<Customer> customerList = new ArrayList<>(); // 고객 리스트 초기화
+        if (customerMail != null && !customerMail.isEmpty()) {
+            Customer customer = customerService.searchByEmail(customerMail);
+            if (customer != null) {
+                customerList.add(customer); // 검색 결과 있을 경우 리스트에 추가
+            }
+        }
+        
+        Map<String, Object> response = new HashMap<>();
+        response.put("customerList", customerList); // JSON 응답에 고객 리스트 추가
+        return ResponseEntity.ok(response); // JSON 응답 반환
     }
+
     
     // 우정 : 회원가입 처리 (signup 페이지에서 직접 처리)
     @PostMapping("/signup")
