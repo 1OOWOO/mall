@@ -11,11 +11,13 @@ import com.example.mall.vo.GoodsFile;
 public interface GoodsFileMapper {
 	// /admin/addGoodsFile
 	Integer insertGoodsFile(GoodsFile goodsFile);
-	
+
 	// /admin/goodsOne
 	List<GoodsFile> selectGoodsFileListByNo(@Param("goodsNo") Integer goodsNo);
-		// 이미지 삭제 removeGoodsFile
+
+	// 이미지 삭제 removeGoodsFile
 	Integer deleteGoodsFile(Integer goodsFileNo);
-		// 이미지 삭제 -  파일 이름
+
+	// 이미지 삭제 - 파일 이름
 	GoodsFile selectGoodsFileOne(Integer goodsFileNo);
 }

@@ -19,59 +19,60 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Transactional
 public class GoodsFileService {
-	@Autowired GoodsFileMapper goodsFileMapper;
-	
+	@Autowired
+	GoodsFileMapper goodsFileMapper;
+
 	// /admin/addGoods
 	public void addGoodsFile(GoodsForm goodsForm, String path) {
-		if(goodsForm.getGoodsFile() != null) {
+		if (goodsForm.getGoodsFile() != null) {
 			// 파일 입력, ActorFile 입력
 			List<MultipartFile> list = goodsForm.getGoodsFile();
-			for(MultipartFile mf : list) {
+			for (MultipartFile mf : list) {
 				GoodsFile goodsFile = new GoodsFile();
 				goodsFile.setGoodsFileNo(goodsForm.getGoodsNo());
 				goodsFile.setGoodsNo(goodsForm.getGoodsNo()); // 외래키
-				log.debug("goodsNo: "+goodsForm.getGoodsNo());
-				
+				log.debug("goodsNo: " + goodsForm.getGoodsNo());
+
 				goodsFile.setGoodsFileType(mf.getContentType());
-                goodsFile.setGoodsFileSize(String.valueOf(mf.getSize()));
-                
-                // 파일 이름 및 확장자 처리
-                String filename = UUID.randomUUID().toString().replace("-", "");
-                goodsFile.setGoodsFileName(filename);
-                int dotIdx = mf.getOriginalFilename().lastIndexOf(".");
-                String originname = mf.getOriginalFilename().substring(0, dotIdx);
-                String ext = mf.getOriginalFilename().substring(dotIdx + 1);
-                goodsFile.setGoodsFileOrigin(originname);
-                goodsFile.setGoodsFileExt(ext);
-                
-                // GoodsFile을 데이터베이스에 삽입
-                int row2 = goodsFileMapper.insertGoodsFile(goodsFile);
-                log.debug("파일 업로드 row2:"+Integer.toString(row2));
-                if (row2 == 1) { // 물리적 파일 저장 request.getRealPath("/upload")
-                    try {
-                        mf.transferTo(new File(path + filename + "." + ext));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        throw new RuntimeException(); // 예외 발생 시 RuntimeException 발생
-                    }
-                }
+				goodsFile.setGoodsFileSize(String.valueOf(mf.getSize()));
+
+				// 파일 이름 및 확장자 처리
+				String filename = UUID.randomUUID().toString().replace("-", "");
+				goodsFile.setGoodsFileName(filename);
+				int dotIdx = mf.getOriginalFilename().lastIndexOf(".");
+				String originname = mf.getOriginalFilename().substring(0, dotIdx);
+				String ext = mf.getOriginalFilename().substring(dotIdx + 1);
+				goodsFile.setGoodsFileOrigin(originname);
+				goodsFile.setGoodsFileExt(ext);
+
+				// GoodsFile을 데이터베이스에 삽입
+				int row2 = goodsFileMapper.insertGoodsFile(goodsFile);
+				log.debug("파일 업로드 row2:" + Integer.toString(row2));
+				if (row2 == 1) { // 물리적 파일 저장 request.getRealPath("/upload")
+					try {
+						mf.transferTo(new File(path + filename + "." + ext));
+					} catch (Exception e) {
+						e.printStackTrace();
+						throw new RuntimeException(); // 예외 발생 시 RuntimeException 발생
+					}
+				}
 			}
 		}
 	}
-	
+
 	// /admin/goodsOne
-	public List<GoodsFile> getGoodsFileListByNo(Integer goodsNo){
+	public List<GoodsFile> getGoodsFileListByNo(Integer goodsNo) {
 		return goodsFileMapper.selectGoodsFileListByNo(goodsNo);
 	}
-	
+
 	// /admin/goodsOne
 	public void removeGoodsFile(Integer goodsFileNo, String path) {
 		// 1. 파일 이름 select
 		GoodsFile goodsFile = goodsFileMapper.selectGoodsFileOne(goodsFileNo);
 		int row = goodsFileMapper.deleteGoodsFile(goodsFileNo);
-		if(row == 1) { // 2. File 정보 삭제가 되었다면 물리적 파일삭제
-			String fullName = path + goodsFile.getGoodsFileName()+"."+goodsFile.getGoodsFileExt();
-			File f = new File(fullName); 
+		if (row == 1) { // 2. File 정보 삭제가 되었다면 물리적 파일삭제
+			String fullName = path + goodsFile.getGoodsFileName() + "." + goodsFile.getGoodsFileExt();
+			File f = new File(fullName);
 			f.delete();
 		}
 	}

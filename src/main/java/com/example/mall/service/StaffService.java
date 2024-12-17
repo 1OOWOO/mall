@@ -9,10 +9,10 @@ import com.example.mall.vo.Staff;
 @Service
 public class StaffService {
 
-    @Autowired
-    private StaffMapper staffMapper; // StaffMapper 주입
+	@Autowired
+	private StaffMapper staffMapper; // StaffMapper 주입
 
-    public Staff login(String staffId, String staffPw) {
-        return staffMapper.staffLogin(staffId, staffPw); // 메서드 이름 변경
-    }
+	public Staff login(String staffId, String staffPw) {
+		return staffMapper.staffLogin(staffId, staffPw); // 메서드 이름 변경
+	}
 }

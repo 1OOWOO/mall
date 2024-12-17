@@ -19,34 +19,36 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class GoodsFileController {
-	@Autowired GoodsFileService goodsFileService;
-	
+	@Autowired
+	GoodsFileService goodsFileService;
+
 	@GetMapping("/admin/addGoodsFile")
-	public String addGoodsFile(Model model,@RequestParam Integer goodsNo) {
-		model.addAttribute("goodsNo",goodsNo);
+	public String addGoodsFile(Model model, @RequestParam Integer goodsNo) {
+		model.addAttribute("goodsNo", goodsNo);
 		return "admin/addGoodsFile";
-	}	
-	
+	}
+
 	@PostMapping("/admin/addGoodsFile")
-	public String addGoodsFile(HttpSession session,Model model,GoodsForm goodsForm,@RequestParam Integer goodsNo) {
-		log.debug("goodsForm: "+goodsForm);
+	public String addGoodsFile(HttpSession session, Model model, GoodsForm goodsForm, @RequestParam Integer goodsNo) {
+		log.debug("goodsForm: " + goodsForm);
 		goodsForm.setGoodsNo(goodsNo); // goodsNo를 GoodsForm에 설정
 		// 이미지 파일 검사 - 여러 파일 중 하나라도 이미지 파일이 아니면 return
 		List<MultipartFile> list = goodsForm.getGoodsFile();
-		for(MultipartFile f : list) { // jpeg, png만 가능
-			if(!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
-				model.addAttribute("msg","이미지 파일만 첨부 가능합니다");
-				return "admin/goodsOne?goodsNo="+goodsForm.getGoodsNo();
+		for (MultipartFile f : list) { // jpeg, png만 가능
+			if (!(f.getContentType().equals("image/jpeg") || f.getContentType().equals("image/png"))) {
+				model.addAttribute("msg", "이미지 파일만 첨부 가능합니다");
+				return "admin/goodsOne?goodsNo=" + goodsForm.getGoodsNo();
 			}
 		}
 		// upload 파일에 저장
 		String path = session.getServletContext().getRealPath("/upload/");
 		goodsFileService.addGoodsFile(goodsForm, path);
-		return "redirect:/admin/goodsOne?goodsNo="+goodsForm.getGoodsNo();
+		return "redirect:/admin/goodsOne?goodsNo=" + goodsForm.getGoodsNo();
 	}
-	
+
 	@GetMapping("/admin/removeGoodsFile")
-	public String removeGoodsFile(HttpSession session, @RequestParam Integer goodsFileNo, @RequestParam Integer goodsNo) {
+	public String removeGoodsFile(HttpSession session, @RequestParam Integer goodsFileNo,
+			@RequestParam Integer goodsNo) {
 		String path = session.getServletContext().getRealPath("/upload/");
 		goodsFileService.removeGoodsFile(goodsFileNo, path);
 		return "redirect:/admin/goodsOne?goodsNo=" + goodsNo;

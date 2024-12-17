@@ -16,7 +16,7 @@
 			)
 	</insert>
 	
-	<!-- /admin/ordersList -->
+	<!-- 오아림 : /admin/ordersList / 오자윤 : customerMail 조건조회-->
 	<select id="selectOrdersList" resultType="Map">
 		SELECT 
 			go.orders_no ordersNo
@@ -39,6 +39,7 @@
 						ON g.goods_no = o.goods_no) go
 		ON go.payment_no = p.payment_no
 		JOIN address a on a.address_no = p.address_no
+		WHERE a.customer_mail = #{customerMail}
 	</select>
 	
 	<!-- /admin/ordersList - 주문 수정 -->

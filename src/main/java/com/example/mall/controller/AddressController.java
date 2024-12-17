@@ -20,32 +20,32 @@ import java.util.List;
 @Slf4j
 @Controller
 public class AddressController {
-    @Autowired
-    private AddressService addressService;
+	@Autowired
+	private AddressService addressService;
 
-    // 고객 주소 가져오기
-    public String addressList(HttpSession session, Model model) {
-	    Customer loginCustomer = (Customer) session.getAttribute("loggedInCustomer");
-	    if(loginCustomer == null) {
-	    	return "redirect:/login";
-	    }
-	    // 고객 이메일 가져오기
-	    String customerMail = loginCustomer.getCustomerMail();
-	    // 주소 목록 가져오기
-	    List<Address> addressList = addressService.AddressListByCustomerMail(customerMail);
-	    
-	    model.addAttribute("addressList", addressList);
-	    
-	    log.debug("addressList--------->" + addressList.toString());
-	    
-	    return "customer/payment";
-    }
-    
-    // 주소 검색 처리
-    @PostMapping("/searchAddress")
-    public String searchAddress(@RequestParam("searchAddress") String keyword, Model model) {
-        List<Address> addressList = addressService.searchAddresses(keyword);
-        model.addAttribute("addressList", addressList); // 검색 결과 전달
-        return "signUp"; // 회원가입 페이지로 결과 포함하여 반환
-    }
+	// 고객 주소 가져오기
+	public String addressList(HttpSession session, Model model) {
+		Customer loginCustomer = (Customer) session.getAttribute("loggedInCustomer");
+		if (loginCustomer == null) {
+			return "redirect:/login";
+		}
+		// 고객 이메일 가져오기
+		String customerMail = loginCustomer.getCustomerMail();
+		// 주소 목록 가져오기
+		List<Address> addressList = addressService.AddressListByCustomerMail(customerMail);
+
+		model.addAttribute("addressList", addressList);
+
+		log.debug("addressList--------->" + addressList.toString());
+
+		return "customer/payment";
+	}
+
+	// 주소 검색 처리
+	@PostMapping("/searchAddress")
+	public String searchAddress(@RequestParam("searchAddress") String keyword, Model model) {
+		List<Address> addressList = addressService.searchAddresses(keyword);
+		model.addAttribute("addressList", addressList); // 검색 결과 전달
+		return "signUp"; // 회원가입 페이지로 결과 포함하여 반환
+	}
 }

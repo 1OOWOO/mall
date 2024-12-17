@@ -6,5 +6,5 @@ import com.example.mall.vo.Staff;
 
 @Mapper
 public interface StaffMapper {
-    Staff staffLogin(String staffId, String staffPw);
+	Staff staffLogin(String staffId, String staffPw);
 }

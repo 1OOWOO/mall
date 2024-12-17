@@ -10,13 +10,13 @@ import com.example.mall.vo.Orders;
 @Mapper
 public interface OrdersMapper {
 	// Author : 오아림
-	
+
 	// 오자윤 : 결제 완료시 주문내역 추가
 	Integer insertOrders(Orders orders);
-	
+
 	// /admin/orderList
-	List<Map<String,Object>> selectOrdersList(Map<String,Object> map);
+	List<Map<String, Object>> selectOrdersList(Map<String, Object> map);
 
 	// /admin/orderList - 주문 수정
-	Integer updateOrders(Map<String,Object> map);
+	Integer updateOrders(Map<String, Object> map);
 }

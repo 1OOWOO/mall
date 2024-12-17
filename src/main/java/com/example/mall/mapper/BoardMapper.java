@@ -10,13 +10,12 @@ import com.example.mall.vo.Board;
 @Mapper
 public interface BoardMapper {
 
-    // 우정 : Board 저장
-    void insertBoard(Board board);
-    
-    // 우정 : 모든 Board 리스트 가져오기
-    List<Map<String, Object>> selectAllBoards(int goodsNo);
-    
-    // 오아림 : customerGoodsOne - 리뷰 개수
-    Integer selectBoardCount(Integer goodsNo);
-}
+	// 우정 : Board 저장
+	void insertBoard(Board board);
 
+	// 우정 : 모든 Board 리스트 가져오기
+	List<Map<String, Object>> selectAllBoards(int goodsNo);
+
+	// 오아림 : customerGoodsOne - 리뷰 개수
+	Integer selectBoardCount(Integer goodsNo);
+}

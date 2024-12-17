@@ -12,22 +12,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class BoardService {
 	/* Author : 우정 */
-	
-    @Autowired
-    private BoardMapper boardMapper;
 
-    // Board 저장
-    public void saveBoard(Board board) {
-        boardMapper.insertBoard(board);
-    }
-    
- // Board 리스트 가져오기
-    public List<Map<String, Object>> getBoardList(int goodsNo) {
-        return boardMapper.selectAllBoards(goodsNo);
-    }
-    
-    // 오아림 : customerGoodsOne - 리뷰 개수
-    public Integer getBoardCount(Integer goodsNo) {
-    	return boardMapper.selectBoardCount(goodsNo);
-    }
+	@Autowired
+	private BoardMapper boardMapper;
+
+	// Board 저장
+	public void saveBoard(Board board) {
+		boardMapper.insertBoard(board);
+	}
+
+	// Board 리스트 가져오기
+	public List<Map<String, Object>> getBoardList(int goodsNo) {
+		return boardMapper.selectAllBoards(goodsNo);
+	}
+
+	// 오아림 : customerGoodsOne - 리뷰 개수
+	public Integer getBoardCount(Integer goodsNo) {
+		return boardMapper.selectBoardCount(goodsNo);
+	}
 }

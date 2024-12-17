@@ -15,6 +15,6 @@ public class GoodsForm {
 	private String goodsMemo;
 	private Integer goodsPrice;
 	private String goodsState;
-	private List<MultipartFile> goodsFile; 
-	private Integer goodsCategoryNo; 
+	private List<MultipartFile> goodsFile;
+	private Integer goodsCategoryNo;
 }

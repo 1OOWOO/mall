@@ -1,6 +1,5 @@
 package com.example.mall.controller;
 
-
 import com.example.mall.service.AddressService;
 import com.example.mall.service.CustomerService;
 import com.example.mall.vo.Address;
@@ -23,44 +22,43 @@ import java.util.Map;
 @Controller
 public class SignUpController {
 
-    @Autowired
-    private AddressService addressService;
-    @Autowired
-    private CustomerService customerService;
+	@Autowired
+	private AddressService addressService;
+	@Autowired
+	private CustomerService customerService;
 
-    // 회원가입 페이지 표시 및 주소 검색 처리
-    @GetMapping("/signUp")
-    public String signUp( String searchAddress, Model model) {
-        if (searchAddress != null && !searchAddress.isEmpty()) {
-            // 주소 검색 로직
-            List<Address> addressList = addressService.searchAddresses(searchAddress);
-            model.addAttribute("addressList", addressList);
-        }
-        return "signUp"; // JSP 파일명
-    }
+	// 회원가입 페이지 표시 및 주소 검색 처리
+	@GetMapping("/signUp")
+	public String signUp(String searchAddress, Model model) {
+		if (searchAddress != null && !searchAddress.isEmpty()) {
+			// 주소 검색 로직
+			List<Address> addressList = addressService.searchAddresses(searchAddress);
+			model.addAttribute("addressList", addressList);
+		}
+		return "signUp"; // JSP 파일명
+	}
 
-   
-    // 우정 : 회원가입 처리 (signUp 페이지에서 직접 처리)
-    @PostMapping("/signUp")
-    public String register(Model model, String addressDetail, Customer customer) {
-        try {
-        	log.debug(addressDetail + "=====================================================================");
-            // 고객 등록
+	// 우정 : 회원가입 처리 (signUp 페이지에서 직접 처리)
+	@PostMapping("/signUp")
+	public String register(Model model, String addressDetail, Customer customer) {
+		try {
+			log.debug(addressDetail + "=====================================================================");
+			// 고객 등록
 			customerService.registerCustomer(customer);
-            Map<String, Object> insert = new HashMap<>();
-            insert.put("addressDatail", addressDetail);
+			Map<String, Object> insert = new HashMap<>();
+			insert.put("addressDatail", addressDetail);
 			insert.put("customerMail", customer.getCustomerMail());
-            addressService.insertAddress(insert);
+			addressService.insertAddress(insert);
 
-            // 성공 시 알림과 함께 hello 페이지로 리다이렉트
-            model.addAttribute("message", "회원가입이 완료되었습니다.");
-            return "redirect:/hello"; // 회원가입 성공 후 hello 페이지로 이동
+			// 성공 시 알림과 함께 hello 페이지로 리다이렉트
+			model.addAttribute("message", "회원가입이 완료되었습니다.");
+			return "redirect:/hello"; // 회원가입 성공 후 hello 페이지로 이동
 
-        } catch (Exception e) {
-            log.error("회원가입 중 오류 발생", e);
-            model.addAttribute("message", "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
-            return "signUp"; // 오류 시 회원가입 페이지로 돌아가기
-        }
-    }
+		} catch (Exception e) {
+			log.error("회원가입 중 오류 발생", e);
+			model.addAttribute("message", "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+			return "signUp"; // 오류 시 회원가입 페이지로 돌아가기
+		}
+	}
 
 }

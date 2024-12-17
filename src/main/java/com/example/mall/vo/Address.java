@@ -8,5 +8,5 @@ public class Address {
 	private String customerMail; // foreign key
 	private String addressDetail;
 	private String updateDate;
-	private String createDate; 
+	private String createDate;
 }

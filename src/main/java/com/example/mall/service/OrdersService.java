@@ -12,17 +12,18 @@ import com.example.mall.mapper.OrdersMapper;
 @Service
 @Transactional
 public class OrdersService {
-	@Autowired OrdersMapper ordersMapper;
-	
+	@Autowired
+	OrdersMapper ordersMapper;
+
 	// Author : 오아림
 	// /admin/ordersList
-	public List<Map<String,Object>> getOrdersList(Map<String,Object> map){
+	public List<Map<String, Object>> getOrdersList(Map<String, Object> map) {
 		return ordersMapper.selectOrdersList(map);
 	}
-	
+
 	// /admin/ordersList - 주문 수정
-	public Integer modifyOrders(Map<String,Object> map) {
+	public Integer modifyOrders(Map<String, Object> map) {
 		return ordersMapper.updateOrders(map);
 	}
-	
+
 }

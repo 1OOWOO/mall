@@ -10,11 +10,11 @@ import java.util.Map;
 
 @Mapper
 public interface AddressMapper {
-	
+
 	// 고객 주소 가져오기
 	List<Address> addressListByCustomerMail(String customerMail);
-	
-    List<Address> searchAddresses(@Param("keyword") String keyword);
-    
-    Integer insertAddress(Map<String, Object> param);
+
+	List<Address> searchAddresses(@Param("keyword") String keyword);
+
+	Integer insertAddress(Map<String, Object> param);
 }

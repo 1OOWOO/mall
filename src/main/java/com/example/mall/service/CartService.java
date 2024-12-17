@@ -21,41 +21,42 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Transactional
 public class CartService {
-	@Autowired CartMapper cartMapper;
-	@Autowired GoodsMapper goodsMapper;
-	
-	
+	@Autowired
+	CartMapper cartMapper;
+	@Autowired
+	GoodsMapper goodsMapper;
+
 	// 오자윤 : 장바구니 삭제
 	public int removeCart(int cartNo) {
 		return cartMapper.removeCart(cartNo);
 	}
-	
+
 	// 오자윤 : 체크된 장바구니 가져오기
 	public List<Map<String, Object>> getCartListOne(List<Integer> selectedCart) {
 		List<Map<String, Object>> cartList = new ArrayList<>();
-		for(Integer cartNo : selectedCart) {
+		for (Integer cartNo : selectedCart) {
 			cartList.add(cartMapper.selectedCart(cartNo));
 		}
 		return cartList;
 	}
-	
-	// 오자윤 : 장바구니 항목 추가
-    public Integer addCart(Cart cart) {
-        return cartMapper.insertCart(cart);
-    }
 
-    // 오자윤 : 장바구니 항목 조회
-    public List<Map<String, Object>> getCartItem(String customerMail) {
-        return cartMapper.getCartItem(customerMail);
-    }
+	// 오자윤 : 장바구니 항목 추가
+	public Integer addCart(Cart cart) {
+		return cartMapper.insertCart(cart);
+	}
+
+	// 오자윤 : 장바구니 항목 조회
+	public List<Map<String, Object>> getCartItem(String customerMail) {
+		return cartMapper.getCartItem(customerMail);
+	}
 
 	// Author : 오아림
-	public Integer addToCart(Goods goods, Integer cartAmount,String customerMail) {
+	public Integer addToCart(Goods goods, Integer cartAmount, String customerMail) {
 		Cart cart = new Cart();
 		cart.setGoodsNo(goods.getGoodsNo());
-	    cart.setCustomerMail(customerMail);
-	    cart.setCartAmount(cartAmount);
-	    
-	    return cartMapper.addToCart(cart);
+		cart.setCustomerMail(customerMail);
+		cart.setCartAmount(cartAmount);
+
+		return cartMapper.addToCart(cart);
 	}
 }
