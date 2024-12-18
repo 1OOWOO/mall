@@ -183,8 +183,10 @@
 										</c:if>
 										<c:if test="${goods.goodsState != '재고없음'}">
 											<br>
+											<form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
 											<button type="submit"
 												class="single_add_to_cart_button button alt">Buy</button>
+											</form>
 										</c:if>
 
 										<button type="submit"
