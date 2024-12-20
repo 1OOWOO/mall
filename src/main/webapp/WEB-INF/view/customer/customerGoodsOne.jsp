@@ -177,17 +177,23 @@
 
 										<!-- 재고 없으면 Buy버튼 비활성화 -->
 										<c:if test="${goods.goodsState == '재고없음'}">
-											${goods.goodsState}<br>
-											<button type="submit"
-												class="single_add_to_cart_button button alt" disabled>Buy</button>
+										    ${goods.goodsState}<br>
+										    <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
+										        <select name="addressNo">
+										            <c:forEach var="address" items="${addressList}">
+										                <option value="${address.addressNo}">${address.addressDetail}</option>
+										            </c:forEach>
+										        </select>
+										        <button type="submit" class="single_add_to_cart_button button alt" disabled>Buy</button>
+										    </form>
 										</c:if>
 										<c:if test="${goods.goodsState != '재고없음'}">
-											<br>
-											<form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
-											<button type="submit"
-												class="single_add_to_cart_button button alt">Buy</button>
-											</form>
+										    <br>
+										    <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
+										        <button type="submit" class="single_add_to_cart_button button alt">Buy</button>
+										    </form>
 										</c:if>
+
 
 										<button type="submit"
 											class="single_add_to_cart_button button alt">Wish</button>
