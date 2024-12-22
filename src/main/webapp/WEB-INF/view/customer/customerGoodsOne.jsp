@@ -174,27 +174,7 @@
 												type="hidden" name="goodsNo" value="${goods.goodsNo}">
 
 										</form>
-
-										<!-- 재고 없으면 Buy버튼 비활성화 -->
-										<c:if test="${goods.goodsState == '재고없음'}">
-										    ${goods.goodsState}<br>
-										    <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
-										        <select name="addressNo">
-										            <c:forEach var="address" items="${addressList}">
-										                <option value="${address.addressNo}">${address.addressDetail}</option>
-										            </c:forEach>
-										        </select>
-										        <button type="submit" class="single_add_to_cart_button button alt" disabled>Buy</button>
-										    </form>
-										</c:if>
-										<c:if test="${goods.goodsState != '재고없음'}">
-										    <br>
-										    <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
-										        <button type="submit" class="single_add_to_cart_button button alt">Buy</button>
-										    </form>
-										</c:if>
-
-
+										<br>
 										<button type="submit"
 											class="single_add_to_cart_button button alt">Wish</button>
 									</div>
@@ -204,6 +184,7 @@
 											<div id="reviews">
 												<div id="comments">
 													<h2>Reviews</h2>
+													
 													<c:forEach var="board" items="${boards}">
 														<ol class="commentlist">
 															<li itemprop="review" itemscope

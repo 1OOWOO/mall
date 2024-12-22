@@ -50,6 +50,7 @@ public class LoginController {
 
 		// 로그인 성공, 세션에 사용자 정보 저장
 		session.setAttribute("loggedInCustomer", loggedInCustomer);
+		log.debug("loggedInCustomer----->" + loggedInCustomer);
 		// 세션 유효시간 30분
 		session.setMaxInactiveInterval(30 * 60);
 		return "redirect:/hello"; // 로그인 성공 시 홈으로 리다이렉트

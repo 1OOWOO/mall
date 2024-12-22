@@ -123,7 +123,7 @@
             <div id="primary" class="content-area column full">
                 <main id="main" class="site-main" role="main">
                     <div id="container" class="bg-light">
-                        <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
+                        <form action="${pageContext.request.contextPath}/customer/paymentList">
                             <label for="addressNo">주소 선택:</label>
                             <select name="addressNo" id="addressNo" required>
                                 <c:forEach var="address" items="${addressList}">
