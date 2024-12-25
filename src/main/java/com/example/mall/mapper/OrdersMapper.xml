@@ -40,6 +40,7 @@
 		ON go.payment_no = p.payment_no
 		JOIN address a on a.address_no = p.address_no
 		WHERE a.customer_mail = #{customerMail}
+		ORDER BY ordersNo ASC;
 	</select>
 	
 	<!-- /admin/ordersList - 주문 수정 -->

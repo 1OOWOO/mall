@@ -34,6 +34,17 @@
             flex-direction: column;
             padding: 20px;
         }
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .btn-primary:hover {
+            background-color: darkblue; 
+        }
     </style>
 </head>
 <body class="single single-product woocommerce woocommerce-page">
@@ -160,26 +171,13 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-                                <div class="col-3">
-							    <table class="table table-bordered mr-3 bg-light">
-							        <tr>
-							            <th class="text-center">총 합계</th>
-							        </tr>
-							        <c:if test="${cartList.isEmpty()}">
-							            <tr>
-							                <td>0원</td>
-							            </tr>
-							        </c:if>
-							        <c:if test="${!cartList.isEmpty()}">
-							            <tr>
-							                <td>${cartList[0].totalPrice}원</td>
-							                <input type="hidden" name="paymentPrice" value="${cartList[0].totalPrice}"/> <!--Payment 값으로 넘기기 -->
-							            </tr>
-							        </c:if>
-							    </table>
-							    <button type="submit">결제</button>
-							</div>
                             </table>
+							    <table>
+							      <tr>
+								    <td>총합계 : ${cartList[0].totalPrice}원</td>
+						        	<td style="text-align: right;"><button type="submit" class="btn btn-primary">결제</button></td>
+							      </tr>
+							    </table>
                         </form>
                     </div>
                 </main>
@@ -213,3 +211,4 @@
 </script>
 </body>
 </html>
+							

@@ -34,7 +34,17 @@
             flex-direction: column;
             padding: 20px;
         }
-      
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none; 
+            padding: 10px 20px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+        }
+        .btn-primary:hover {
+            background-color: darkblue; 
+        }
     </style>
 </head>
 <body class="single single-product woocommerce woocommerce-page">
@@ -42,93 +52,86 @@
     <div id="page">
         <div class="container">
             <header id="masthead" class="site-header">
-            <a>
             <div style="float: right;">
-					<%
-					Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
-					if (loggedInCustomer == null) {
-					%>
-					<span> <a href="login"> 로그인 </a> | <a href="signUp">
-							회원가입 </a>
-					</span>
-					<%
-					} else {
-					%>
-					<span> <a
-						href="${pageContext.request.contextPath}/customer/myPage">
-							${loggedInCustomer.customerMail} 님 </a> |<a href="logout"> 로그아웃 </a></span>
-					<%
-					}
-					%>
-				</div>
-				</a>
-                <div class="site-branding">
-                    <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
+                <%
+                Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
+                if (loggedInCustomer == null) {
+                %>
+                <span> <a href="login"> 로그인 </a> | <a href="signUp"> 회원가입 </a></span>
+                <%
+                } else {
+                %>
+                <span> <a href="${pageContext.request.contextPath}/customer/myPage"> ${loggedInCustomer.customerMail} 님 </a> | <a href="logout"> 로그아웃 </a></span>
+                <%
+                }
+                %>
+            </div>
+            <div class="site-branding">
+                <h1 class="site-title"><a href="${pageContext.request.contextPath}/hello" rel="home"><img src="${pageContext.request.contextPath}/images/logo.png"></a></h1>
+            </div>
+            <nav id="site-navigation" class="main-navigation">
+                <button class="menu-toggle">Menu</button>
+                <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+                <div class="menu-menu-1-container">
+                    <ul id="menu-menu-1" class="menu">
+                        <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
+                            <ul class="sub-menu">
+                                <li>봄</li>
+                                <li>여름</li>
+                                <li>가을</li>
+                                <li>겨울</li>
+                            </ul>
+                        </li>
+                        <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
+                            <ul class="sub-menu">
+                                <li>모자</li>
+                                <li>넥&레그 워머</li>
+                                <li>목걸이</li>
+                            </ul>
+                        </li>
+                        <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
+                            <ul class="sub-menu">
+                                <li>노즈워크</li>
+                                <li>오뚜기</li>
+                                <li>터그</li>
+                                <li>인형</li>
+                            </ul>
+                        </li>
+                        <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
+                            <ul class="sub-menu">
+                                <li>목줄</li>
+                                <li>입마개</li>
+                                <li>리드줄</li>
+                                <li>하네스</li>
+                            </ul>
+                        </li>
+                        <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
+                            <ul class="sub-menu">
+                                <li>육포</li>
+                                <li>비스킷</li>
+                                <li>비타민</li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
-                <nav id="site-navigation" class="main-navigation">
-                    <button class="menu-toggle">Menu</button>
-                    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-                    <div class="menu-menu-1-container">
-                        <ul id="menu-menu-1" class="menu">
-                            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=1">계절별의류</a>
-                                <ul class="sub-menu">
-                                    <li>봄</li>
-                                    <li>여름</li>
-                                    <li>가을</li>
-                                    <li>겨울</li>
-                                </ul>
-                            </li>
-                            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=2">액세서리</a>
-                                <ul class="sub-menu">
-                                    <li>모자</li>
-                                    <li>넥&레그 워머</li>
-                                    <li>목걸이</li>
-                                </ul>
-                            </li>
-                            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=3">장난감</a>
-                                <ul class="sub-menu">
-                                    <li>노즈워크</li>
-                                    <li>오뚜기</li>
-                                    <li>터그</li>
-                                    <li>인형</li>
-                                </ul>
-                            </li>
-                            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=4">산책용품</a>
-                                <ul class="sub-menu">
-                                    <li>목줄</li>
-                                    <li>입마개</li>
-                                    <li>리드줄</li>
-                                    <li>하네스</li>
-                                </ul>
-                            </li>
-                            <li><a href="${pageContext.request.contextPath}/customer/searchGoods?categoryNo=5">간식&영양제</a>
-                                <ul class="sub-menu">
-                                    <li>육포</li>
-                                    <li>비스킷</li>
-                                    <li>비타민</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+            </nav>
             </header>
 
             <h2>결제 정보</h2>
             <form action="${pageContext.request.contextPath}/customer/addPayment" method="post">
                 <table class="table">
-					<c:if test="${not empty addressList}">
-					    <c:if test="${not empty addressList[0].addressNo}">
-					        <tr>
-					            <th>상세 주소</th>
-					            <td>${addressList[0].addressDetail}</td>
-					            <!-- 주소값 addPayment 넘기기 -->
-					          <td><input type="hidden" name="addressNo" value="${addressList[0].addressNo}"></td>
-					        </tr>
-					    </c:if>
-					</c:if>
+                    <c:if test="${not empty addressList}">
+                        <c:if test="${not empty addressList[0].addressNo}">
+                            <tr>
+                                <th>상세 주소</th>
+                                <td>${addressList[0].addressDetail}</td>
+                                <td><input type="hidden" name="addressNo" value="${addressList[0].addressNo}"></td>
+                            </tr>
+                        </c:if>
+                    </c:if>
                     <c:if test="${carts.isEmpty()}">
                         <tr>
-                            <td colspan="7" class="text-center">상품이 비었습니다.</td>
+                            <td colspan="4" class="text-center">상품이 비었습니다.</td>
                         </tr>
                     </c:if>
                     <tr>
@@ -140,54 +143,55 @@
                     <c:forEach var="c" items="${cartList}">
                         <tr>
                             <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" style="width:200px; height:200px;"></td>
-                            <td>${c.goodsTitle}${c.cartNo}</td>
+                            <td>${c.goodsTitle}</td>
                             <td>${c.cartAmount}개</td>
                             <td>${c.goodsPrice}원</td>
-                            <!-- cartNo 값 addPayment 넘기기 -->
-                            <td> 
-                            <input type="hidden" name="cartNo" value="${c.cartNo}"></td>
+                            <td><input type="hidden" name="cartNo" value="${c.cartNo}"></td>
                         </tr>
                     </c:forEach>
-                    <th>결제수단</th>
-                    <td>
-                        <input type="radio" name="paymentMethod" value="카드" id="payCard" checked>
-                        <label for="payCard" class="ms-1">카드</label>
-                        <div>
-                            <input type="radio" name="paymentMethod" value="페이" id="payPay">
-                            <label for="payPay" class="ms-1">페이</label>
-                        </div>
-                    </td>
-                    <div class="col-3">
-                        <table class="table table-bordered mr-3 bg-light">
-                            <c:if test="${cart.isEmpty()}">
-                                <tr>
-                                    <td>0원</td>
-                                </tr>
-                            </c:if>
-                            <c:if test="${!cart.isEmpty()}">
-                                <tr>
-                                    <td>총합계 : ${cartList[0].totalPrice}원</td>
-                                    <!-- 결제금액 addPayment 값 넘기기 -->
-                                   <td><input type="hidden" name="paymentPrice" value="${cartList[0].totalPrice}"></td>
-                                </tr>
-                            </c:if>
-                            <td><a href="${pageContext.request.contextPath}/customer/myPage" class="btn btn-primary">결제</a></td>
-                        </table>
-                    </div>
-                </form>
-            </div>
-
-            <footer id="colophon" class="site-footer">
-                <div class="container">
-                    <div class="site-info">
-                        <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
-                        Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
-                    </div>
-                </div>
-            </footer>
+                    <tr>
+                        <th>결제수단</th>
+                        <td>
+                            <input type="radio" name="paymentMethod" value="카드" id="payCard" checked>
+                            <label for="payCard" class="ms-1">카드</label>
+                            <div>
+                                <input type="radio" name="paymentMethod" value="페이" id="payPay">
+                                <label for="payPay" class="ms-1">페이</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <table class="table table-bordered mr-3 bg-light">
+                                <c:if test="${cart.isEmpty()}">
+                                    <tr>
+                                        <td>0원</td>
+                                    </tr>
+                                </c:if>
+                                <c:if test="${!cart.isEmpty()}">
+                                    <tr>
+                                        <td>총합계 : ${cartList[0].totalPrice}원</td>
+                                        <td><input type="hidden" name="paymentPrice" value="${cartList[0].totalPrice}"></td>
+                                    </tr>
+                                </c:if>
+                            </table>
+                        </td>
+                        <td><button type="submit" class="btn btn-primary">결제</button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
+        <footer id="colophon" class="site-footer">
+            <div class="container">
+                <div class="site-info">
+                    <h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+                    Shared by <i class="fa fa-love"></i><a href="https://bootstrapthemes.co">BootstrapThemes</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
-        <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
-    </body>
-  
+    <a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+</body>
 </html>
+                    
