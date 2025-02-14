@@ -1,12 +1,11 @@
 # 📝 개요
   - 프로젝트 명 : 반려동물 용품 쇼핑몰<br>
-  - 프로젝트 기간 : 2024-10-00 ~ 2024-00- <br>
-  - (K-Digital Training) 클라우드 활용 자바 개발자 양성과정 86기 파이널 팀 프로젝트<br>
+  - 프로젝트 기간 : 2024-11 ~ 2024-12 <br>
+  - (K-Digital Training) 클라우드 활용 자바 개발자 양성과정 86기 세미 팀 프로젝트<br>
 
 # 📑 서비스 초기 설계 개요
- - <a href="">스토리보드</a>
- - <a href="">요구사항 정의</a>
- - <a href="">테이블 정의서</a>
+ - <a href="https://drive.google.com/file/d/18-yzqoUbK-HQcPNBONICTdnoJDMejORD/view">스토리보드</a>
+ - <a href="https://docs.google.com/spreadsheets/d/1dyPwW7vrx3oT6hZE5Yb7DKjTds-kjHQaRmLnL_iyS7w/edit?gid=1497402479#gid=1497402479">요구사항 정의</a>
 
 # 🧰 개발 환경 및 기술 스택
 #### LANGUAGE & SKILL
@@ -37,36 +36,26 @@
 <img src="https://github.com/user-attachments/assets/65572ec2-05cf-4023-8992-c2dbad68abc9" width="700" height="600"/>
 
 # 🗂️ 주요 기능
-쇼핑몰 기획/제작한 웹 사이트입니다.
+반려동물 용품 쇼핑몰로, 고객 페이지와 관리자 페이지를 기획, 제작한 사이트입니다.
 
-<details>
-<summary><b>각 기능 상세보기</b></summary>
+## 🛍 고객 기능  
+- 주문  
+- 결제  
+- 후기 작성  
+- 장바구니  
 
-  ## 고객 기능
-  
-|기능|설명|
-| --- |---|
-| 주문 |  |
-| 결제 |  |
-| 후기 작성 |  |
-| 장바구니 |   |
-
-  ## 관리자 기능
-  
-|기능|설명|
-| --- |---|
-| 주문 통계 |  |
-| 회원 관리 | |
-| 상품 관리 |  |
-| 주문 관리 |  |
-</details>
+## 🛠 관리자 기능  
+- 전체 통계  
+- 회원 관리  
+- 상품 관리  
+- 주문 관리  
 
 
 
 # 🧑‍🤝‍🧑 Collaborators
 | 팀원 | 담당업무 |
 |---|---|
-| <a href="https://github.com/alim0o0">오아림</a>|역할|
-| <a href="https://github.com/Jayoon-oh">오자윤</a>|역할|
-| <a href="https://github.com/Jeooooooong2"> 우 정</a>|역할|
+| <a href="https://github.com/alim0o0">오아림</a>| 상품 검색, 카테고리 분류, 주문 관리 |
+| <a href="https://github.com/Jayoon-oh">오자윤</a>| 장바구니, 결제, 대시보드(통계), 고객 관리 |
+| <a href="https://github.com/Jeooooooong2"> 우 정</a>| 회원가입, 로그인, 마이페이지, 후기 |
 	
