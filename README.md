@@ -1,12 +1,11 @@
 # 📝 개요
   - 프로젝트 명 : 반려동물 용품 쇼핑몰<br>
-  - 프로젝트 기간 : 2024-10-00 ~ 2024-00- <br>
-  - (K-Digital Training) 클라우드 활용 자바 개발자 양성과정 86기 파이널 팀 프로젝트<br>
+  - 프로젝트 기간 : 2024-11 ~ 2024-12 <br>
+  - (K-Digital Training) 클라우드 활용 자바 개발자 양성과정 86기 세미 팀 프로젝트<br>
 
 # 📑 서비스 초기 설계 개요
- - <a href="">스토리보드</a>
- - <a href="">요구사항 정의</a>
- - <a href="">테이블 정의서</a>
+ - <a href="https://drive.google.com/file/d/18-yzqoUbK-HQcPNBONICTdnoJDMejORD/view">스토리보드</a>
+ - <a href="https://docs.google.com/spreadsheets/d/1dyPwW7vrx3oT6hZE5Yb7DKjTds-kjHQaRmLnL_iyS7w/edit?gid=1497402479#gid=1497402479">요구사항 정의</a>
 
 # 🧰 개발 환경 및 기술 스택
 #### LANGUAGE & SKILL
@@ -34,39 +33,29 @@
 
 
 # 📚 데이터 베이스 구조
-<img src="https://github.com/user-attachments/assets/65572ec2-05cf-4023-8992-c2dbad68abc9" width="700" height="600"/>
+<img src="https://private-user-images.githubusercontent.com/168812203/413190222-3d8aaf78-5c89-432d-b48e-614b3d422f38.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk1MTU5MjIsIm5iZiI6MTczOTUxNTYyMiwicGF0aCI6Ii8xNjg4MTIyMDMvNDEzMTkwMjIyLTNkOGFhZjc4LTVjODktNDMyZC1iNDhlLTYxNGIzZDQyMmYzOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjE0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxNFQwNjQ3MDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04ZTM0ZWMzMDllNjhkNDkwMjgwNmU1MTQyYjlmMjNmOTU2ZDFiY2M0YjkyNzcwYTQ1YjUwMTBmMWFkYzkwMTgyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.IIqRyAblFweCKPngqpcTIyx03egnjywH7rbePKrgJv4" width="700" height="600"/>
 
 # 🗂️ 주요 기능
-쇼핑몰 기획/제작한 웹 사이트입니다.
+반려동물 용품 쇼핑몰로, 고객 페이지와 관리자 페이지를 기획, 제작한 사이트입니다.
 
-<details>
-<summary><b>각 기능 상세보기</b></summary>
+## 🛍 고객 기능  
+- 주문  
+- 결제  
+- 후기 작성  
+- 장바구니  
 
-  ## 고객 기능
-  
-|기능|설명|
-| --- |---|
-| 주문 |  |
-| 결제 |  |
-| 후기 작성 |  |
-| 장바구니 |   |
-
-  ## 관리자 기능
-  
-|기능|설명|
-| --- |---|
-| 주문 통계 |  |
-| 회원 관리 | |
-| 상품 관리 |  |
-| 주문 관리 |  |
-</details>
+## 🛠 관리자 기능  
+- 전체 통계  
+- 회원 관리  
+- 상품 관리  
+- 주문 관리  
 
 
 
 # 🧑‍🤝‍🧑 Collaborators
 | 팀원 | 담당업무 |
 |---|---|
-| <a href="https://github.com/alim0o0">오아림</a>|역할|
-| <a href="https://github.com/Jayoon-oh">오자윤</a>|역할|
-| <a href="https://github.com/Jeooooooong2"> 우 정</a>|역할|
+| <a href="https://github.com/alim0o0">오아림</a>| 상품 검색, 카테고리 분류, 주문 관리 |
+| <a href="https://github.com/Jayoon-oh">오자윤</a>| 장바구니, 결제, 대시보드(통계), 고객 관리 |
+| <a href="https://github.com/Jeooooooong2"> 우 정</a>| 회원가입, 로그인, 마이페이지, 후기 |
 	
