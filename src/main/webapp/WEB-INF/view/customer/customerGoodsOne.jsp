@@ -184,25 +184,29 @@
 											<div id="reviews">
 												<div id="comments">
 													<h2>Reviews</h2>
-													
-													<c:forEach var="board" items="${boards}">
-														<ol class="commentlist">
-															<li itemprop="review" itemscope
-																itemtype="http://schema.org/Review" class="comment">
-																<div id="comment-3" class="comment_container">
-																	<div class="comment-text">
-																		<p class="meta">
-																			<strong itemprop="author">${board.customerMail}</strong>
-																			&ndash; <span>${board.createDate}</span> :
-																		</p>
-																		<div itemprop="description" class="description">
-																			<p>${board.boardContent}</p>
+													<c:if test="${empty boards}">
+													    <p>등록된 리뷰가 없습니다.</p>
+													</c:if>
+													<c:if test="${not empty boards}">
+														<c:forEach var="board" items="${boards}">
+															<ol class="commentlist">
+																<li itemprop="review" itemscope
+																	itemtype="http://schema.org/Review" class="comment">
+																	<div id="comment-3" class="comment_container">
+																		<div class="comment-text">
+																			<p class="meta">
+																				<strong itemprop="author">${board.customerMail}</strong>
+																				&ndash; <span>${board.createDate}</span> :
+																			</p>
+																			<div itemprop="description" class="description">
+																				<p>${board.boardContent}</p>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</li>
-														</ol>
-													</c:forEach>
+																</li>
+															</ol>
+														</c:forEach>
+													</c:if>
 												</div>
 											</div>
 										</div>
