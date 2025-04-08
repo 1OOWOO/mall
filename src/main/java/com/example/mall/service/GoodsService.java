@@ -32,7 +32,17 @@ public class GoodsService {
 	private GoodsFileMapper goodsFileMapper;
 	@Autowired
 	private GoodsCategoryMapper goodsCategoryMapper;
+	
 
+	// Author : 오자윤
+	// /hello 상품분류
+	public List<Goods> getSortedGoods(String orderby) {
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("orderBy", orderby);
+	    return goodsMapper.sortGoods(params);
+	}
+	
+	// Author : 오아림
 	// /admin/goodsList
 	public List<Map<String, Object>> getGoodsList(Integer currentPage, Integer rowPerPage, String searchGoods) {
 		Map<String, Object> paramMap = new HashMap<>();

@@ -10,7 +10,12 @@ import com.example.mall.vo.GoodsFile;
 
 @Mapper
 public interface GoodsMapper {
-	// 오자윤 : 상품 정보 가져오기-> 장바구니
+	
+	// Author : 오자윤
+	// /hello 상품분류
+    List<Goods> sortGoods(Map<String, Object> params);
+	
+	// 상품 정보 가져오기-> 장바구니
 	Map<String, Object> getGoodsById(String goodsNo);
 
 	// Author : 오아림

@@ -2,6 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.GoodsMapper">
 
+<!-- Author : 오자윤 -->
+	<!-- /hello 상품분류 -->
+	<select id="sortGoods" parameterType="java.util.Map" resultType="com.example.mall.vo.Goods">
+	    SELECT
+	        goods_no,
+	        goods_title,
+	        goods_price,
+	        goods_state
+	    FROM
+	        goods
+	    <choose>
+	        <when test="orderBy == 'price_desc'">
+	            ORDER BY goods_price DESC
+	        </when>
+	        <when test="orderBy == 'price_asc'">
+	            ORDER BY goods_price ASC
+	        </when>
+	        <when test="orderBy == 'reviews'">
+	            ORDER BY (SELECT COUNT(*) FROM orders o INNER JOIN board b ON o.orders_no = b.orders_no WHERE o.goods_no = goods.goods_no) DESC
+	        </when>
+	        <otherwise>
+	            ORDER BY goods_no ASC
+	        </otherwise>
+	    </choose>
+	</select>	
+	
 <!-- Author : 오아림 -->
 	<!-- /admin/addGoods -->
 	<insert id="insertGoods" parameterType="com.example.mall.vo.Goods" useGeneratedKeys="true" keyProperty="goodsNo">

@@ -102,15 +102,13 @@
             <p class="woocommerce-result-count">
                 Showing ${goodsCount} results
             </p>
-            <form class="woocommerce-ordering" method="get">
-               <select name="orderby" class="orderby">
-                  <option value="menu_order" selected="selected">Default sorting</option>
-                  <option value="popularity">Sort by popularity</option>
-                  <option value="rating">Sort by average rating</option>
-                  <option value="date">Sort by newness</option>
-                  <option value="price">Sort by price: low to high</option>
-                  <option value="price-desc">Sort by price: high to low</option>
-               </select>
+            <form class="woocommerce-ordering" method="get" action="${pageContext.request.contextPath}/sortHello">
+			   <select name="orderby" class="orderby" onchange="this.form.submit()">
+			      <option value="menu_order" ${currentOrderby == 'menu_order' ? 'selected' : ''}>분류</option>
+			      <option value="reviews" ${currentOrderby == 'reviews' ? 'selected' : ''}>리뷰순</option>
+			      <option value="price_asc" ${currentOrderby == 'price_asc' ? 'selected' : ''}>낮은가격순</option>
+			      <option value="price_desc" ${currentOrderby == 'price_desc' ? 'selected' : ''}>높은가격순</option>
+			   </select>
             </form>
             <ul class="products">
             	<c:forEach var="goods" items="${goodsList}">

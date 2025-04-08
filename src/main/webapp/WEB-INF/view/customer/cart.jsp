@@ -64,7 +64,7 @@
                 <% } else { %>
                 <span>
                     <a href="${pageContext.request.contextPath}/customer/myPage">${loggedInCustomer.customerMail} 님</a> | 
-                    <a href="logout">로그아웃</a>
+                    <a href="${pageContext.request.contextPath}logout">로그아웃</a>
                 </span>
                 <% } %>
             </div>
