@@ -33,7 +33,7 @@
 
 
 # 📚 데이터 베이스 구조
-<img src="https://private-user-images.githubusercontent.com/168812203/413190222-3d8aaf78-5c89-432d-b48e-614b3d422f38.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3Mzk1MTU5MjIsIm5iZiI6MTczOTUxNTYyMiwicGF0aCI6Ii8xNjg4MTIyMDMvNDEzMTkwMjIyLTNkOGFhZjc4LTVjODktNDMyZC1iNDhlLTYxNGIzZDQyMmYzOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMjE0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDIxNFQwNjQ3MDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04ZTM0ZWMzMDllNjhkNDkwMjgwNmU1MTQyYjlmMjNmOTU2ZDFiY2M0YjkyNzcwYTQ1YjUwMTBmMWFkYzkwMTgyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.IIqRyAblFweCKPngqpcTIyx03egnjywH7rbePKrgJv4" width="700" height="600"/>
+<img width="857" alt="Image" src="https://github.com/user-attachments/assets/ac568859-2487-4d92-87be-a72fb98236ae" />
 
 # 🗂️ 주요 기능
 반려동물 용품 쇼핑몰로, 고객 페이지와 관리자 페이지를 기획, 제작한 사이트입니다.
