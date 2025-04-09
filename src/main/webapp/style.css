@@ -145,6 +145,11 @@ a img {
 body {
    letter-spacing:1px;
 }
+
+button {
+    color: #292929 !important;
+}
+
 body,button,input,select,textarea {
    color:#666666;
    font-family:inherit;

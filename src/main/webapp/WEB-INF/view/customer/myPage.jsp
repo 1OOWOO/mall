@@ -29,6 +29,7 @@
 <link rel='stylesheet'
 	href='${pageContext.request.contextPath}/customer/customercss/easy-responsive-shortcodes.css'
 	type='text/css' media='all' />
+
 </head>
 
 <body
@@ -138,7 +139,7 @@
 									</tr>
 								</table>
 							   <input type="hidden" name="customerMail" value="${customer.customerMail}">
-							   <button type="submit" style="margin-left:830px;">개인정보 수정</button>
+							   <button type="submit" class="btn btn-light" style="margin-left:800px; background-color: #e8e8e8 !important;">개인정보 수정하기</button>
 							</form>
 						<h4>주문조회</h4>
 						<div class="col-sm-10">
