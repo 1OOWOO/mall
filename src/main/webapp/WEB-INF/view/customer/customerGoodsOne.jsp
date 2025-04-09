@@ -172,7 +172,6 @@
 											<input type="hidden" name="customerMail"
 												value="${loggedInCustomer.customerMail}"> <input
 												type="hidden" name="goodsNo" value="${goods.goodsNo}">
-
 										</form>
 										<br>
 										<button type="submit"
@@ -233,10 +232,27 @@
 		<a href="#top" class="smoothup" title="Back to top"><span
 			class="genericon genericon-collapse"></span></a>
 	</div>
-	<!-- #page -->
-	<script src='js/jquery.js'></script>
-	<script src='js/plugins.js'></script>
-	<script src='js/scripts.js'></script>
-	<script src='js/masonry.pkgd.min.js'></script>
+<!-- #page -->
+<script src='js/jquery.js'></script>
+<script src='js/plugins.js'></script>
+<script src='js/scripts.js'></script>
+<script src='js/masonry.pkgd.min.js'></script>
+	
+<script>
+// 유효성 검사
+	document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButton = document.querySelector('.single_add_to_cart_button');
+    const customerMailInput = document.querySelector('input[name="customerMail"]');
+
+    if (addToCartButton && customerMailInput) {
+        addToCartButton.addEventListener('click', function(event) {
+            if (!customerMailInput.value) { // customerMail 값이 없으면 세션 만료로 간주
+                alert("세션이 만료되어 로그인 화면으로 넘어갑니다.");
+                // 폼 제출은 그대로 진행
+            }
+        });
+    }
+});
+</script>
 </body>
 </html>

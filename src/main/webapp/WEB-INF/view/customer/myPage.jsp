@@ -122,22 +122,24 @@
 					<main id="main" class="site-main" role="main">
 						<h3 style="text-align: center;">마이페이지</h3>
 						<h4>개인정보</h4>
-						<table>
-							<tr>
-								<td>이메일</td>
-								<td><input type="text" value="${customer.customerMail}"/></td>
-							</tr>
-							<tr>
-								<td>pw</td>
-								<td><input type="text" value="${customer.customerPw}"></td>
-							</tr>
-							<tr>
-								<td>주소</td>
-								<td><input type="text" value="${customer.addressDetail}"></td>
-							</tr>
-
-						</table>
-
+							<form action="${pageContext.request.contextPath}/customer/myPage/edit" method="post">
+								<table>
+									<tr>
+										<td>이메일</td>
+										<td><input type="text" value="${customer.customerMail}" disabled/></td>
+									</tr>
+									<tr>
+										<td>비밀번호</td>
+										<td><input type="text" value="${customer.customerPw}" disabled></td>
+									</tr>
+									<tr>
+										<td>주소</td>
+										<td><input type="text" value="${customer.addressDetail}" disabled></td>
+									</tr>
+								</table>
+							   <input type="hidden" name="customerMail" value="${customer.customerMail}">
+							   <button type="submit" style="margin-left:830px;">개인정보 수정</button>
+							</form>
 						<h4>주문조회</h4>
 						<div class="col-sm-10">
 							<table

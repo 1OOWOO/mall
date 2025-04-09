@@ -59,10 +59,19 @@ public class CartController {
 
 	// 오자윤 : 장바구니 추가
 	@PostMapping("/customer/addCart")
-	public String addCart(Model model, Cart cart) {
-		cartService.addCart(cart);
-		log.debug(cart.toString() + "-----> cart");
-		return "redirect:/customer/cart?customerMail=" + cart.getCustomerMail();
+	public String addCart(Model model, Cart cart, HttpSession session) {
+		Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
+		
+		if(loggedInCustomer == null) {
+			// 로그인 안된 경우 로그인 페이지로 리다이렉트
+			return "redirect:/login";
+		} else {
+			// 로그인된 경우 장바구니 추가
+			cart.setCustomerMail(loggedInCustomer.getCustomerMail()); // 세션에서 로그인 -> cart에 설정
+			cartService.addCart(cart);
+			log.debug(cart.toString() + "----> cart");
+			return "redirect:/customer/cart?customerMail=" + cart.getCustomerMail();
+		}
 	}
 
 	// 오자윤 : 장바구니 삭제

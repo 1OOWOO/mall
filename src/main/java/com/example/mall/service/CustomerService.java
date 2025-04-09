@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.mall.mapper.CustomerMapper;
+import com.example.mall.vo.Address;
 import com.example.mall.vo.Customer;
 
 import ch.qos.logback.core.model.Model;
@@ -23,6 +24,11 @@ public class CustomerService {
 	@Autowired
 	private CustomerMapper customerMapper;
 
+	// 오자윤 : /customer/myPage/edit 고객정보 수정
+	public int updateCustomer(Customer customer, Address address) {
+		return customerMapper.updateMyPage(customer, address);
+	}
+	
 	// 우정 : 고객 로그인
 	public Customer login(Customer paramCustomer) {
 		return customerMapper.login(paramCustomer);
