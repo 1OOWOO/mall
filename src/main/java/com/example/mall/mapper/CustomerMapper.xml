@@ -2,35 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.CustomerMapper">
 	
-	<!-- 오자윤 : /customer/myPage/edit/process 고객정보 수정 -->
+	<!-- 오자윤 : /editMyPage 마이페이지 수정 -->
 	<update id="updateMyPage">
-	    UPDATE customer c
-	    LEFT OUTER JOIN address a ON c.customer_mail = a.customer_mail
+	    UPDATE customer
 	    <set>
 	        <if test="customer.customerMail != null and customer.customerMail != ''">
-	            c.customer_mail = #{customer.customerMail},
+	            customer_mail = #{customer.customerMail},
 	        </if>
 	        <if test="customer.customerPw != null and customer.customerPw != ''">
-	            c.customer_pw = #{customer.customerPw},
+	            customer_pw = #{customer.customerPw},
 	        </if>
-	        <if test="address.addressDetail != null and address.addressDetail != ''">
-	            a.address_detail = #{address.addressDetail},
-	            a.update_date = NOW(),
-	        </if>
-	        c.update_date = NOW()
+	        update_date = NOW()
 	    </set>
-	    WHERE c.customer_mail = #{customer.customerMail}
-	    <if test="address.addressNo != null">
-	        AND a.address_no = #{address.addressNo}
-	    </if>
-	    <if test="address.addressNo == null and address.addressDetail != null and address.addressDetail != ''">
-	        AND a.address_no = (SELECT address_no
-	                           FROM address
-	                           WHERE customer_mail = #{customer.customerMail}
-	                           ORDER BY create_date DESC
-	                           LIMIT 1)
-	    </if>
+	    WHERE customer_mail = #{customer.customerMail}
 	</update>
+	
+	<!-- 오자윤 : /editMyPage 마이페이지 수정 (기존주소 있을떄) -->
+	<update id="updateCustomerAddress" parameterType="map">
+	    UPDATE address
+	    <set>
+	        <if test="address.addressDetail != null and address.addressDetail != ''">
+	            address_detail = #{address.addressDetail},
+	            update_date = NOW()
+	        </if>
+	    </set>
+	    WHERE customer_mail = #{customer.customerMail}
+	    ORDER BY create_date DESC
+	    LIMIT 1
+	</update>
+	
+	<!-- 오자윤 : /editMyPage 마이페이지 수정 (기존주소 없을때) -->
+	<insert id="insertCustomerAddress" parameterType="com.example.mall.vo.Address">
+	    INSERT INTO address (customer_mail, address_detail, create_date, update_date)
+	    VALUES (#{address.customerMail}, #{address.addressDetail}, NOW(), NOW())
+	</insert>
 	
 	<!-- 오자윤 : customerList 에 고객 검색시 -->
 	<select id="searchByEmail" resultType="com.example.mall.vo.Customer">

@@ -15,6 +15,12 @@ public interface CustomerMapper {
 	// 오자윤 : /customer/myPage/edit 고객정보 수정
 	int updateMyPage(@Param("customer")Customer customer,@Param("address")Address address);
 	
+	// 오자윤 : /customer/myPage/edit 고객정보 수정 (주소 수정)
+	int updateCustomerAddress(@Param("customer")Customer customer,@Param("address")Address address);
+	
+	// 오자윤 : /customer/myPage/edit 고객정보 수정 (새 주소 삽입)
+	int insertCustomerAddress(@Param("customer")Customer customer,@Param("address")Address address);
+	
 	// 오자윤 : 이메일로 고객 정보 검색
 	Customer searchByEmail(String customerMail);
 

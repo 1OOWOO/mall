@@ -24,10 +24,24 @@ public class CustomerService {
 	@Autowired
 	private CustomerMapper customerMapper;
 
+	@Transactional
 	// 오자윤 : /customer/myPage/edit 고객정보 수정
-	public int updateCustomer(Customer customer, Address address) {
-		return customerMapper.updateMyPage(customer, address);
-	}
+	public int updateCustomer(Customer updatedCustomer, Address updatedAddress) {
+		int customerResult = customerMapper.updateMyPage(updatedCustomer, updatedAddress);
+		
+		if (updatedAddress.getAddressDetail() != null && !updatedAddress.getAddressDetail().isEmpty()) {
+			if (updatedAddress.getAddressNo() !=null) {
+				// addressNo 있으면 주소 업데이트
+				updatedAddress.setCustomerMail(updatedCustomer.getCustomerMail());
+				customerMapper.updateCustomerAddress(updatedCustomer, updatedAddress);
+			} else {
+                // addressNo가 없으면 새 주소 삽입
+                updatedAddress.setCustomerMail(updatedCustomer.getCustomerMail()); 
+                customerMapper.insertCustomerAddress(updatedCustomer, updatedAddress);
+            }
+        }
+        return customerResult; // 기본 고객 정보 업데이트
+    }
 	
 	// 우정 : 고객 로그인
 	public Customer login(Customer paramCustomer) {
