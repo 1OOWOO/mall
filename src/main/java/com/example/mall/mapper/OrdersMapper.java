@@ -14,6 +14,9 @@ public interface OrdersMapper {
 	// 오자윤 : 결제 완료시 주문내역 추가
 	Integer insertOrders(Orders orders);
 
+	// 오자윤 : /admin/orderList 전체 주문 카운트
+	int selectOrdersListCount(Map<String, Object> map);
+	
 	// /admin/orderList
 	List<Map<String, Object>> selectOrdersList(Map<String, Object> map);
 

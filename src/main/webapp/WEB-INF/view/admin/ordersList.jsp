@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>상품 관리</title>
+<title>주문 관리</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -90,8 +90,16 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">주문 관리</h1>
-			</div>
+            </div>
 			<div id="page-inner">
+				<div>
+					<div class="input-group" style=" display: flex;">
+						<form id="searchForm" action="${pageContext.request.contextPath}/admin/ordersList" method="get">
+			                <input type="text" name="searchKeyword" value="${searchKeyword}" placeholder="이메일을 입력하세요" style="width: 250px;">
+			                <button type="submit" class="waves-effect waves-light btn">검색</button>
+			            </form>
+					</div>
+		        </div>
 				<div class="dashboard-cards">
 					<div class="row">
 					    <div class="col-sm-10">
@@ -132,6 +140,46 @@
 									</c:forEach>
 								</table>
 							</form>
+							<!-- 페이징 -->
+							<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+							    <ul class="pagination">
+							        <li class="paginate_button previous ${currentPage == 1 ? 'disabled' : ''}"
+							            aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
+							            <c:choose>
+							                <c:when test="${currentPage > 1}">
+							                    <a href="${pageContext.request.contextPath}/admin/ordersList?page=${currentPage - 1}&pageSize=${pageSize}&searchKeyword=${searchKeyword}">Previous</a>
+							                </c:when>
+							                <c:otherwise>
+							                    <a href="#">Previous</a>
+							                </c:otherwise>
+							            </c:choose>
+							        </li>
+							        <c:forEach var="num" begin="${beginPageNum}" end="${endPageNum}">
+							            <li class="paginate_button ${num == currentPage ? 'active' : ''}"
+							                aria-controls="dataTables-example" tabindex="0">
+							                <c:choose>
+							                    <c:when test="${num == currentPage}">
+							                        <a href="#">${num}</a>
+							                    </c:when>
+							                    <c:otherwise>
+							                        <a href="${pageContext.request.contextPath}/admin/ordersList?page=${num}&pageSize=${pageSize}&searchKeyword=${searchKeyword}">${num}</a>
+							                    </c:otherwise>
+							                </c:choose>
+							            </li>
+							        </c:forEach>
+							        <li class="paginate_button next ${currentPage == totalPages ? 'disabled' : ''}"
+							            aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
+							            <c:choose>
+							                <c:when test="${currentPage < totalPages}">
+							                    <a href="${pageContext.request.contextPath}/admin/ordersList?page=${currentPage + 1}&pageSize=${pageSize}&searchKeyword=${searchKeyword}">Next</a>
+							                </c:when>
+							                <c:otherwise>
+							                    <a href="#">Next</a>
+							                </c:otherwise>
+							            </c:choose>
+							        </li>
+							    </ul>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -147,5 +195,20 @@
 			$('#formModifyOrders${o.ordersNo}').submit();
 		}
 	});
+</script>
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    const searchKeywordInput = document.querySelector('input[name="searchKeyword"]');
+    const searchKeyword = searchKeywordInput.value.trim();
+
+    if (searchKeyword !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(searchKeyword)) {
+            alert('유효한 이메일 주소를 입력해주세요.');
+            event.preventDefault();
+            return;
+        }
+    }
+});
 </script>
 </html>

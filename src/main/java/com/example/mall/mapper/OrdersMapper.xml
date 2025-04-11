@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.mall.mapper.OrdersMapper">
 	<!-- Author : 오아림 -->
-	
+
+		
 	<!-- 오자윤 : 결제 완료시 주문 내역 추가 -->
 	<insert id="insertOrders" parameterType="com.example.mall.vo.Orders">
 		INSERT INTO orders(
@@ -16,31 +17,54 @@
 			)
 	</insert>
 	
+	<!-- 오자윤 : /admin/ordersList 전체 주문 카운팅 -->
+	<select id="selectOrdersListCount" parameterType="map" resultType="int">
+	    SELECT COUNT(*)
+	    FROM payment p
+	    INNER JOIN (SELECT
+	                        o.payment_no
+	                    FROM goods g
+	                    INNER JOIN orders o
+	                    ON g.goods_no = o.goods_no) go
+	    ON go.payment_no = p.payment_no
+	    JOIN address a on a.address_no = p.address_no
+	    <where>
+	        <if test="customerMail != null and customerMail != ''">
+	            AND a.customer_mail = #{customerMail}
+	        </if>
+        </where>
+	</select>
+	
 	<!-- 오아림 : /admin/ordersList / 오자윤 : customerMail 조건조회-->
-	<select id="selectOrdersList" resultType="Map">
-		SELECT 
-			go.orders_no ordersNo
-			,go.goods_title goodsTitle
-			,go.orders_amount ordersAmount
-			,go.goods_price goodsPrice
-			,p.payment_state paymentState
-			,p.payment_method paymentMethod
-			,a.customer_mail customerMail
-		FROM payment p
-		INNER JOIN (SELECT 
-							g.goods_no goods_no
-							,g.goods_title goods_title
-							,g.goods_price goods_price
-							,o.orders_no orders_no
-							,o.orders_amount orders_amount
-							,o.payment_no payment_no
-						FROM goods g
-						INNER JOIN orders o
-						ON g.goods_no = o.goods_no) go
-		ON go.payment_no = p.payment_no
-		JOIN address a on a.address_no = p.address_no
-		WHERE a.customer_mail = #{customerMail}
-		ORDER BY ordersNo ASC;
+	<select id="selectOrdersList" parameterType="map" resultType="Map">
+	    SELECT
+	        go.orders_no ordersNo
+	        ,go.goods_title goodsTitle
+	        ,go.orders_amount ordersAmount
+	        ,go.goods_price goodsPrice
+	        ,p.payment_state paymentState
+	        ,p.payment_method paymentMethod
+	        ,a.customer_mail customerMail
+	    FROM payment p
+	    INNER JOIN (SELECT
+	                        g.goods_no goods_no
+	                        ,g.goods_title goods_title
+	                        ,g.goods_price goods_price
+	                        ,o.orders_no orders_no
+	                        ,o.orders_amount orders_amount
+	                        ,o.payment_no payment_no
+	                    FROM goods g
+	                    INNER JOIN orders o
+	                    ON g.goods_no = o.goods_no) go
+	    ON go.payment_no = p.payment_no
+	    JOIN address a on a.address_no = p.address_no
+	    <where>
+	        <if test="customerMail != null and customerMail != ''">
+	            AND a.customer_mail = #{customerMail}
+	        </if>
+	        </where>
+	    ORDER BY ordersNo ASC
+	    LIMIT #{pageSize} OFFSET #{offset};
 	</select>
 	
 	<!-- /admin/ordersList - 주문 수정 -->

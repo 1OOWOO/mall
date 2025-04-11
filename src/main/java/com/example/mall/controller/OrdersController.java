@@ -24,11 +24,42 @@ public class OrdersController {
 	// Author : 오아림
 	// /admin/ordersList
 	@GetMapping("/admin/ordersList")
-	public String ordersList(Model model) {
+	public String ordersList(@RequestParam(value= "page", defaultValue = "1") int page,
+							@RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+							@RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+							Model model) {
 		Map<String, Object> map = new HashMap<>();
+		// 페이징-> 0일 경우 1로 초기화
+		int currentPage = Math.max(1, page); // page가 1보다 작으면 1로 설정
+		int size = Math.max(1, pageSize); // pageSize가 1보다 작으면 1로 설정
+		int offset = (currentPage -1) * size;
+		
+	    map.put("pageSize", size);
+	    map.put("offset", offset);
+	    
+	    if (searchKeyword != null && !searchKeyword.isEmpty()) {
+	        map.put("customerMail", searchKeyword);
+	    }
+	    
 		List<Map<String, Object>> ordersList = ordersService.getOrdersList(map);
+		int totalCount = ordersService.getOrdersListCount(map); // 검색 조건에 맞는 총 개수 조회
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
+	    
+	    int numPageBlock = 10; // 페이지 번호 그룹 사이즈 (표시할 페이지 번호 개수)
+	    int beginPageNum = ((currentPage - 1) / numPageBlock) * numPageBlock + 1;
+	    int endPageNum = Math.min(beginPageNum + numPageBlock - 1, totalPages);
+
 		model.addAttribute("ordersList", ordersList);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("totalPages", totalPages);
+		model.addAttribute("pageSize", size);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("beginPageNum", beginPageNum);
+		model.addAttribute("endPageNum", endPageNum);
+		
 		log.debug("Orders List Size: " + ordersList.size());
+		log.debug("currentPage: " + currentPage);
+		log.debug("totalPages: " + totalPages);
 
 		return "admin/ordersList";
 	}

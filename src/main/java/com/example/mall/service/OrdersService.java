@@ -15,6 +15,11 @@ public class OrdersService {
 	@Autowired
 	OrdersMapper ordersMapper;
 
+	// 오자윤 : /admin/ordersList 전체 주문 카운트
+	public int getOrdersListCount(Map<String, Object> map) {
+		return ordersMapper.selectOrdersListCount(map);
+	}
+	
 	// Author : 오아림
 	// /admin/ordersList
 	public List<Map<String, Object>> getOrdersList(Map<String, Object> map) {
