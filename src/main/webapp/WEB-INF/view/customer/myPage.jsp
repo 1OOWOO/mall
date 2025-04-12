@@ -124,25 +124,30 @@
 						<h3 style="text-align: center;">마이페이지</h3>
 						<h4>개인정보</h4>
 							<form action="${pageContext.request.contextPath}/customer/myPage/edit" method="post">
-								<table>
-									<tr>
-										<td>이메일</td>
-										<td><input type="text" value="${customer.customerMail}" disabled/></td>
-									</tr>
-									<tr>
-										<td>비밀번호</td>
-										<td><input type="text" value="${customer.customerPw}" disabled></td>
-									</tr>
-									<tr>
-										<td>주소</td>
-										<td><input type="text" value="${customer.addressDetail}" disabled></td>
-									</tr>
-								</table>
-							   <input type="hidden" name="customerMail" value="${customer.customerMail}">
-							   <button type="submit" class="btn btn-light" style="margin-left:800px; background-color: #e8e8e8 !important;">개인정보 수정하기</button>
-							</form>
-						<h4>주문조회</h4>
-						<div class="col-sm-10">
+							<table>
+								<tr>
+									<td>이메일</td>
+									<td><input type="text" value="${customer.customerMail}" disabled/></td>
+								</tr>
+								<tr>
+									<td>비밀번호</td>
+									<td><input type="text" value="${customer.customerPw}" disabled></td>
+								</tr>
+								<tr>
+									<td>주소</td>
+									<td><input type="text" value="${customer.addressDetail}" disabled></td>
+								</tr>
+							</table>
+						   <input type="hidden" name="customerMail" value="${customer.customerMail}">
+						   <button type="submit" class="btn btn-light" style="margin-left:800px; background-color: #e8e8e8 !important;">개인정보 수정하기</button>
+						</form>
+					<h4>주문조회</h4>
+					<div class="col-sm-10">
+					<div class="col-sm-10">
+					    <c:if test="${empty ordersList}">
+					        <p>주문 내역이 없습니다.</p>
+					    </c:if>
+					    <c:if test="${not empty ordersList}">
 							<table
 								class="table table-striped table-bordered table-hover dataTable no-footer">
 								<tr role="row">
@@ -180,16 +185,44 @@
 									</tr>
 								</c:forEach>
 							</table>
+						<!-- 페이지네이션 -->
+						<div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+						    <span class="${currentPage == 1 ? 'disabled' : ''}">
+						        <c:choose>
+						            <c:when test="${currentPage > 1}">
+						                <a href="${pageContext.request.contextPath}/customer/myPage?page=${currentPage - 1}&pageSize=${pageSize}">Previous</a>
+						            </c:when>
+						            <c:otherwise>
+						                <a>이전</a>
+						            </c:otherwise>
+						        </c:choose>
+						    </span>
+						    <c:forEach var="num" begin="${beginPageNum}" end="${endPageNum}">
+						        <span class="${num == currentPage ? 'active' : ''}">
+						            <c:choose>
+						                <c:when test="${num == currentPage}">
+						                    <a>${num}</a>
+						                </c:when>
+						                <c:otherwise>
+						                    <a href="${pageContext.request.contextPath}/customer/myPage?page=${num}&pageSize=${pageSize}">${num}</a>
+						                </c:otherwise>
+						            </c:choose>
+						        </span>
+						    </c:forEach>
+						    <span class="${currentPage == totalPages ? 'disabled' : ''}">
+						        <c:choose>
+						            <c:when test="${currentPage < totalPages}">
+						                <a href="${pageContext.request.contextPath}/customer/myPage?page=${currentPage + 1}&pageSize=${pageSize}">Next</a>
+						            </c:when>
+						            <c:otherwise>
+						                <a>다음</a>
+						            </c:otherwise>
+						        </c:choose>
+						    </span>
 						</div>
-
-						<!-- 페이징
-		            <nav class="woocommerce-pagination">
-			            <ul class="page-numbers">
-			               <li><span class="page-numbers current">1</span></li>
-			               <li><a class="page-numbers" href="#">2</a></li>
-			               <li><a class="next page-numbers" href="#">→</a></li>
-			            </ul>
-		            </nav> -->
+					</c:if>
+				</div>
+						<br>
 					</main>
 				</div>
 				<!-- #primary -->

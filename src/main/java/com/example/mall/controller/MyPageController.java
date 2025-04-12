@@ -98,18 +98,18 @@ public class MyPageController {
 		// 주문 목록 가져오기
 		Map<String, Object> map = new HashMap<>();
 		map.put("customerMail", customerMail); // 고객 이메일 조건 추가
-		List<Map<String, Object>> ordersList = ordersService.getOrdersList(map);
-		model.addAttribute("ordersList", ordersList);
 
 		log.debug("고객 정보: {}", customer);
-		log.debug("주문 목록 크기: {}", ordersList.size());
-
+		
 		return "customer/editMyPage";
 	}
 	
 	
 	@GetMapping("/customer/myPage")
-	public String myPage(HttpSession session, Model model) {
+	public String myPage(@RequestParam(value= "page", defaultValue = "1") int page,
+			            @RequestParam(value = "pageSize", defaultValue = "5") int pageSize, 
+			            HttpSession session, Model model) {
+		
 		// 로그인된 사용자 확인
 		Customer loggedInCustomer = (Customer) session.getAttribute("loggedInCustomer");
 		if (loggedInCustomer == null) {
@@ -126,8 +126,25 @@ public class MyPageController {
 		// 주문 목록 가져오기
 		Map<String, Object> map = new HashMap<>();
 		map.put("customerMail", customerMail); // 고객 이메일 조건 추가
+	    int currentPage = Math.max(1, page);
+	    int size = Math.max(1, pageSize);
+	    int offset = (currentPage - 1) * size;
+	    map.put("pageSize", size);
+	    map.put("offset", offset);
+	    
 		List<Map<String, Object>> ordersList = ordersService.getOrdersList(map);
+	    int totalCount = ordersService.getOrdersListCount(map);
+	    int totalPages = (int) Math.ceil((double) totalCount / size);
+	    int numPageBlock = 5;
+	    int beginPageNum = ((currentPage - 1) / numPageBlock) * numPageBlock + 1;
+	    int endPageNum = Math.min(beginPageNum + numPageBlock - 1, totalPages);
+	    
 		model.addAttribute("ordersList", ordersList);
+	    model.addAttribute("currentPage", currentPage);
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("pageSize", size);
+	    model.addAttribute("beginPageNum", beginPageNum);
+	    model.addAttribute("endPageNum", endPageNum);
 
 		log.debug("고객 정보: {}", customer);
 		log.debug("주문 목록 크기: {}", ordersList.size());

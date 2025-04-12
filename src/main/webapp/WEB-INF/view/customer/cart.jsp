@@ -167,7 +167,7 @@
                                         <td>${c.goodsPrice}원</td>
                                         <td>${c.goodsTotalPrice}원</td>
                                         <td>
-                                            <a href="${pageContext.request.contextPath}/customer/deleteCart?cartNo=${c.cartNo}" class="btn btn-main w-100">삭제</a>
+                                            <a href="${pageContext.request.contextPath}/customer/deleteCart?cartNo=${c.cartNo}" class="btn btn-danger w-100">삭제</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

@@ -167,7 +167,7 @@
 													name="cartAmount" value="1" title="Qty"
 													class="input-text qty text" size="4" />
 												<button type="submit"
-													class="single_add_to_cart_button button alt">Add to Cart</button>
+													class="single_add_to_cart_button button alt" style="background-color: #e9e9e9 !important;">Add to Cart</button>
 											</div>
 											<input type="hidden" name="customerMail"
 												value="${loggedInCustomer.customerMail}"> <input
@@ -175,7 +175,7 @@
 										</form>
 										<br>
 										<button type="submit"
-											class="single_add_to_cart_button button alt">Wish</button>
+											class="single_add_to_cart_button button alt" style="background-color: #e9e9e9 !important;">Wish</button>
 									</div>
 									<!-- .summary -->
 									<div class="woocommerce-tabs wc-tabs-wrapper">

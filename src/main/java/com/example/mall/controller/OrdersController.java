@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mall.service.OrdersService;
+import com.example.mall.vo.Staff;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -28,6 +30,7 @@ public class OrdersController {
 							@RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
 							@RequestParam(value = "searchKeyword", required = false) String searchKeyword,
 							Model model) {
+    
 		Map<String, Object> map = new HashMap<>();
 		// 페이징-> 0일 경우 1로 초기화
 		int currentPage = Math.max(1, page); // page가 1보다 작으면 1로 설정

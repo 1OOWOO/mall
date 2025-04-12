@@ -150,7 +150,7 @@
 							                    <a href="${pageContext.request.contextPath}/admin/ordersList?page=${currentPage - 1}&pageSize=${pageSize}&searchKeyword=${searchKeyword}">Previous</a>
 							                </c:when>
 							                <c:otherwise>
-							                    <a href="#">Previous</a>
+							                    <a href="#">&raquo;</a>
 							                </c:otherwise>
 							            </c:choose>
 							        </li>
@@ -174,7 +174,7 @@
 							                    <a href="${pageContext.request.contextPath}/admin/ordersList?page=${currentPage + 1}&pageSize=${pageSize}&searchKeyword=${searchKeyword}">Next</a>
 							                </c:when>
 							                <c:otherwise>
-							                    <a href="#">Next</a>
+							                    <a href="#">&raquo;</a>
 							                </c:otherwise>
 							            </c:choose>
 							        </li>
